@@ -41,7 +41,7 @@ export default {
   name: 'userData',
   data() {
     return{
-      formData:{
+      formData: {
         nombre: '',
         apellido: '',
         relacion: '',
@@ -53,6 +53,7 @@ export default {
         tipoUsuario: 'Azul',
         state: 'true'
       },
+      // selected: null,
       selected: null,
         options: [
           { value: null, text: 'Selecciona una alternativa' },
@@ -64,11 +65,26 @@ export default {
   },
   methods: {
     createUser() {
-      console.log(this.formData)
+      const payload = {
+        nombre: this.formData.nombre,
+        apellido: this.formData.apellido,
+        relacion: this.formData.relacion,
+        edad: this.formData.edad,
+        telefono: this.formData.telefono,
+        rut: this.formData.rut,
+        correo: this.formData.correo,
+        contraseña: this.formData.contraseña,
+        tipoUsuario: this.formData.tipoUsuario,
+        state: true
+      }
+      
+      console.log( payload );
+
       axios
-        .post('164.92.96.206:8081/api/users/', this.formData)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error))
+        .post('http://164.92.96.206:8081/api/users/', payload )
+        // .post('http://localhost:8080/api/users/', payload )
+        .then(( response ) => console.log( response ))
+        .catch(( error ) => console.log( error ))
     }
   }
 
