@@ -4,14 +4,14 @@
 
       <div class="row" style="margin: 0px; padding-left: 30px; padding-right: 30px; padding-bottom: 15px; background-color: #74015E;">
         <b-input-group>
-          
-          <b-form-input id="buscador" @submit.prevent="buscar" v-model="formData.titulo" placeholder="¿Que servicio necesita?" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-          <b-button type = "submit" variant="none" style="padding: 8px 8px; margin: 10px 0px; background-color: #A70187;">
-            <template>
-              <Icon icon="charm:search" style="width:22px; height:22px; color: white;"/>
-            </template>
-          </b-button>
-          
+          <form @submit.prevent="buscar" class="row" style="width: -webkit-fill-available;">
+            <b-form-input id="buscador" v-model="formData.titulo" placeholder="¿Que servicio necesita?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
+            <b-button type = "submit" variant="none" style="padding: 8px 8px; margin: 10px 0px; background-color: #A70187;">
+              <template>
+                <Icon icon="charm:search" style="width:22px; height:22px; color: white;"/>
+              </template>
+            </b-button>
+          </form>
         </b-input-group>
       </div>
 
@@ -65,6 +65,7 @@
 <script>
 import axios from 'axios'
 export default {
+  
   name: 'Homepage2',
   data() {
     return{
@@ -75,10 +76,22 @@ export default {
   },
   methods: {
     buscar() {
+      
+      const payload = {
+        titulo: this.formData.titulo
+      }
+
+      console.log(payload)
+
       axios
-      .post('localhost:8080/api/buscador/', this.formData)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error))
+        //.get('http://164.92.96.206:8081/api/buscador/', payload )
+        .get('http://localhost:8080/api/buscador/', {
+          params:{
+            titulo: this.formData.titulo
+            }}) 
+        .then(( response ) => console.log(response.data))
+        .catch(( error ) => console.log( error ))
+      
     }
   }
 }

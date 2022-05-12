@@ -1,5 +1,5 @@
 <template>
-  <div class="service">
+  <div class="service" style="height: -webkit-fill-available;">
     <TopNavbar2/>
     <Service/>
     <BottomNavbar/>

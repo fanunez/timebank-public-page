@@ -11,9 +11,9 @@
       <form @submit.prevent="createUser">
       <b-row style="margin: 10px 40px;">
         <div class="fuente2">Nombres</div>
-        <b-form-input id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: Panchuwu" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        <b-form-input id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: " style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
         <div class="fuente2">Apellidos</div>
-        <b-form-input id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: El bailarin" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        <b-form-input id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: " style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
         <div class="fuente2">Escoger relación</div>
         <b-form-select v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion" style="width:-webkit-fill-available;">
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
@@ -83,8 +83,9 @@ export default {
       axios
         .post('http://164.92.96.206:8081/api/users/', payload )
         // .post('http://localhost:8080/api/users/', payload )
-        .then(( response ) => console.log( response ))
+        .then(( response ) => window.location.href="/Home")
         .catch(( error ) => console.log( error ))
+      
     }
   }
 

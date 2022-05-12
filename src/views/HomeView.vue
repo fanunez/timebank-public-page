@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" style="height: -webkit-fill-available;">
     <TopNavbar1/>
     <HomePage/>
     <BottomNavbar/>
