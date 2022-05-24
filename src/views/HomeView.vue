@@ -1,8 +1,8 @@
 <template>
-  <div class="home" style="height: -webkit-fill-available;">
-    <TopNavbar1/>
-    <HomePage/>
-    <BottomNavbar/>
+  <div class="home box" style="height: -webkit-fill-available;">
+    <TopNavbar1 />
+    <HomePage />
+    <BottomNavbar />
   </div>
 </template>
 
@@ -19,5 +19,4 @@ export default {
     TopNavbar1
   }
 }
-
 </script>
