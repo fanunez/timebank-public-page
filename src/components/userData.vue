@@ -10,24 +10,40 @@
       </div>
       <form @submit.prevent="createUser">
       <b-row style="margin: 10px 40px;">
+
         <div class="fuente2">Nombres</div>
         <b-form-input id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: " style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Apellidos</div>
         <b-form-input id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: " style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Escoger relación</div>
-        <b-form-select v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion" style="width:-webkit-fill-available;">
+        <b-form-select v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion" style="width:-webkit-fill-available; border-color: #A70187; border-width: medium;">
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
         </b-form-select>
+        
         <div class="fuente2">Edad</div>
         <b-form-input id="edad" type = "number" v-model="formData.edad" placeholder="Ej: 30" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Teléfono de contacto (fijo o celular)</div>
         <b-form-input id="telefono" type = "text" v-model="formData.telefono" placeholder="Ej: 987654321" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Rut</div>
         <b-form-input id="rut" type = "text" v-model="formData.rut" placeholder="Ej: 12.345.678-9" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Correo electrónico</div>
         <b-form-input id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
         <div class="fuente2">Contraseña</div>
         <b-form-input id="contraseña" type = "text" v-model="formData.contraseña" style="margin: 10px auto; border-color: #A70187; border-width: medium;"></b-form-input>
+        
+        <p v-if="formData.errors.length">
+          <b>Por favor solucione los siguiente(s) error(es):</b>
+          <ul>
+            <li v-for="error in formData.errors">{{ error }}</li>
+          </ul>
+       </p>
+
         <div class="fuente3">Al pulsar el boton registrar usted está de acuerdo con nuestros <a href="#">Términos y condiciones de uso</a> </div>
         <b-button type="submit" class="botonEnviar">Registrarse</b-button>
       </b-row>
@@ -51,7 +67,8 @@ export default {
         correo: '',
         contraseña: '',
         tipoUsuario: 'Azul',
-        state: 'true'
+        state: 'true',
+        errors: []     
       },
       // selected: null,
       selected: null,
@@ -65,6 +82,52 @@ export default {
   },
   methods: {
     createUser() {
+
+      this.formData.errors = [];
+
+      if (!this.formData.nombre){
+        this.formData.errors.push("Ingrese Nombre.")
+      }
+
+      if (!this.formData.apellido){
+        this.formData.errors.push("Ingrese Apellido.")
+      }
+
+      if (!this.formData.relacion){
+        this.formData.errors.push("Ingrese Relación.")
+      }
+
+      if (!this.formData.edad){
+        this.formData.errors.push("Ingrese Edad.")
+      }
+
+      if (this.formData.edad){
+        if(this.formData.edad < 18 || this.formData.edad > 120){
+          this.formData.errors.push("Debe tener una edad entre 18 y 120 años.")
+        }
+      }
+      
+      if (!this.formData.telefono){
+        this.formData.errors.push("Ingrese Telefono.")
+      }
+
+      if (!this.formData.rut){
+        this.formData.errors.push("Ingrese Rut.")
+      }
+
+      if (!this.formData.correo){
+        this.formData.errors.push("Ingrese Correo.")
+      }
+
+      if (!this.formData.contraseña){
+        this.formData.errors.push("Ingrese Contraseña.")
+      }
+
+      if (this.formData.errors.length){
+        return true;
+      }
+      
+
       const payload = {
         nombre: this.formData.nombre,
         apellido: this.formData.apellido,
