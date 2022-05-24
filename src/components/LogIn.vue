@@ -8,29 +8,56 @@
           <div class="fuente1">Ingresa tus datos</div>
         </div>
       </div>
-      <b-row style="justify-content: center; margin: 10px 40px;">
-        <b-form-input id="input-default" placeholder="Correo electrónico" class="formMail"></b-form-input>
-        <b-input-group>
-          <b-form-input id="input-default" placeholder="Contraseña" class="formPass"></b-form-input>
-          <b-button variant="none" class="btnOjo">
-            <template>
-              <Icon icon="bi:eye-fill" style="width:25px; height:18px; color: white;"/>
-            </template>
-          </b-button>
-        </b-input-group>
-        <b-button type="button" class="botonIngresar">Ingresar</b-button>
-      </b-row>
-      <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
-      <div class="container" style="margin: 25px 0;">
-            <div class="fuente2">¿Olvidaste tu contraseña?</div>
-            <a class="fuente3" type="link" href="#">Restablecer aquí</a>
+      <form @submit.prevent="loginUser">
+        <b-row style="justify-content: center; margin: 10px 40px;">
+          <b-form-input id="email" v-model="formData.email" placeholder="Correo electrónico" class="formMail"></b-form-input>
+          <b-input-group>
+            <b-form-input id="password" v-model="formData.password" placeholder="Contraseña" class="formPass"></b-form-input>
+            <b-button variant="none" class="btnOjo">
+              <template>
+                <Icon icon="bi:eye-fill" style="width:25px; height:18px; color: white;"/>
+              </template>
+            </b-button>
+          </b-input-group>
+          <b-button type="submit" class="botonIngresar">Ingresar</b-button>
+        </b-row>
+        <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
+        <div class="container" style="margin: 25px 0;">
+              <div class="fuente2">¿Olvidaste tu contraseña?</div>
+              <a class="fuente3" type="link" href="#">Restablecer aquí</a>
         </div>
+      </form>
     </div>
 </template>
 
+
 <script>
+import axios from 'axios'
 export default {
-  name: 'LogIn'
+  name: 'logIn',
+  data() {
+    return{
+      formData: {
+        email: '',
+        password: ''
+      },
+    }
+  },
+  methods: {
+    loginUser() {
+
+      console.log( this.formData )
+
+      axios
+        // .post('http://164.92.96.206:8081/api/auth/login/', payload )
+        .post('http://localhost:8080/api/auth/login/', this.formData )
+        .then(( response ) => {
+          console.log(response.data)
+          window.location.href="/Home"
+        })
+        .catch(( error ) => console.log( error ))
+    }
+  }
 }
 </script>
 
