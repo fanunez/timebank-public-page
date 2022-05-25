@@ -77,7 +77,7 @@
         <br>
 
         <div class="fuente3">Al pulsar el boton registrar usted está de acuerdo con nuestros <a href="#">Términos y condiciones de uso</a> </div>
-        <b-button type="submit" class="botonEnviar">Registrarse</b-button>
+        <b-button type="submit" class="botonEnviar" href="/">Registrarse</b-button>
 
       </b-row>
       </form>
