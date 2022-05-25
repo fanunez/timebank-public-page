@@ -1,6 +1,9 @@
 <template>
     <div class="main">
-      <div class="container" style="margin: 25px 0;">
+      <div class="row" style="margin: 0px 40px; padding-top: 20px;">
+        <a href="/" style="color:black"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
+      </div>
+      <div class="container" style="margin: 25px 0; margin-top: 0px;">
           <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
           <div class="fuente1">¿Ya tienes una cuenta?</div>
           <div class="fuente2">Empecemos a compartir</div>

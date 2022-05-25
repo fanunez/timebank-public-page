@@ -8,18 +8,18 @@
           <div class="fuente1">Ingresa tus datos</div>
         </div>
       </div>
-      <form @submit.prevent="loginUser">
+      <form action class="form" @submit.prevent="loginUser">
         <b-row style="justify-content: center; margin: 10px 40px;">
-          <b-form-input id="email" v-model="formData.email" placeholder="Correo electrónico" class="formMail"></b-form-input>
+          <b-form-input type="email" id="email" v-model="email" placeholder="Correo electrónico" class="formMail"></b-form-input>
           <b-input-group>
-            <b-form-input id="password" v-model="formData.password" placeholder="Contraseña" class="formPass"></b-form-input>
+            <b-form-input type="password" id="password" v-model="password" placeholder="Contraseña" class="formPass"></b-form-input>
             <b-button variant="none" class="btnOjo">
               <template>
                 <Icon icon="bi:eye-fill" style="width:25px; height:18px; color: white;"/>
               </template>
             </b-button>
           </b-input-group>
-          <b-button type="submit" class="botonIngresar">Ingresar</b-button>
+          <b-button value="Login" type="submit" class="botonIngresar">Ingresar</b-button>
         </b-row>
         <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
         <div class="container" style="margin: 25px 0;">
@@ -32,30 +32,27 @@
 
 
 <script>
-import axios from 'axios'
+import auth from "@/logic/auth";
 export default {
-  name: 'logIn',
-  data() {
-    return{
-      formData: {
-        email: '',
-        password: ''
-      },
-    }
-  },
+  data: () => ({
+      email: "",
+      password: "",
+      error: false
+  }),
   methods: {
-    loginUser() {
-
-      console.log( this.formData )
-
-      axios
-        // .post('http://164.92.96.206:8081/api/auth/login/', payload )
-        .post('http://localhost:8080/api/auth/login/', this.formData )
-        .then(( response ) => {
-          console.log(response.data)
-          window.location.href="/Home"
-        })
-        .catch(( error ) => console.log( error ))
+    async loginUser() {
+      try {
+        const respon = await auth.loginUser(this.email, this.password);
+        const user = {
+          uid: respon.data.user.uid,
+          tok: respon.data.token
+        };
+        auth.setUserLogged(user);
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+        this.error = true;
+      }
     }
   }
 }
