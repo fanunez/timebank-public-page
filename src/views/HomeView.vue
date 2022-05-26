@@ -4,7 +4,6 @@
       <TopNavbar2/>
       <HomePage/>
       <BottomNavbar/>
-      <p v-if="userLogged">User loggued: {{userLogged}}</p>
     </div>
     <div v-else class="home2" style="height: -webkit-fill-available;">
       <TopNavbar1/>
@@ -32,6 +31,11 @@ export default{
   computed: {
     userLogged() {
       return auth.getUserLogged()
+    },
+    userBono(){
+      const respon = auth.getUserLogged()
+      const CookieUser = auth.getUserBono(respon)
+      return CookieUser
     }
   }
 }

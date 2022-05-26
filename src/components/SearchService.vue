@@ -2,31 +2,44 @@
   <div class="SearchService">
     <div class="PrincipalFrame" style="padding-top: 5px;">
         <b-input-group>
-          <form @submit.prevent="buscar" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px;">
+          <form @submit.prevent="buscar" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
             <b-form-input id="buscador" v-model="formData.titulo" placeholder="¿Que servicio necesita?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
-            <b-button type = "submit" variant="none" style="padding: 8px 8px; margin: 10px 0px; background-color: #A70187;">
+            <b-button type = "submit" variant="none" style="padding: 7px; margin: 10px 0px; background-color: #A70187;">
               <template>
                 <Icon icon="charm:search" style="width:22px; height:22px; color: white;"/>
               </template>
             </b-button>
           </form>
         </b-input-group>
-        <h4 style="text-align: left; margin-left: 30px;">Nuestras categorías</h4>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-5" style="padding-right: 5px;">
-                <img src="../assets/Gato_Indio.jpg" style="margin: 20px auto; width: 150px; height: 150px;">
+        
+        <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
+        <div class="row" style="max-height: 190px;">
+            <div class="contenedor col" style="margin: 5px auto; padding-right: 0px; padding-left: 40px;">
+                <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
+                <div class="centradoIzq">Deporte</div>
             </div>
-            <div class="col-5" style="padding-left: 5px;">
-                <img src="../assets/Gato_Indio.jpg" style="margin: 20px auto; width: 150px; height: 150px;">
+            <div class="contenedor col" style="margin: 5px auto; padding-left: 0px; padding-right: 40px;">
+            <img src="../assets/Gato_Indio.jpg" class="ImgDerecha">
+                <div class="centradoDer">Negocio</div>
             </div>
-            <div class="col-1"></div>
+        </div>
+        <div class="row" style="max-height: 190px;">
+            <div class="contenedor col" style="margin: 5px auto; padding-right: 0px; padding-left: 40px;">
+                <img src="../assets/gato_guaton.jpg" class="ImgIzquierda">
+                <div class="centradoIzq">Siesta</div>
+            </div>
+            <div class="contenedor col" style="margin: 5px auto; padding-left: 0px; padding-right: 40px;">
+                <img src="../assets/gato_guaton.jpg" class="ImgDerecha">
+                <div class="centradoDer">Comida</div>
+            </div>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SearchService',
   data() {
@@ -86,5 +99,40 @@ export default {
   background-color: white!important;;
   color: black!important;
   border-color: black!important;
+}
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+.centradoIzq{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 24px;
+}
+.centradoDer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 24px;
+}
+.ImgIzquierda{
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  opacity: 50%;
+  margin-right: 5px;
+}
+.ImgDerecha{
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  opacity: 50%;
+  margin-left: 5px;
 }
 </style>

@@ -13,7 +13,7 @@
               </b-dropdown>
           </div>
           <div class="col-3" style="padding: 0px;">
-              <b-button class="bonos" type="button">5 <Icon icon="emojione-v1:alarm-clock" style="width:32px; height:32px" /></b-button>
+                <b-button class="bonos" type="button">{{this.userLoggedBono}}<Icon icon="emojione-v1:alarm-clock" style="width:32px; height:32px" /></b-button>
           </div>
           <div class="col-3" style="padding: 0px;">
               <b-button class="notificaciones" type="button">1 <Icon icon="emojione-v1:ringing-bell" style="width:32px; height:32px"/></b-button>
@@ -34,8 +34,21 @@
 </template>
 
 <script>
+import auth from "@/logic/auth";
+
 export default {
   name: 'TopNavbar2',
+  data: () => ({
+      userLoggedBono: null 
+  }),
+  mounted() {
+    const respon = auth.getUserLogged()
+    auth.getUserBono( respon )
+        .then( resp => {
+            this.userLoggedBono = resp;
+        })
+        .catch( e => console.log( e ) )
+  }
 }
 </script>
 
