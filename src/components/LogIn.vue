@@ -8,29 +8,53 @@
           <div class="fuente1">Ingresa tus datos</div>
         </div>
       </div>
-      <b-row style="justify-content: center; margin: 10px 40px;">
-        <b-form-input id="input-default" placeholder="Correo electrónico" class="formMail"></b-form-input>
-        <b-input-group>
-          <b-form-input id="input-default" placeholder="Contraseña" class="formPass"></b-form-input>
-          <b-button variant="none" class="btnOjo">
-            <template>
-              <Icon icon="bi:eye-fill" style="width:25px; height:18px; color: white;"/>
-            </template>
-          </b-button>
-        </b-input-group>
-        <b-button type="button" class="botonIngresar">Ingresar</b-button>
-      </b-row>
-      <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
-      <div class="container" style="margin: 25px 0;">
-            <div class="fuente2">¿Olvidaste tu contraseña?</div>
-            <a class="fuente3" type="link" href="#">Restablecer aquí</a>
+      <form action class="form" @submit.prevent="loginUser">
+        <b-row style="justify-content: center; margin: 10px 40px;">
+          <b-form-input type="email" id="email" v-model="email" placeholder="Correo electrónico" class="formMail"></b-form-input>
+          <b-input-group>
+            <b-form-input type="password" id="password" v-model="password" placeholder="Contraseña" class="formPass"></b-form-input>
+            <b-button variant="none" class="btnOjo">
+              <template>
+                <Icon icon="bi:eye-fill" style="width:25px; height:18px; color: white;"/>
+              </template>
+            </b-button>
+          </b-input-group>
+          <b-button value="Login" type="submit" class="botonIngresar">Ingresar</b-button>
+        </b-row>
+        <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
+        <div class="container" style="margin: 25px 0;">
+              <div class="fuente2">¿Olvidaste tu contraseña?</div>
+              <a class="fuente3" type="link" href="#">Restablecer aquí</a>
         </div>
+      </form>
     </div>
 </template>
 
+
 <script>
+import auth from "@/logic/auth";
 export default {
-  name: 'LogIn'
+  data: () => ({
+      email: "",
+      password: "",
+      error: false
+  }),
+  methods: {
+    async loginUser() {
+      try {
+        const respon = await auth.loginUser(this.email, this.password);
+        const user = {
+          uid: respon.data.user.uid,
+          tok: respon.data.token
+        };
+        auth.setUserLogged(user);
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+        this.error = true;
+      }
+    }
+  }
 }
 </script>
 

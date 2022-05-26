@@ -2,7 +2,7 @@
   <div class="HomePage">
     <div class="PrincipalFrame">
 
-      <h5>Servicios populares</h5>
+      <p class="timebank-title">Servicios populares</p>
 
       <div class="container" style="margin: 10px auto;">
         <mdb-carousel :interval="8000" showControls showIndicators>
@@ -24,7 +24,7 @@
         </mdb-carousel>
       </div>
 
-      <h5>Categorías recomendadas</h5>
+      <p class="timebank-title">Categorías recomendadas</p>
 
       <div class="container" style="margin: 10px auto;">
         <mdb-carousel :interval="8000" showControls showIndicators>
@@ -34,7 +34,7 @@
         </mdb-carousel>
       </div>
 
-      <h5>Últimos servicios agregados</h5>
+      <p class="timebank-title">Últimos servicios agregados</p>
 
       <div class="container" style="margin: 10px auto;">
         <mdb-carousel :interval="8000" showControls showIndicators>
@@ -56,16 +56,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.HomePage{
-  height: auto;
+
+@media (min-width: 480px) {
+  .PrincipalFrame { height: 83.5vh; }
 }
+
 .PrincipalFrame{
   box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
-  padding: 31px 0px;
+  padding: 25px 0px;
   background-color:white;
-  height: -webkit-fill-available;
 }
 .bg-light{
   background-color:#74015E!important;
@@ -81,5 +82,8 @@ export default {
   background-color: white!important;;
   color: black!important;
   border-color: black!important;
+}
+.timebank-title{
+  font-size: 24px;
 }
 </style>

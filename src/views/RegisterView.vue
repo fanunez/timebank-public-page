@@ -1,6 +1,6 @@
 <template>
   <div class="register" style="height: -webkit-fill-available">
-    <Register/>
+    <Register />
   </div>
 </template>
 

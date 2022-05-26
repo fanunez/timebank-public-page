@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Home2View from '../views/Home2View.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LogInView from '../views/LogInView.vue'
 import UserSelectorView from '../views/UserSelectorView.vue'
 import UserDataView1 from '../views/UserDataView1.vue'
 import UserDataView2 from '../views/UserDataView2.vue'
+import SearchServiceView from '../views/SearchServiceView.vue'
 
 Vue.use(VueRouter)
 
@@ -17,11 +17,6 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/Home',
-    name: 'home2',
-    component: Home2View
-  },
-  {
     path: '/service',
     name: 'service',
     // route level code-splitting
@@ -30,7 +25,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ServiceView.vue')
   },
   {
-    path: '/register',
+    path: '/register/',
     name: 'register',
     component: RegisterView
   },
@@ -53,6 +48,11 @@ const routes = [
     path: '/register/userSelector/userData2',
     name: 'userData2',
     component: UserDataView2
+  },
+  {
+    path: '/SearchService',
+    name: 'searchservice',
+    component: SearchServiceView
   }
 ]
 
