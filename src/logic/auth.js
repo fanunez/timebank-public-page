@@ -1,6 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+//const ENDPOINT_PATH = "http://localhost:8080/api/auth/";
+//const ENDPOINT_PATH2 = "http://localhost:8080/api/users/";
 const ENDPOINT_PATH = "http://164.92.96.206:8081/api/auth/";
 const ENDPOINT_PATH2 = "http://164.92.96.206:8081/api/users/";
 
