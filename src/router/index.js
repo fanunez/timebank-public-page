@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import HelpView from '../views/HelpView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LogInView from '../views/LogInView.vue'
 import UserSelectorView from '../views/UserSelectorView.vue'
+import UserServiceView from '../views/UserServiceView.vue'
 import UserDataView1 from '../views/UserDataView1.vue'
 import UserDataView2 from '../views/UserDataView2.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
@@ -17,6 +19,16 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/help',
+    name: 'help',
+    component: HelpView
+  },
+  {
+    path: '/userService',
+    name: 'userService',
+    component: UserServiceView
   },
   {
     path: '/service',
