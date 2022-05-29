@@ -13,25 +13,27 @@
         </b-input-group>
         
         <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
-        <div class="row" style="max-height: 190px;">
-            <div class="contenedor col" style="margin: 5px auto; padding-right: 0px; padding-left: 40px;">
-                <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
-                <div class="centradoIzq">Deporte</div>
+        <div v-for="i in categorias.length" :key="i">
+          <div v-if="(categorias.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
+            <div v-if="i <= (categorias.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
+              <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
+              <div class="centradoIzq">{{categorias[(i*2)-2].name}}</div>
             </div>
-            <div class="contenedor col" style="margin: 5px auto; padding-left: 0px; padding-right: 40px;">
-            <img src="../assets/Gato_Indio.jpg" class="ImgDerecha">
-                <div class="centradoDer">Negocio</div>
+            <div v-if="i <= (categorias.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
+              <img src="../assets/gato_guaton.jpg" class="ImgDerecha">
+              <div class="centradoDer">{{categorias[(i*2)-1].name}}</div>
             </div>
-        </div>
-        <div class="row" style="max-height: 190px;">
-            <div class="contenedor col" style="margin: 5px auto; padding-right: 0px; padding-left: 40px;">
-                <img src="../assets/gato_guaton.jpg" class="ImgIzquierda">
-                <div class="centradoIzq">Siesta</div>
+          </div>
+          <div v-else class="row" style="max-height: 190px; margin: 15px auto;">
+            <div v-if="i <= (categorias.length/2) + 1" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
+              <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
+              <div class="centradoIzq">{{categorias[(i*2)-2].name}}</div>
             </div>
-            <div class="contenedor col" style="margin: 5px auto; padding-left: 0px; padding-right: 40px;">
-                <img src="../assets/gato_guaton.jpg" class="ImgDerecha">
-                <div class="centradoDer">Comida</div>
+            <div v-if="i <= (categorias.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
+              <img src="../assets/gato_guaton.jpg" class="ImgDerecha">
+              <div class="centradoDer">{{categorias[(i*2)-1].name}}</div>
             </div>
+          </div>
         </div>
     </div>
   </div>
@@ -46,7 +48,8 @@ export default {
     return{
       formData:{
         titulo: '',
-      }
+      },
+      categorias: []
     }
   },
   methods: {
@@ -59,15 +62,26 @@ export default {
       console.log(payload)
 
       axios
-        //.get('http://164.92.96.206:8081/api/buscador/', payload )
-        .get('http://localhost:8080/api/buscador/', {
-          params:{
-            titulo: this.formData.titulo
-            }}) 
+        .get('http://164.92.96.206:8081/api/buscador/', payload )
+        //.get('http://localhost:8080/api/buscador/', {
+        //  params:{
+        //    titulo: this.formData.titulo
+        //    }}) 
         .then(( response ) => console.log(response.data))
         .catch(( error ) => console.log( error ))
       
     }
+  },
+  mounted (){
+    axios
+      .get('http://164.92.96.206:8081/api/category/categoryBuscador', {
+        params:{
+          name: ""        
+        }})
+      .then( resp => {
+        this.categorias = resp.data;
+        })
+      .catch(( e => console.log( e ) ))
   }
 }
 </script>
@@ -108,7 +122,7 @@ export default {
 .centradoIzq{
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 57%;
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 24px;
@@ -116,7 +130,7 @@ export default {
 .centradoDer{
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 43%;
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 24px;

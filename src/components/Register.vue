@@ -12,7 +12,7 @@
       <div class="container" style="margin: 25px 0;">
           <div class="fuente1">¿Primera vez en banco de tiempo?</div>
           <div class="fuente2">¡Registrate, te ayudaremos!</div>
-          <b-button href="/register/userSelector" class="btnRegistro">Registrarse</b-button>
+          <b-button href="/register/user-selector" class="btnRegistro">Registrarse</b-button>
       </div>
       <div class="row" style="margin-left:15px;">
         <img src="../assets/logo_citiaps.png" style="width: 146px; height: 55px; ">
