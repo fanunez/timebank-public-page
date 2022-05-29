@@ -11,7 +11,7 @@
             <button type="button" onclick="location.href='/SearchService';" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
           </div>
           <div class="col-3" style="padding:0px;">
-            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bi:person-circle" width="20" height="20"/><br>Perfil</button>
+            <button type="button" onclick="location.href='/Profile';" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bi:person-circle" width="20" height="20"/><br>Perfil</button>
           </div>
         </div>
       </nav>

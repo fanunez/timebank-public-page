@@ -7,6 +7,7 @@ import UserSelectorView from '../views/UserSelectorView.vue'
 import UserDataView1 from '../views/UserDataView1.vue'
 import UserDataView2 from '../views/UserDataView2.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ const routes = [
     path: '/SearchService',
     name: 'searchservice',
     component: SearchServiceView
+  },
+  {
+    path: '/Profile',
+    name: 'profile',
+    component: ProfileView
   }
 ]
 
