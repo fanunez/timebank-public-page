@@ -9,6 +9,7 @@ import UserDataView2 from '../views/UserDataView2.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,30 +37,30 @@ const routes = [
     component: LogInView
   },
   {
-    path: '/register/userSelector',
+    path: '/register/user-selector',
     name: 'userSelector',
     component: UserSelectorView
   },
   {
-    path: '/register/userSelector/userData1',
+    path: '/register/user-selector/user-data-1',
     name: 'userData1',
     component: UserDataView1
   },
   {
-    path: '/register/userSelector/userData2',
+    path: '/register/user-selector/user-data-2',
     name: 'userData2',
     component: UserDataView2
   },
   {
-    path: '/SearchService',
+    path: '/search-service',
     name: 'searchservice',
     component: SearchServiceView
   },
   {
-    path: '/Profile',
+    path: '/profile',
     name: 'profile',
     component: ProfileView
-  }
+  },
 ]
 
 const router = new VueRouter({

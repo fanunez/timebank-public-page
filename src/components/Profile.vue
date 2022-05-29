@@ -7,7 +7,7 @@
       {{ tab }}
     </b-button>
     <div v-if="currentTab === tabs[0]">
-          
+      <UserInformation />          
     </div>
     <div v-if="currentTab === tabs[1]">
         
@@ -22,11 +22,16 @@
 </template>
 
  <script>
+import UserInformation from './UserInformation.vue'
+
   export default {
     data: () => ({
       currentTab: 'Mi perfil',
       tabs: ['Mi perfil', 'Mis servicios', 'Historial', 'Mensajes'],
     }),
+    components: {
+      UserInformation,
+    },
   }
  </script>
 
@@ -44,8 +49,8 @@
   border-style: solid!important;
   border-color: #A70187!important;
   font-size: 12px;
-  padding: 5px;
-  margin: 10px 0px;
+  padding: 12px;
+  margin: 0px 0px;
   border-radius: 7px!important;
   color: black;
 }
