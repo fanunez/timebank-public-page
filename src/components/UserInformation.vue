@@ -147,7 +147,6 @@ export default {
 .timebank-title {
     margin-left: 50px;
 
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -166,7 +165,6 @@ export default {
     margin-left: 35px;
     font-weight: bold;
     
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     line-height: 30px;
@@ -177,7 +175,6 @@ export default {
 }
 
 .timebank-phrase {
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 16px;
@@ -205,7 +202,6 @@ export default {
     font-size: larger;
     height: 25px;
 
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 20px;
@@ -222,7 +218,6 @@ export default {
 }
 
 .date-of-birth {
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
     font-size: 20px;
