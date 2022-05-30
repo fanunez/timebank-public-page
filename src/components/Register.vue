@@ -1,7 +1,7 @@
 <template>
     <div class="main">
       <div class="row" style="margin: 0px 40px; padding-top: 20px;">
-        <a href="/" style="color:black"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
+        <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
       </div>
       <div class="container" style="margin: 25px 0; margin-top: 0px;">
           <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">

@@ -2,7 +2,7 @@
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
         <div class="col-2" style="padding: 5px ; margin-right: 10px; margin-top: 10px; padding-left: 35px;">
-          <a href="/register" style="color:black"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></a>
+          <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 5px;">
           <div class="fuente1">Ingresa tus datos</div>

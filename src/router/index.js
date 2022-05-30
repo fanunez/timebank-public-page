@@ -8,6 +8,7 @@ import UserDataView1 from '../views/UserDataView1.vue'
 import UserDataView2 from '../views/UserDataView2.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import PublishServiceView from '../views/PublishServiceView.vue'
 
 
 Vue.use(VueRouter)
@@ -60,6 +61,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/publish-service',
+    name: 'publish-service',
+    component: PublishServiceView
   },
 ]
 
