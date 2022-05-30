@@ -249,11 +249,11 @@ export default {
       console.log( payload );
 
       axios
-        // .post('http://164.92.96.206:8081/api/users/', payload )
-        .post('http://localhost:8080/api/users/', payload )
+        .post('http://164.92.96.206:8081/api/users/', payload )
+        // .post('http://localhost:8080/api/users/', payload )
         .then(( response ) => {
           console.log(response.data)
-          window.location.href="/Home"
+          window.location.href="/home"
         })
         .catch(( error ) => console.log( error ))
       

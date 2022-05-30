@@ -14,6 +14,11 @@ import PublishServiceView from '../views/PublishServiceView.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  // If route doesnt exists
+  { 
+    path: "*", 
+    redirect: "/" 
+  },
   {
     path: '/',
     name: 'home',
