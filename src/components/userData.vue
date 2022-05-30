@@ -2,7 +2,7 @@
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
         <div class="col-2" style="padding: 5px 0px; margin: 10px 10px;">
-          <a href="/register/userSelector" style="color:black"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
+          <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
           <div class="fuente1">Escribe tus datos</div>
@@ -249,11 +249,11 @@ export default {
       console.log( payload );
 
       axios
-        // .post('http://164.92.96.206:8081/api/users/', payload )
-        .post('http://localhost:8080/api/users/', payload )
+        .post('http://164.92.96.206:8081/api/users/', payload )
+        // .post('http://localhost:8080/api/users/', payload )
         .then(( response ) => {
           console.log(response.data)
-          window.location.href="/Home"
+          window.location.href="/home"
         })
         .catch(( error ) => console.log( error ))
       

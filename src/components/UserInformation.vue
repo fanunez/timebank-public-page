@@ -14,12 +14,18 @@
             <div class="col-6 text-left" style="align-self: center;">
                 <div class="row">
                     <!-- Name -->
-                    <div class="col-12 timebank-subtitle">
-                        El causita nomás
+                    <div v-if="userName !== ''" class="col-12 timebank-subtitle">
+                        {{ this.userName }}
+                    </div>
+                    <div v-else class="col-12 timebank-subtitle">
+                        Nombre
                     </div>
                     <!-- Surname -->
-                    <div class="col-12 timebank-subtitle">
-                        Asumare webón
+                    <div v-if="surname !== ''" class="col-12 timebank-subtitle">
+                        {{ this.surname }}
+                    </div>
+                    <div v-else class="col-12 timebank-subtitle">
+                        Apellido
                     </div>
                 </div>
             </div>
@@ -85,14 +91,46 @@
         </div>
         <!-- Seventh row: Description -->
         <div class="row container text-left pl-5">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+            <!-- If infortmation doesn't exists -->
+            <div v-if="this.description !== ''">
+                {{ this.description }}
+            </div>
+            <!-- Else, show user information -->
+            <div v-else>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import auth from "@/logic/auth";
+
 export default {
-    name: 'UserInformation'
+    name: 'UserInformation',
+    data: () => ({
+        // put something xd
+        userName: '',
+        surname: '',
+        dateOfBirth: Date,
+        description: '',
+    }),
+    mounted () {
+        // get user uid
+        const uid = auth.getUserLogged();
+        // petition
+        axios
+            .get ('http://164.92.96.206:8081/api/users/' + uid )
+            .then( r => {
+                // console.log( r.data.user );
+                this.userName = r.data.user.name;
+                this.surname = r.data.user.surname;
+            })
+            .catch( e => {
+                console.log( e );
+            })
+    },
 }
 </script>
 
