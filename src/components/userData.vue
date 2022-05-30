@@ -1,83 +1,83 @@
 <template>
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
-        <div class="col-2" style="padding: 5px 0px; margin: 10px 10px;">
+        <div class="col-1" style="padding: 5px 0px; margin: 10px 10px; margin-left: 37px;">
           <a href="/register/userSelector" style="color:black"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
-          <div class="fuente1">Escribe tus datos</div>
+          <div class="timebank-header" style="margin-right: 10px">Escribe tus datos</div>
         </div>
       </div>
       <form @submit.prevent="createUser">
       <b-row style="margin: 10px 40px;">
 
-        <div class="fuente2">Nombres</div>
-        <b-form-input id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: " style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorNombre === true">
+        <div class="timebank-subtitle mt-2">Nombres</div>
+        <b-form-input class="input-border" id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: Vanessa Carolina" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorNombre === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorNombreT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Apellidos</div>
-        <b-form-input id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: " style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorApellido === true">
+        <div class="timebank-subtitle mt-2">Apellidos</div>
+        <b-form-input class="input-border" id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: Sáez Bonacic" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorApellido === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorApellidoT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Escoger relación</div>
-        <b-form-select v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion" style=" margin: 5px auto; width:-webkit-fill-available; border-color: #A70187; border-width: medium;">
+        <div class="timebank-subtitle mt-2">Escoger relación</div>
+        <b-form-select class="input-border" v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion">
           <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
         </b-form-select>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorRelacion === true">
+        <div class = "container input-error-location" v-if="formData.errorRelacion === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorRelacionT }}</div>
         </div>
         <br>
         
-        <div class="fuente2">Edad</div>
-        <b-form-input id="edad" type = "number" v-model="formData.edad" placeholder="Ej: 30" style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorEdad === true">
+        <div class="timebank-subtitle mt-2">Edad</div>
+        <b-form-input class="input-border" id="edad" type = "number" v-model="formData.edad" placeholder="Ej: 30" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorEdad === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorEdadT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Dirección</div>
-        <b-form-input id="direccion" type = "text" v-model="formData.direccion" placeholder="Ej: Vicuña mackenna XXXX" style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorDireccion === true">
+        <div class="timebank-subtitle mt-2">Dirección</div>
+        <b-form-input class="input-border" id="direccion" type = "text" v-model="formData.direccion" placeholder="Ej: Vicuña Mackenna 1234" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorDireccion === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorDireccionT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Teléfono de contacto (fijo o celular)</div>
-        <b-form-input id="telefono" type = "text" v-model="formData.telefono" placeholder="Ej: 987654321" style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorTelefono === true">
+        <div class="timebank-subtitle mt-2">Teléfono de contacto (fijo o celular)</div>
+        <b-form-input class="input-border" id="telefono" type = "text" v-model="formData.telefono" placeholder="Ej: 987654321" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorTelefono === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorTelefonoT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Rut</div>
-        <b-form-input id="rut" type = "text" v-model="formData.rut" placeholder="Ej: 12.345.678-9" style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorRut === true">
+        <div class="timebank-subtitle mt-2">Rut</div>
+        <b-form-input class="input-border" id="rut" type = "text" v-model="formData.rut" placeholder="Ej: 12.345.678-9" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorRut === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorRutT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Correo electrónico</div>
-        <b-form-input id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorCorreo === true">
+        <div class="timebank-subtitle mt-2">Correo electrónico</div>
+        <b-form-input class="input-border" id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorCorreo === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorCorreoT }}</div>
         </div>
         <br>
 
-        <div class="fuente2">Contraseña</div>
-        <b-form-input id="contraseña" type = "password" v-model="formData.contraseña" placeholder="******** " style="margin: 5px auto; border-color: #A70187; border-width: medium;"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formData.errorContraseña === true">
+        <div class="timebank-subtitle mt-2">Contraseña</div>
+        <b-form-input class="input-border" id="contraseña" type = "password" v-model="formData.contraseña" placeholder="********" ></b-form-input>
+        <div class = "container input-error-location" v-if="formData.errorContraseña === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorContraseñaT }}</div>
         </div>
         <br>
 
-        <div class="fuente3">Al pulsar el boton registrar usted está de acuerdo con nuestros <a href="#">Términos y condiciones de uso</a> </div>
-        <b-button type="submit" class="botonEnviar" href="/">Registrarse</b-button>
+        <div class="timebank-phrase">Al pulsar el boton registrar usted está de acuerdo con nuestros <a href="#">Términos y condiciones de uso</a> </div>
+        <b-button type="submit" class="send-button" href="/">Registrarse</b-button>
 
       </b-row>
       </form>
@@ -93,7 +93,7 @@ export default {
       formData: {
         nombre: '',
         apellido: '',
-        relacion: '',
+        relacion: null,
         edad: '',
         direccion: '',
         telefono: '',
@@ -127,14 +127,13 @@ export default {
 
 
       },
-      // selected: null,
-      selected: null,
-        options: [
-          { value: null, text: 'Selecciona una alternativa' },
-          { value: 'Trabajo', text: 'Trabajo' },
-          { value: 'Estudio', text: 'Estudio' },
-          { value: 'Vivo', text: 'Vivo' }
-        ]
+      // Form relation data
+      options: [
+        { value: null, text: 'Seleccione una alternativa', disabled: true },
+        { value: 'Trabajo', text: 'Trabajo' },
+        { value: 'Estudio', text: 'Estudio' },
+        { value: 'Vivo', text: 'Vivo' }
+      ]
     }
   },
   methods: {
@@ -232,6 +231,7 @@ export default {
         return true;
       }
 
+      // generate payload body with the information of the data that is send
       const payload = {
         name: this.formData.nombre,
         surname: this.formData.apellido,
@@ -249,8 +249,9 @@ export default {
       console.log( payload );
 
       axios
-        .post('http://164.92.96.206:8081/api/users/', payload )
-        // .post('http://localhost:8080/api/users/', payload )
+        // if you need to change the endpoint base to local, replace as
+        // process.env.BACKEND_URL_LOCAL
+        .post( process.env.BACKEND_URL_SERVER+'/users/', payload )
         .then(( response ) => {
           console.log(response.data)
           window.location.href="/home"
@@ -274,6 +275,7 @@ export default {
   box-shadow: none!important;
 }
 </style>
+
 <style scoped>
 .main{
   min-height: -webkit-fill-available;
@@ -282,27 +284,48 @@ export default {
   margin: 0 auto;
   background-color:white
 }
-.fuente1{
+
+.timebank-header{
   font-weight: bold;
   font-size: 28px;
 }
-.fuente2{
+
+.timebank-subtitle{
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
 }
-.fuente3{
+
+.timebank-phrase{
   font-weight: 300px;
   font-size: 18px;
   margin: 10px 0px;
 }
-.botonEnviar{
-  padding: 5px 0px;
+
+.send-button{
+  /* padding: 5px 0px; */
   width: -webkit-fill-available;
   margin-top: 10px;
   margin-right: 0px;
   margin-bottom: 30px;
   margin-left: 0px;
-  background-color: #A70187!important;
-  font-size: larger;
+  background-color: #A70187!important;;
+  color: white!important;
+  font-size: x-large;
+  border-radius: 10px;
 }
+
+.input-error-location {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+  padding-left: 0px;
+}
+
+.input-border {
+  margin: 5px auto; 
+  border-color: #A70187; 
+  border-width: medium;
+  height: 50px;
+}
+
 </style>
