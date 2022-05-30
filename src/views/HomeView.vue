@@ -1,15 +1,13 @@
 <template>
-  <div class="home">
-    <div v-if="userLogged" style="height: -webkit-fill-available;">
-      <TopNavbar2/>
-      <HomePage/>
-      <BottomNavbar/>
-    </div>
-    <div v-else class="home2" style="height: -webkit-fill-available;">
-      <TopNavbar1/>
-      <HomePage/>
-      <BottomNavbar/>
-    </div>
+  <div v-if="userLogged" style="height: -webkit-fill-available;">
+    <TopNavbar2/>
+    <HomePage/>
+    <BottomNavbar/>
+  </div>
+  <div v-else class="home2" style="height: -webkit-fill-available;">
+    <TopNavbar1/>
+    <HomePage/>
+    <BottomNavbar/>
   </div>
 </template>
 
