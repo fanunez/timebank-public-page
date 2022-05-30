@@ -2,8 +2,6 @@
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
         <div class="col-1" style="padding: 5px 0px; margin: 10px 10px; margin-left: 37px;">
-          <a href="/register/userSelector" style="color:black"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
-        <div class="col-2" style="padding: 5px 0px; margin: 10px 10px;">
           <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
