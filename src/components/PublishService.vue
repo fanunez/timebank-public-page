@@ -83,7 +83,7 @@ export default {
   mounted (){
     this.aid = auth.getUserLogged()
     axios
-      .get( process.env.BACKEND_URL_SERVER + '/category/categoryBuscador', {
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/categoryBuscador', {
         params:{
           name: ""        
         }})

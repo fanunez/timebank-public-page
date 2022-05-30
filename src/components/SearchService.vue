@@ -62,7 +62,7 @@ export default {
       console.log( payload )
 
       axios
-        .post( process.env.BACKEND_URL_SERVER + '/category/buscador/', payload )
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/', payload )
           .then(( response ) => console.log(response.data))
           .catch(( error ) => console.log( error ))
       
@@ -70,7 +70,7 @@ export default {
   },
   mounted (){
     axios
-      .get( process.env.BACKEND_URL_SERVER + '/category/categoryBuscador', {
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/categoryBuscador', {
         params:{
           name: ""        
         }})

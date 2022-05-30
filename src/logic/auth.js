@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const ENDPOINT_PATH_AUTH = process.env.BACKEND_URL_SERVER + '/auth/';
-const ENDPOINT_PATH_USER = process.env.BACKEND_URL_SERVER + '/users/';
+const ENDPOINT_PATH_AUTH = process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/';
+const ENDPOINT_PATH_USER = process.env.VUE_APP_BACKEND_URL_SERVER + '/users/';
 
 export default {
   setUserLogged(userLogged) {
@@ -22,6 +22,9 @@ export default {
 
   loginUser(email, password) {
     const user = { email, password };
+
+    console.log( ENDPOINT_PATH_AUTH + "login" );
+
     return axios.post(ENDPOINT_PATH_AUTH + "login", user);
   },
 
