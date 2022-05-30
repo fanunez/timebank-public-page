@@ -121,7 +121,7 @@ export default {
         const uid = auth.getUserLogged();
         // petition
         axios
-            .get ( process.env.BACKEND_URL_SERVER + '/users/' + uid )
+            .get ( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/' + uid )
             .then( r => {
                 // console.log( r.data.user );
                 this.userName = r.data.user.name;
