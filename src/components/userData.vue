@@ -251,7 +251,7 @@ export default {
       axios
         // if you need to change the endpoint base to local, replace as
         // process.env.BACKEND_URL_LOCAL
-        .post( process.env.BACKEND_URL_SERVER+'/users/', payload )
+        .post( process.env.BACKEND_URL_SERVER + '/users/', payload )
         .then(( response ) => {
           console.log(response.data)
           window.location.href="/home"

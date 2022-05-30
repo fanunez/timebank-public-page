@@ -83,7 +83,7 @@ export default {
   mounted (){
     this.aid = auth.getUserLogged()
     axios
-      .get('http://164.92.96.206:8081/api/category/categoryBuscador', {
+      .get( process.env.BACKEND_URL_SERVER + '/category/categoryBuscador', {
         params:{
           name: ""        
         }})
