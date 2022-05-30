@@ -2,7 +2,7 @@
   <div class="SearchService">
     <div class="PrincipalFrame" style="padding-top: 5px;">
         <b-input-group>
-          <form @submit.prevent="buscar" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
+          <form @submit.prevent="searchByTitle" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
             <b-form-input id="buscador" v-model="formData.titulo" placeholder="¿Que servicio necesita?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
             <b-button type = "submit" variant="none" style="padding: 7px; margin: 10px 0px; background-color: #A70187;">
               <template>
@@ -53,28 +53,24 @@ export default {
     }
   },
   methods: {
-    buscar() {
-      
+    searchByTitle() {
+      // generate payload with frontend information
       const payload = {
-        titulo: this.formData.titulo
+        title: this.formData.titulo
       }
 
-      console.log(payload)
+      console.log( payload )
 
       axios
-        .get('http://164.92.96.206:8081/api/buscador/', payload )
-        //.get('http://localhost:8080/api/buscador/', {
-        //  params:{
-        //    titulo: this.formData.titulo
-        //    }}) 
-        .then(( response ) => console.log(response.data))
-        .catch(( error ) => console.log( error ))
+        .post( process.env.BACKEND_URL_SERVER + '/category/buscador/', payload )
+          .then(( response ) => console.log(response.data))
+          .catch(( error ) => console.log( error ))
       
     }
   },
   mounted (){
     axios
-      .get('http://164.92.96.206:8081/api/category/categoryBuscador', {
+      .get( process.env.BACKEND_URL_SERVER + '/category/categoryBuscador', {
         params:{
           name: ""        
         }})

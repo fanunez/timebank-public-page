@@ -5,10 +5,10 @@
           <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
-          <div class="fuente1">Cuéntanos sobre tí</div>
+          <div class="timebank-title">Cuéntanos sobre tí</div>
         </div>
       </div>
-      <div class="fuente2">Selecciona una de las opciones</div>
+      <div class="timebank-subtitle">Selecciona una de las opciones</div>
       <b-button href="/register/user-selector/user-data-1" class="userBlue" variant="none">
         <img src="../assets/asistencia_social.png" style="width: 90px; height: 90px;"><br>
         Quiero ofrecer y utilizar servicios de la comunidad
@@ -35,11 +35,11 @@ export default {
   margin: 0 auto;
   background-color:white
 }
-.fuente1{
+.timebank-title{
   font-weight: bold;
   font-size: 28px;
 }
-.fuente2{
+.timebank-subtitle{
   font-weight: 300px;
   font-size: 24px;
   text-align: center;

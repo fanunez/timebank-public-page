@@ -121,7 +121,7 @@ export default {
         const uid = auth.getUserLogged();
         // petition
         axios
-            .get ('http://164.92.96.206:8081/api/users/' + uid )
+            .get ( process.env.BACKEND_URL_SERVER + '/users/' + uid )
             .then( r => {
                 // console.log( r.data.user );
                 this.userName = r.data.user.name;
