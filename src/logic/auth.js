@@ -36,5 +36,6 @@ export default {
 
   deleteUserLogged() {
     Cookies.remove('userLogged');
+    Cookies.remove('userLoggedToken');
   }
 };
