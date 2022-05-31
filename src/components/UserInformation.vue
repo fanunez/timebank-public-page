@@ -10,41 +10,41 @@
             <hr class="rounded linear-divider">
         </div>
         <!-- Second row: User Data, Photo and Edit button-->
-        <div class="row mt-2">
+        <div class="row mt-2" style="max-width:425px; margin:0px;">
             <div class="col-6 text-left" style="align-self: center;">
                 <div class="row">
                     <!-- Name -->
-                    <div v-if="userName !== ''" class="col-12 timebank-subtitle">
+                    <div v-if="userName !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
                         {{ this.userName }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle">
+                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
                         Nombre
                     </div>
                     <!-- Surname -->
-                    <div v-if="surname !== ''" class="col-12 timebank-subtitle">
+                    <div v-if="surname !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
                         {{ this.surname }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle">
+                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
                         Apellido
                     </div>
                 </div>
             </div>
             <!-- Image/Photo -->
             <div class="col-6">
-                <div class="row justify-content-end" style="margin-right: 60px">
+                <div class="row justify-content-center">
                     <img src="../assets/asistencia_social.png" style="width: 90px; height: 90px;">
                 </div>
             </div>
         </div>
         <!-- Third row: Below personal data -->
-        <div class="row">
+        <div class="row" style="max-width:425px; padding:0px; margin:0px;">
             <!-- Date of birth -->
-            <div class="col-6 timebank-subtitle text-left date-of-birth" style="height: 53px;">
+            <div class="col-5 timebank-subtitle text-left date-of-birth" style="height: 53px; padding: 0px;">
                 Fecha de nacimiento
             </div>
             <!-- Edit button -->
-            <div class="pl-4">
-                <b-button class="edit-button"> EDITAR </b-button>
+            <div style="margin:auto">
+                <b-button class="edit-button">EDITAR</b-button>
             </div>
         </div>
         <!-- Forth row: Contact information TITLE-->
@@ -193,7 +193,7 @@ export default {
 
 .edit-button{
     padding: 0px 0px;
-    padding-left: 13px;
+    justify-content: center;
     width: 95px;
     margin-top: 15px;
     margin-left: 0px;
