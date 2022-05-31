@@ -1,5 +1,5 @@
 <template>
-  <div class="register" style="height: -webkit-fill-available">
+  <div class="register" style="height: 100vh">
     <Register />
   </div>
 </template>

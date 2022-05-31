@@ -10,6 +10,7 @@
               <b-dropdown-item href="#">Añadir servicio</b-dropdown-item>
               <b-dropdown-item href="#">Solicitar bono</b-dropdown-item>
               <b-dropdown-item href="#">Sobre nosotros</b-dropdown-item>
+              <b-dropdown-item v-on:click="cerrarSesion">Cerrar sesión</b-dropdown-item>
               </b-dropdown>
           </div>
           <div class="col-3" style="padding: 0px;">
@@ -48,6 +49,12 @@ export default {
             this.userLoggedBono = resp;
         })
         .catch( e => console.log( e ) )
+  },
+  methods: {
+      cerrarSesion() {
+          auth.deleteUserLogged()
+          return window.location.href="/"
+      }
   }
 }
 </script>

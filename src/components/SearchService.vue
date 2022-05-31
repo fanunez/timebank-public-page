@@ -13,7 +13,7 @@
         </b-input-group>
         
         <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
-        <div v-for="i in categorias.length" :key="i">
+        <div v-for="i in (categorias.length/2)" :key="i">
           <div v-if="(categorias.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
             <div v-if="i <= (categorias.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
               <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">

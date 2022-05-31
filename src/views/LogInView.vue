@@ -1,5 +1,5 @@
 <template>
-  <div class="log" style="height: -webkit-fill-available">
+  <div class="log" style="height: 100vh">
     <LogIn/>
   </div>
 </template>
