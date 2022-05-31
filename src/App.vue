@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="overflow-x: clip;">
     <div class="container-fluid" :style="{backgroundImage, height: 'fit-content', width: '-webkit-fill-available', padding: '0px'}">
       <router-view/>
     </div>
@@ -25,4 +25,5 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 </style>
