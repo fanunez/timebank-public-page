@@ -22,9 +22,6 @@ export default {
 
   loginUser(email, password) {
     const user = { email, password };
-
-    console.log( ENDPOINT_PATH_AUTH + "login" );
-
     return axios.post(ENDPOINT_PATH_AUTH + "login", user);
   },
 
