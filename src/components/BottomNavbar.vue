@@ -18,8 +18,15 @@
 </template>
 
 <script>
+import auth from "@/logic/auth";
+
 export default {
-  name: 'BottomNavbar'
+  name: 'BottomNavbar',
+  computed: {
+    userLogged() {
+      return auth.getUserLogged()
+    },
+}
 }
 </script>
 

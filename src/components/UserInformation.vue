@@ -14,8 +14,11 @@
             <div class="col-6 text-left" style="align-self: center;">
                 <div class="row">
                     <!-- Name -->
-                    <div class="col-12 timebank-subtitle">
-                        El causita nomás
+                    <div v-if="userName !== ''" class="col-12 timebank-subtitle">
+                        {{ this.userName }}
+                    </div>
+                    <div v-else class="col-12 timebank-subtitle">
+                        Nombre
                     </div>
                     <!-- Surname -->
                     <div class="col-12 timebank-subtitle">
@@ -91,8 +94,33 @@
 </template>
 
 <script>
+import axios from 'axios'
+import auth from "@/logic/auth";
+
 export default {
-    name: 'UserInformation'
+    name: 'UserInformation',
+    data: () => ({
+        // put something xd
+        userName: '',
+        surname: '',
+        dateOfBirth: Date,
+        description: '',
+    }),
+    mounted () {
+        // get user uid
+        const uid = auth.getUserLogged();
+        // petition
+        axios
+            .get ( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/' + uid )
+            .then( r => {
+                // console.log( r.data.user );
+                this.userName = r.data.user.name;
+                this.surname = r.data.user.surname;
+            })
+            .catch( e => {
+                console.log( e );
+            })
+    },
 }
 </script>
 
