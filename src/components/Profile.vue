@@ -27,7 +27,7 @@ import UserInformation from './UserInformation.vue'
   export default {
     data: () => ({
       currentTab: 'Mi perfil',
-      tabs: ['Mi perfil', 'Mis servicios', 'Historial', 'Mensajes'],
+      tabs: ['Mi perfil', 'Mis servicios', 'Mensajes', 'Historial'],
     }),
     components: {
       UserInformation,
