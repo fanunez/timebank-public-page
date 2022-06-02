@@ -6,18 +6,16 @@ const ENDPOINT_PATH_USER = process.env.VUE_APP_BACKEND_URL_SERVER + '/users/';
 
 export default {
   setUserLogged(userLogged) {
-    console.log(userLogged);
-    Cookies.set("userLogged", userLogged.uid);
-    Cookies.set("userLoggedToken", userLogged.tok);
+    Cookies.set("userLogged", userLogged);
   },
 
   getUserLogged() {
     return Cookies.get("userLogged");
   },
 
-  register(email, password) {
+  register(email, password) { 
     const user = { email, password };
-    return axios.post(ENDPOINT_PATH_AUTH + "regiser", user);
+    return axios.post(ENDPOINT_PATH_AUTH + "register", user);
   },
 
   loginUser(email, password) {
@@ -25,14 +23,18 @@ export default {
     return axios.post(ENDPOINT_PATH_AUTH + "login", user);
   },
 
-  async getUserBono(uid) {
-    const resp = await axios.get(ENDPOINT_PATH_USER + uid);
-    const CantBonos = resp.data.user.balance;
-    return CantBonos;
+  async getUserBono( token ) {
+    const resp = await axios.get( ENDPOINT_PATH_AUTH + 'user-logged/', {
+      headers:{
+        'Authorization': token,
+      },
+    })
+    console.log( resp );
+    const balance = resp.data.balance;
+    return balance;
   },
 
   deleteUserLogged() {
     Cookies.remove('userLogged');
-    Cookies.remove('userLoggedToken');
   }
 };

@@ -41,16 +41,17 @@
 </template>
 
 <script>
-import auth from "@/logic/auth";
+import auth from "../logic/auth";
 
 export default {
   name: 'TopNavbar2',
   data: () => ({
       userLoggedBono: null 
   }),
-  mounted() {
-    const respon = auth.getUserLogged()
-    auth.getUserBono( respon )
+  created() {
+    // get user token
+    const token = auth.getUserLogged();
+    auth.getUserBono( token )
         .then( resp => {
             this.userLoggedBono = resp;
         })
@@ -109,14 +110,14 @@ export default {
   top: 0;
   left: 55%;
   background: red;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   padding: 2px;
-  font-size: 10px;
+  font-size: 15px;
 }
 </style>
