@@ -1,7 +1,7 @@
 <template>
     <div class="navbar-buttons fixed-top" style="padding: 10px 0px; background-color: #74015E; position:sticky;">
         <div class="row" style="margin: 10px 0px; background-color:#74015E">
-            <div class="col-3" style="padding-right: 0px;">
+            <div class="col-2" style="padding-right: 0px;">
                 <b-dropdown no-caret toggle-class="CustomHamb" variant="none">
                 <template #button-content>
                     <Icon icon="charm:menu-hamburger" width="28" height="32" color="white"></Icon>
@@ -13,19 +13,19 @@
                 <b-dropdown-item v-on:click="cerrarSesion">Cerrar sesión</b-dropdown-item>
                 </b-dropdown>
             </div>
-            <div class="col-3" style="padding: 0px;">
+            <div class="col-4" style="padding: 0px;">
                     <b-button class="bonos" type="button">
                         <Icon icon="akar-icons:clock" style="width:32px; height:32px"/>
                             <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
                     </b-button>
             </div>
-            <div class="col-3" style="padding: 0px;">
+            <div class="col-4" style="padding: 0px;">
                 <b-button class="notificaciones" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
                     <span id="super-script-num" class="badge rounded-circle">1</span>
                 </b-button>
             </div>
-            <div class="col-3" style="padding-left: 0px; color: white;">
+            <div class="col-2" style="padding-left: 0px; color: white;">
                 <b-dropdown right no-caret toggle-class="CustomHamb" menu-class="tuerca" variant="none">
                 <template #button-content>
                     <Icon icon="ph:gear-duotone" width="32" height="32"/>
