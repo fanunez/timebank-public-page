@@ -62,14 +62,14 @@
             <div class="col-12 mb-1">
                 <div class="row align-items-center" style="margin-left: 30px;">
                     <Icon icon="akar-icons:phone" width="32" height="32" color="#a70187"/>
-                    <div class="timebank-phrase pl-2">+56 9 1234 5678</div>
+                    <div class="timebank-phrase pl-2">{{ this.phone }}</div>
                 </div>
             </div>
             <!-- Address -->
             <div class="col-12 mb-1">
                 <div class="row align-items-center" style="margin-left: 30px;">
                     <Icon icon="entypo:address" width="32" height="32" color="#a70187"/>
-                    <div class="timebank-phrase pl-2">Calle #1245</div>
+                    <div class="timebank-phrase pl-2">{{ this.address }}</div>
                 </div>
             </div>
             <!-- State or region -->
@@ -113,23 +113,28 @@ export default {
         // put something xd
         userName: '',
         surname: '',
-        dateOfBirth: Date,
+        dateOfBirth: '',
+        address: '',
+        phone: '',
         description: '',
     }),
-    mounted () {
+    async mounted () {
         // get user uid
-        const uid = auth.getUserLogged();
+        const token = auth.getUserLogged();
         // petition
-        axios
-            .get ( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/' + uid )
-            .then( r => {
-                // console.log( r.data.user );
-                this.userName = r.data.user.name;
-                this.surname = r.data.user.surname;
+        await axios
+            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
+            headers:{
+                'Authorization': token,
+            },
             })
-            .catch( e => {
-                console.log( e );
+            .then( response => {
+                this.userName = response.data.name;
+                this.surname = response.data.surname;
+                this.address = response.data.address;
+                this.phone = response.data.phone;
             })
+            .catch( e => console.log( e ))
     },
 }
 </script>
