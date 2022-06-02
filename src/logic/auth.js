@@ -13,9 +13,8 @@ export default {
     return Cookies.get("userLogged");
   },
 
-  register(email, password) { 
-    const user = { email, password };
-    return axios.post(ENDPOINT_PATH_AUTH + "register", user);
+  register(payload) {
+    return axios.post(ENDPOINT_PATH_USER, payload);
   },
 
   loginUser(email, password) {
