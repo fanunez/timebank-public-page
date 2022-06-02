@@ -133,6 +133,8 @@
 
 <script>
 import axios from 'axios'
+import auth from "@/logic/auth";
+
 export default {
   name: 'userData',
   data() {
@@ -295,16 +297,9 @@ export default {
       
       console.log( payload );
 
-      axios
-        // if you need to change the endpoint base to local, replace as
-        // process.env.VUE_APP_BACKEND_URL_LOCAL
-        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/', payload )
-        .then(( response ) => {
-          console.log(response.data)
-          window.location.href="/"
-        })
-        .catch(( error ) => console.log( error ))
-      
+      auth.register( payload );
+      this.$router.push("/register/login");
+
     }
   }
 
