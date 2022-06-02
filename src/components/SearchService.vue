@@ -55,7 +55,7 @@ export default {
   methods: {
     searchByTitle() {
       axios
-        .post( process.env.VUE_APP_BACKEND_URL_LOCAL + '/category/buscador/' + this.formData.titulo )
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.titulo )
           .then(( response ) => console.log(response.data))
           .catch(( error ) => console.log( error ))
       
@@ -64,7 +64,7 @@ export default {
   async mounted (){
     console.log( this.formData.titulo )
     await axios
-      .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/category/' )
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/' )
       .then( resp => {
         this.categorias = resp.data.categories;
         })
