@@ -16,13 +16,13 @@
             <div class="col-3" style="padding: 0px;">
                     <b-button class="bonos" type="button">
                         <Icon icon="akar-icons:clock" style="width:32px; height:32px"/>
-                            <span id="cart_menu_num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
+                            <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
                     </b-button>
             </div>
             <div class="col-3" style="padding: 0px;">
                 <b-button class="notificaciones" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
-                    <span id="cart_menu_num" class="badge rounded-circle">1</span>
+                    <span id="super-script-num" class="badge rounded-circle">1</span>
                 </b-button>
             </div>
             <div class="col-3" style="padding-left: 0px; color: white;">
@@ -104,7 +104,7 @@ export default {
   color: #74015E!important;
   border-color: #74015E!important;
 }
-#cart_menu_num {
+#super-script-num {
   position: absolute;
   top: 0;
   left: 55%;
