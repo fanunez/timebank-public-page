@@ -28,7 +28,6 @@ export default {
         'Authorization': token,
       },
     })
-    console.log( resp );
     const balance = resp.data.balance;
     return balance;
   },
