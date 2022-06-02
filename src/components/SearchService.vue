@@ -54,28 +54,19 @@ export default {
   },
   methods: {
     searchByTitle() {
-      // generate payload with frontend information
-      const payload = {
-        title: this.formData.titulo
-      }
-
-      console.log( payload )
-
       axios
-        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/', payload )
+        .post( process.env.VUE_APP_BACKEND_URL_LOCAL + '/category/buscador/' + this.formData.titulo )
           .then(( response ) => console.log(response.data))
           .catch(( error ) => console.log( error ))
       
     }
   },
-  mounted (){
-    axios
-      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/categoryBuscador', {
-        params:{
-          name: ""        
-        }})
+  async mounted (){
+    console.log( this.formData.titulo )
+    await axios
+      .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/category/' )
       .then( resp => {
-        this.categorias = resp.data;
+        this.categorias = resp.data.categories;
         })
       .catch(( e => console.log( e ) ))
   }
