@@ -43,11 +43,8 @@ export default {
     async loginUser() {
       try {
         const respon = await auth.loginUser(this.email, this.password);
-        const user = {
-          uid: respon.data.user.uid,
-          tok: respon.data.token
-        };
-        auth.setUserLogged(user);
+        const token = respon.data.token;
+        auth.setUserLogged(token);
         this.$router.push("/");
       } catch (error) {
         console.log(error);
