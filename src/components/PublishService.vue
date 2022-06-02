@@ -148,6 +148,7 @@ export default {
       if (this.formService.estateError == true){    
         return true;
       }
+      
       const payload = {
         title: this.formService.nombre,
         id_category: this.formService.categoria,

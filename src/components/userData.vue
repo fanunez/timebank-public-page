@@ -12,72 +12,119 @@
       <b-row style="margin: 10px 40px;">
 
         <div class="timebank-subtitle mt-2">Nombres</div>
-        <b-form-input class="input-border" id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: Vanessa Carolina" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="bi:person-fill" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="nombre" type = "text" v-model="formData.nombre" placeholder="Ej: Vanessa Carolina" ></b-form-input>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorNombre === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorNombreT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Apellidos</div>
-        <b-form-input class="input-border" id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: Sáez Bonacic" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="bi:person-fill" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="apellido" type = "text" v-model="formData.apellido" placeholder="Ej: Sáez Bonacic" ></b-form-input>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorApellido === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorApellidoT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Escoger relación</div>
-        <b-form-select class="input-border" v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion">
-          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
-        </b-form-select>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="ic:sharp-maps-home-work" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-select class="input-border" v-model="formData.relacion" :options="options" id="relacion" right variant="none" toggle-class="escogerRelacion"></b-form-select>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorRelacion === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorRelacionT }}</div>
         </div>
         <br>
         
         <div class="timebank-subtitle mt-2">Edad</div>
-        <b-form-input class="input-border" id="edad" type = "number" v-model="formData.edad" placeholder="Ej: 30" ></b-form-input>
+        <b-form-input class="input-border" id="edad" type = "number" v-model="formData.edad" placeholder="Ej: 30" style="border-left: solid; border-color:#A70187"></b-form-input>
+        
         <div class = "container input-error-location" v-if="formData.errorEdad === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorEdadT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Dirección</div>
-        <b-form-input class="input-border" id="direccion" type = "text" v-model="formData.direccion" placeholder="Ej: Vicuña Mackenna 1234" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="bx:world" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="direccion" type = "text" v-model="formData.direccion" placeholder="Ej: Vicuña Mackenna 1234" ></b-form-input>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorDireccion === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorDireccionT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Teléfono de contacto (fijo o celular)</div>
-        <b-form-input class="input-border" id="telefono" type = "text" v-model="formData.telefono" placeholder="Ej: 987654321" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="bxs:phone" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="telefono" type = "text" v-model="formData.telefono" placeholder="Ej: 987654321" ></b-form-input>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorTelefono === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorTelefonoT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Rut</div>
-        <b-form-input class="input-border" id="rut" type = "text" v-model="formData.rut" placeholder="Ej: 12.345.678-9" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="bx:id-card" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="rut" type = "text" v-model="formData.rut" placeholder="Ej: 12.345.678-9" ></b-form-input>
+        </b-input-group>
+        
         <div class = "container input-error-location" v-if="formData.errorRut === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorRutT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Correo electrónico</div>
-        <b-form-input class="input-border" id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="ant-design:mail-outlined" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+        </b-input-group>
         <div class = "container input-error-location" v-if="formData.errorCorreo === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorCorreoT }}</div>
         </div>
         <br>
 
         <div class="timebank-subtitle mt-2">Contraseña</div>
-        <b-form-input class="input-border" id="contraseña" type = "password" v-model="formData.contraseña" placeholder="********" ></b-form-input>
+        <b-input-group>
+          <b-input-group-prepend>
+            <span class="input-group-text"><Icon icon="dashicons:lock" style="width:24px; height:24px; color: #A70187;"/></span>
+          </b-input-group-prepend>
+          <b-form-input class="input-border" id="contraseña" type = "password" v-model="formData.contraseña" placeholder="********" ></b-form-input>
+        </b-input-group>
+        
+        
         <div class = "container input-error-location" v-if="formData.errorContraseña === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorContraseñaT }}</div>
         </div>
         <br>
 
         <div class="timebank-phrase">Al pulsar el boton registrar usted está de acuerdo con nuestros <a href="#">Términos y condiciones de uso</a> </div>
-        <b-button type="submit" class="send-button" href="/">Registrarse</b-button>
+        <b-button type="submit" class="send-button">Registrarse</b-button>
 
       </b-row>
       </form>
@@ -254,7 +301,7 @@ export default {
         .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/', payload )
         .then(( response ) => {
           console.log(response.data)
-          window.location.href="/home"
+          window.location.href="/"
         })
         .catch(( error ) => console.log( error ))
       
@@ -326,6 +373,15 @@ export default {
   border-color: #A70187; 
   border-width: medium;
   height: 50px;
+  border-left: none;
+}
+.input-group-text{
+  height:50px;
+  margin:5px 0px;
+  border-right: none;
+  background-color: white;
+  border-color: #A70187; 
+  border-width: medium;
 }
 
 </style>

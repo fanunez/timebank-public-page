@@ -1,5 +1,5 @@
 <template>
-  <div class="USelector" style="height: -webkit-fill-available">
+  <div class="USelector" style="height: 100vh">
     <UserSelector/>
   </div>
 </template>

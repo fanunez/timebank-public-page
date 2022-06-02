@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <div class="container-fluid" :style="{backgroundImage, height: '-webkit-fill-available', width: '-webkit-fill-available', padding: '0px'}">
+  <div id="app" style="overflow-x: clip;">
+    <div class="container-fluid" :style="{backgroundImage, height: 'fit-content', width: '-webkit-fill-available', padding: '0px'}">
       <router-view/>
     </div>
   </div>
@@ -24,6 +24,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height: -webkit-fill-available;
 }
+
 </style>
