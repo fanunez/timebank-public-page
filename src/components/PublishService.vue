@@ -193,8 +193,9 @@ export default {
   box-sizing: border-box;
   max-width: 425px;
   margin: 0px auto;
-  padding-bottom: 20px!important;
-  background-color:white
+  padding: 70px 0px;
+  background-color:white;
+  height: 100vh;
 }
 .formulario{
   margin: 5px 35px;
@@ -225,6 +226,7 @@ export default {
   padding: 5px 0px;
   width: -webkit-fill-available;
   margin: 10px 35px;
+  margin-bottom: 100px;
   background-color: #A70187!important;
   font-size: larger;
 }

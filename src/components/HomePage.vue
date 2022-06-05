@@ -54,9 +54,11 @@ export default {
 .principal-frame{
   /* box-sizing: border-box; */
   max-width: 425px;
-  margin: 0 auto;
-  padding: 25px 0px;
+  margin: 0px auto;
+  padding: 100px 0px;
   background-color:white;
+  height: 100vh;
+
 }
 .bg-light{
   background-color:#74015E!important;

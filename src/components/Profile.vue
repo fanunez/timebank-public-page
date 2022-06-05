@@ -41,9 +41,9 @@ import UserInformation from './UserInformation.vue'
   box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
-  padding: 20px 0px;
+  padding: 100px 0px;
   background-color:white;
-  height: -webkit-fill-available;
+  height: 100vh;
 }
 .tab-button{
   border-style: solid!important;

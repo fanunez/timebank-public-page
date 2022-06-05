@@ -82,9 +82,9 @@ export default {
   box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
-  padding: 31px 0px;
+  padding: 100px 0px;
   background-color:white;
-  height: -webkit-fill-available;
+  height: 100vh;
 }
 .bg-light{
   background-color:#74015E!important;
