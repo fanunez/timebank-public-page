@@ -9,12 +9,12 @@
         </div>
       </div>
       <div class="timebank-subtitle">Selecciona una de las opciones</div>
-      <b-button href="/register/user-selector/user-data-1" class="userBlue" variant="none">
+      <b-button @click="userBlue()" class="userBlue" variant="none">
         <img src="../../assets/asistencia_social.png" style="width: 90px; height: 90px;"><br>
         Quiero ofrecer y utilizar servicios de la comunidad
       </b-button>
       <hr class="rounded" style="border: solid; margin: 8px 40px; opacity: 30%;">
-      <b-button href="/register/user-selector/user-data-2" class="userOrange" variant="none">
+      <b-button @click="userOrange()" class="userOrange" variant="none">
         <img src="../../assets/ayudando.png" style="width: 90px; height: 90px;"><br>
         No puedo ofrecer servicios, pero quiero aportar a la comunidad
       </b-button>
@@ -22,8 +22,25 @@
 </template>
 
 <script>
+import auth from "@/logic/auth";
 export default {
-  name: 'userSelector'
+  name: 'userSelector',
+  data() {
+    return{
+      Blue: "Blue",
+      Orange: "Orange"
+    }
+  },
+  methods: {
+    userBlue(){
+      auth.setUserRol(this.Blue);
+      this.$router.push("/register/user-selector/user-data");
+    },
+    userOrange(){
+      auth.setUserRol(this.Orange);
+      this.$router.push("/register/user-selector/user-data");
+    }
+  }
 }
 </script>
 
