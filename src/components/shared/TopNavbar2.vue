@@ -2,7 +2,7 @@
     <div class="navbar-buttons fixed-top" style="padding: 10px 0px; background-color: #74015E; position:fixed;">
         <div class="row" style="margin: 10px 0px; background-color:#74015E">
             <div class="col-2" style="padding-right: 0px;">
-                <b-dropdown no-caret toggle-class="CustomHamb" variant="none">
+                <b-dropdown no-caret toggle-class="custom-hamb" variant="none">
                 <template #button-content>
                     <Icon icon="charm:menu-hamburger" width="28" height="32" color="white"></Icon>
                 </template>
@@ -14,19 +14,19 @@
                 </b-dropdown>
             </div>
             <div class="col-4" style="padding: 0px;">
-                    <b-button class="bonos" type="button">
+                    <b-button class="balance" type="button">
                         <Icon icon="akar-icons:clock" style="width:32px; height:32px"/>
                             <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
                     </b-button>
             </div>
             <div class="col-4" style="padding: 0px;">
-                <b-button class="notificaciones" type="button">
+                <b-button class="notifications" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
                     <span id="super-script-num" class="badge rounded-circle">1</span>
                 </b-button>
             </div>
             <div class="col-2" style="padding-left: 0px; color: white;">
-                <b-dropdown right no-caret toggle-class="CustomHamb" menu-class="tuerca" variant="none">
+                <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="tuerca" variant="none">
                 <template #button-content>
                     <Icon icon="ph:gear-duotone" width="32" height="32"/>
                 </template>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style>
-.CustomHamb{
+.custom-hamb{
   box-shadow: none!important;
   padding: 0px!important;
   margin: 0px!important;
@@ -82,7 +82,7 @@ export default {
     max-width: 425px;
     margin: 0 auto
 }
-.bonos{
+.balance{
     box-shadow: none;
     background-color: #74015E!important;
     padding: 0px;
@@ -90,7 +90,7 @@ export default {
     font-size: 20px;
     margin: 0px auto;
 }
-.notificaciones{
+.notifications{
     box-shadow: none;
     background-color: #74015E!important;
     padding: 0px;
