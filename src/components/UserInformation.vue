@@ -11,7 +11,8 @@
         </div>
         <!-- Second row: User Data, Photo and Edit button-->
         <div class="row mt-2" style="max-width:425px; margin:0px;">
-            <div class="col-6 text-left" style="align-self: center;">
+            <div class="col-8 text-left" style="align-self: center;">
+                <!-- 1 Row inside Col -->
                 <div class="row">
                     <!-- Name -->
                     <div v-if="userName !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
@@ -28,26 +29,29 @@
                         Apellido
                     </div>
                 </div>
+                <!-- 2 Row inside Col -->
+                <div class="row mt-3">
+                    <div class="timebank-subtitle text-left date-of-birth" style="height: 53px; padding: 0px;">
+                        10 de diciembre, 2022
+                    </div>
+                </div>
             </div>
-            <!-- Image/Photo -->
-            <div class="col-6">
+            <!-- Image/Photo and Edit button -->
+            <div class="col-auto">
+                <!-- User doesnt have image, set default -->
+                <div v-if="img == ''" class="row justify-content-center">
+                    <img class="image-container" src="../../public/img/default_images/user.png">
+                </div>
+                <!-- User have image -->
+                <div v-else class="row justify-content-center">
+                    <img class="image-container" src="../assets/gato_guaton.jpg">
+                </div>
                 <div class="row justify-content-center">
-                    <img src="../assets/asistencia_social.png" style="width: 90px; height: 90px;">
+                    <b-button href="/edit-user-data" class="edit-button" >EDITAR</b-button>
                 </div>
             </div>
         </div>
-        <!-- Third row: Below personal data -->
-        <div class="row" style="max-width:425px; padding:0px; margin:0px;">
-            <!-- Date of birth -->
-            <div class="col-5 timebank-subtitle text-left date-of-birth" style="height: 53px; padding: 0px;">
-                Fecha de nacimiento
-            </div>
-            <!-- Edit button -->
-            <div style="margin:auto">
-                <b-button class="edit-button">EDITAR</b-button>
-            </div>
-        </div>
-        <!-- Forth row: Contact information TITLE-->
+        <!-- Third row: Contact information TITLE-->
         <div class="row mb-3">
             <!-- Title -->
             <div class="col-12 pl-0">
@@ -56,7 +60,7 @@
             <!-- Divider -->
             <hr class="rounded linear-divider">
         </div>
-        <!-- Fifth row: Contact data -->
+        <!-- Fourth row: Contact data -->
         <div class="row mb-3">
             <!-- Phone number -->
             <div class="col-12 mb-1">
@@ -80,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <!-- Sixth row: About me TITLE -->
+        <!-- Fifth row: About me TITLE -->
         <div class="row mb-3">
             <!-- Title -->
             <div class="col-12 pl-0">
@@ -89,7 +93,7 @@
             <!-- Divider -->
             <hr class="rounded linear-divider">
         </div>
-        <!-- Seventh row: Description -->
+        <!-- Sixth row: Description -->
         <div class="row container text-left pl-5">
             <!-- If infortmation doesn't exists -->
             <div v-if="this.description !== ''">
@@ -117,6 +121,7 @@ export default {
         address: '',
         phone: '',
         description: '',
+        img: ''
     }),
     async mounted () {
         // get user uid
@@ -197,11 +202,9 @@ export default {
 }
 
 .edit-button{
-    padding: 0px 0px;
     justify-content: center;
     width: 95px;
     margin-top: 15px;
-    margin-left: 0px;
     margin-bottom: 30px;
     background-color: #A70187!important;
     font-size: larger;
@@ -230,6 +233,12 @@ export default {
     /* or 150% */
     display: flex;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.image-container {
+    width: 90px; 
+    height: 90px;
+    border-radius: 50px;
 }
 
 

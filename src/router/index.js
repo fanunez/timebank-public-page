@@ -11,6 +11,7 @@ import UserDataView2 from '../views/UserDataView2.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import PublishServiceView from '../views/PublishServiceView.vue'
+import EditUserData from '../views/EditUserData.vue'
 
 
 Vue.use(VueRouter)
@@ -83,6 +84,11 @@ const routes = [
     path: '/publish-service',
     name: 'publish-service',
     component: PublishServiceView
+  },
+  {
+    path: '/edit-user-data',
+    name: 'edit-user-data',
+    component: EditUserData
   },
 ]
 
