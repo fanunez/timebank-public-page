@@ -101,7 +101,7 @@
             </div>
             <!-- Else, show user information -->
             <div v-else>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+                Añade algo para que conozcan de tí.
             </div>
         </div>
     </div>
@@ -140,6 +140,7 @@ export default {
                 this.surname = response.data.surname;
                 this.address = response.data.address;
                 this.phone = response.data.phone;
+                this.description = response.data.description;
                 this.img = response.data.img;
             })
             .catch( e => console.log( e ))
