@@ -4,18 +4,18 @@
         <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
       </div>
       <div class="container" style="margin: 25px 0; margin-top: 0px;">
-          <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
-          <div class="fuente1">¿Ya tienes una cuenta?</div>
-          <div class="fuente2">Empecemos a compartir</div>
-          <b-button  href="/register/login"  class="btnIngreso">Ingresar</b-button>
+          <img src="../../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
+          <div class="timebank-title">¿Ya tienes una cuenta?</div>
+          <div class="timebank-subtitle">Empecemos a compartir</div>
+          <b-button  href="/register/login"  class="login-button">Ingresar</b-button>
       </div>
       <div class="container" style="margin: 25px 0;">
-          <div class="fuente1">¿Primera vez en banco de tiempo?</div>
-          <div class="fuente2">¡Registrate, te ayudaremos!</div>
-          <b-button href="/register/user-selector" class="btnRegistro">Registrarse</b-button>
+          <div class="timebank-title">¿Primera vez en banco de tiempo?</div>
+          <div class="timebank-subtitle">¡Registrate, te ayudaremos!</div>
+          <b-button href="/register/user-selector" class="register-button">Registrarse</b-button>
       </div>
       <div class="row" style="margin-left:15px;">
-        <img src="../assets/logo_citiaps.png" style="width: 146px; height: 55px; ">
+        <img src="../../assets/logo_citiaps.png" style="width: 146px; height: 55px; ">
       </div>
     </div>
 </template>
@@ -34,16 +34,16 @@ export default {
   margin: 0 auto;
   background-color:white
 }
-.fuente1{
+.timebank-title{
   font-weight: bold;
   font-size: 28px;
 }
-.fuente2{
+.timebank-subtitle{
   font-weight: 300;
   font-size: 24px;
 }
 
-.btnIngreso{
+.login-button{
   width: -webkit-fill-available;
   margin: 20px 40px;
   background-color: white!important;;
@@ -53,7 +53,7 @@ export default {
   border: groove;
   border-radius: 10px;
 }
-.btnRegistro{
+.register-button{
   width: -webkit-fill-available;
   margin: 20px 40px;
   background-color: #A70187!important;;

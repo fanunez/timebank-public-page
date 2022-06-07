@@ -15,17 +15,17 @@
                 <!-- 1 Row inside Col -->
                 <div class="row">
                     <!-- Name -->
-                    <div v-if="userName !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-if="userName !== ''" class="col-12 timebank-subtitle">
                         {{ this.userName }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-else class="col-12 timebank-subtitle">
                         Nombre
                     </div>
                     <!-- Surname -->
-                    <div v-if="surname !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-if="surname !== ''" class="col-12 timebank-subtitle">
                         {{ this.surname }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-else class="col-12 timebank-subtitle">
                         Apellido
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="col-auto">
                 <!-- User doesnt have image, set default -->
                 <div v-if="!img" class="row justify-content-center">
-                    <img class="image-container" src="../../public/img/default_images/user.png">
+                    <img class="image-container" src="../../../public/img/default_images/user.png">
                 </div>
                 <!-- User have image -->
                 <div v-else class="row justify-content-center">
@@ -96,12 +96,12 @@
         <!-- Sixth row: Description -->
         <div class="row container text-left pl-5">
             <!-- If infortmation doesn't exists -->
-            <div v-if="this.description !== ''">
+            <div v-if="this.description">
                 {{ this.description }}
             </div>
             <!-- Else, show user information -->
             <div v-else>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  
+                Añade algo para que conozcan de tí.
             </div>
         </div>
     </div>
@@ -120,7 +120,7 @@ export default {
             dateOfBirth: '',
             address: '',
             phone: '',
-            description: '',
+            description: null,
             img: null
         }
     },
@@ -140,6 +140,7 @@ export default {
                 this.surname = response.data.surname;
                 this.address = response.data.address;
                 this.phone = response.data.phone;
+                this.description = response.data.description;
                 this.img = response.data.img;
             })
             .catch( e => console.log( e ))
@@ -185,6 +186,8 @@ export default {
     display: flex;
     align-items: center;
     color: #000000;
+
+    padding-left: 0px;
 }
 
 .timebank-phrase {

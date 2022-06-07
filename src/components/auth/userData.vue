@@ -102,7 +102,7 @@
           <b-input-group-prepend>
             <span class="input-group-text"><Icon icon="ant-design:mail-outlined" style="width:24px; height:24px; color: #A70187;"/></span>
           </b-input-group-prepend>
-          <b-form-input class="input-border" id="correo" type = "text" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+          <b-form-input class="input-border" id="correo" type = "email" v-model="formData.correo" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
         </b-input-group>
         <div class = "container input-error-location" v-if="formData.errorCorreo === true">
           <div style = "padding-bottom: 5px;"> {{ formData.errorCorreoT }}</div>
@@ -135,6 +135,7 @@
 import axios from 'axios'
 import auth from "@/logic/auth";
 
+
 export default {
   name: 'userData',
   data() {
@@ -149,7 +150,7 @@ export default {
         rut: '',
         correo: '',
         contraseña: '',
-        tipoUsuario: 'Blue',
+        tipoUsuario: auth.getUserRol(),
         state: 'true',
 
         stateError: false,
@@ -298,6 +299,7 @@ export default {
       console.log( payload );
 
       auth.register( payload );
+      auth.deleteUserRol();
       this.$router.push("/register/login");
 
     }

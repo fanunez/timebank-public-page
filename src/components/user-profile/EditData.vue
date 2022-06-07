@@ -8,9 +8,19 @@
           <div class="timebank-header" style="margin-right: 10px">Edita tus datos</div>
         </div>
       </div>
-      <form @submit.prevent="updateUser">
-      <b-row style="margin: 10px 40px;">
 
+      <!-- Change image -->
+      <div v-if="formData.img != ''" class="col-12">
+        <avatar-input class="w-32 h-32 rounded-full" 
+                      v-model="formData.avatar"
+                      :default-src="formData.img"
+                      >
+        </avatar-input>
+      <div class="timebank-subtitle mt-2 mb-2" style="color: #A70187">CAMBIAR AVATAR</div>
+      </div>
+      <!-- Data form -->
+      <form style="margin-bottom: 30px">
+      <b-row style="margin: 10px 40px;">
         <!-- Name -->
         <div class="timebank-subtitle mt-2">Nombres</div>
         <b-input-group>
@@ -71,40 +81,40 @@
           <b-input-group-prepend>
             <span class="input-group-text"><Icon icon="ant-design:mail-outlined" style="width:24px; height:24px; color: #A70187;"/></span>
           </b-input-group-prepend>
-          <b-form-input class="input-border" id="correo" type = "text" v-model="formData.newEmail" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+          <b-form-input class="input-border" id="correo" type = "email" v-model="formData.newEmail" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
         </b-input-group>
 
-        <!-- Change image -->
-        <div class="timebank-subtitle mt-2 mb-2">Tu foto de perfil</div>
-        <div v-if="formData.img != ''" class="col-12">
-          <avatar-input class="w-32 h-32 rounded-full" 
-                        v-model="formData.avatar"
-                        :default-src="formData.img"
-                        >
-          </avatar-input>
-        </div>
+        <!-- Description -->
+        <div class="timebank-subtitle mt-2">Sobre tí</div>
+        <b-form-textarea class="input-border"
+                         type="text" 
+                         v-model="formData.newDescription"
+                         rows="3"
+                         max-rows="6"
+        ></b-form-textarea>
 
         <!-- Verify request -->
-        <div class="timebank-subtitle mt-3">Contraseña</div>
+        <!-- <div class="timebank-subtitle mt-3">Contraseña</div>
         <b-input-group class="pb-5">
           <b-input-group-prepend>
             <span class="input-group-text"><Icon icon="dashicons:lock" style="width:24px; height:24px; color: #A70187;"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="contraseña" type = "password" v-model="formData.verifyPassword" placeholder="" ></b-form-input>
-        </b-input-group>
+        </b-input-group> -->
         
-        <!-- Register button -->
-        <b-button type="submit" class="send-button" >Realizar cambios</b-button>
-
       </b-row>
       </form>
+
+      <!-- Register button -->
+      <b-button type="submit" class="send-button mt-2" v-on:click="updateUser" >Realizar cambios</b-button>
+
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import auth from "@/logic/auth";
-import AvatarInput from "./AvatarInput";
+import AvatarInput from "./helpers/AvatarInput";
 
 export default {
   name: 'editData',
@@ -122,6 +132,7 @@ export default {
         newRegion: '',
         newPhone: '',
         newEmail: '',
+        newDescription: '',
         img: '',
         avatar: null,
         verifyPassword: ''
@@ -155,6 +166,7 @@ export default {
                 this.formData.newRegion = response.data.region;
                 this.formData.newPhone = response.data.phone;
                 this.formData.newEmail = response.data.email;
+                this.formData.newDescription = response.data.description;
                 this.formData.img = response.data.img;
             })
             .catch( e => console.log( e ))
@@ -170,6 +182,7 @@ export default {
         region: this.formData.newRegion,
         phone: this.formData.newPhone,
         email: this.formData.newEmail,
+        description: this.formData.newDescription,
       }
       // send new user data
       await axios
@@ -177,19 +190,25 @@ export default {
         .then( response => {
         })
         .catch( e => console.log( e ))
-      // send new image
-      let fileData = new FormData();
-      fileData.append("file", this.formData.avatar )
-      await axios
-        .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then( response => {
-          return window.location.href="/profile"
-        })
-        .catch( e => console.log( e ))
+      
+      if( this.formData.avatar ) {
+        // send new image
+        let fileData = new FormData();
+        fileData.append("file", this.formData.avatar )
+        await axios
+          .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then( response => {
+            return window.location.href="/profile"
+          })
+          .catch( e => console.log( e ))
+      }
+      else {
+        return window.location.href="/profile"
+      }
     },
   }
 
@@ -223,7 +242,7 @@ export default {
 
   .send-button{
     /* padding: 5px 0px; */
-    width: -webkit-fill-available;
+    width: 346px;
     margin-top: 10px;
     margin-right: 0px;
     margin-bottom: 30px;
@@ -246,7 +265,7 @@ export default {
     border-color: #A70187; 
     border-width: medium;
     height: 50px;
-    border-left: none;
+    /* border-left: none; */
   }
   .input-group-text{
     height:50px;

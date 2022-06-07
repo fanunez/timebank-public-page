@@ -2,7 +2,7 @@
     <div class="navbar-buttons fixed-top" style="padding: 10px 0px; background-color: #74015E; position:fixed;">
         <div class="row" style="margin: 10px 0px; background-color:#74015E">
         <div class="col-2" style="padding-right: 0px; padding-top: 0px;">
-            <b-dropdown no-caret toggle-class="CustomHamb" variant="none">
+            <b-dropdown no-caret toggle-class="custom-hamb" variant="none">
             <template #button-content>
                 <Icon icon="charm:menu-hamburger" width="28" height="32" color="white"></Icon>
             </template>
@@ -13,10 +13,10 @@
             </b-dropdown>
         </div>
         <div class="col-8" style="align-self: center;">
-            <b-button href="/register" class="btnIngresar" style="height: 35px; padding: 5px;">Ingresar</b-button>
+            <b-button href="/register" class="login-button" style="height: 35px; padding: 5px;">Ingresar</b-button>
         </div>
         <div class="col-2" style="padding-left: 0px; padding-top: 2px; color: white;">
-            <b-dropdown right no-caret toggle-class="CustomHamb" menu-class="tuerca" variant="none">
+            <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="tuerca" variant="none">
             <template #button-content>
                 <Icon icon="ph:gear-duotone" width="32" height="32" />
             </template>
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-.CustomHamb{
+.custom-hamb{
   box-shadow: none!important;
   padding: 0px!important;
   margin: 0px!important;
@@ -52,7 +52,7 @@ export default {
     max-width: 425px;
     margin: 0 auto
 }
-.btnIngresar{
+.login-button{
   width: -webkit-fill-available;
   margin: auto 20px;
   background-color: white!important;;

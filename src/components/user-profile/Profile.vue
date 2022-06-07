@@ -1,5 +1,5 @@
 <template>
-  <div class="principal-frame" style="max-width: 425px;">
+  <div class="principal-frame">
     <b-button v-for="tab in tabs"
       v-bind:key="tab"
       v-bind:class="['tab-button', { active: currentTab === tab }]"
@@ -10,7 +10,7 @@
       <UserInformation />          
     </div>
     <div v-if="currentTab === tabs[1]">
-        
+      <UserService /> 
     </div>
     <div v-if="currentTab === tabs[2]">
         
@@ -23,6 +23,7 @@
 
  <script>
 import UserInformation from './UserInformation.vue'
+import UserService from './UserService.vue'
 
   export default {
     data: () => ({
@@ -31,6 +32,7 @@ import UserInformation from './UserInformation.vue'
     }),
     components: {
       UserInformation,
+      UserService
     },
   }
  </script>
@@ -44,6 +46,7 @@ import UserInformation from './UserInformation.vue'
   padding: 100px 0px;
   background-color:white;
   height: 100vh;
+  min-height: 900px;
 }
 .tab-button{
   border-style: solid!important;

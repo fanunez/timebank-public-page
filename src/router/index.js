@@ -6,8 +6,7 @@ import RegisterView from '../views/RegisterView.vue'
 import LogInView from '../views/LogInView.vue'
 import UserSelectorView from '../views/UserSelectorView.vue'
 import UserServiceView from '../views/UserServiceView.vue'
-import UserDataView1 from '../views/UserDataView1.vue'
-import UserDataView2 from '../views/UserDataView2.vue'
+import UserDataView from '../views/UserDataView.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import PublishServiceView from '../views/PublishServiceView.vue'
@@ -33,8 +32,8 @@ const routes = [
     component: HelpView
   },
   {
-    path: '/userService',
-    name: 'userService',
+    path: '/user-service',
+    name: 'user-service',
     component: UserServiceView
   },
   {
@@ -61,14 +60,9 @@ const routes = [
     component: UserSelectorView
   },
   {
-    path: '/register/user-selector/user-data-1',
-    name: 'userData1',
-    component: UserDataView1
-  },
-  {
-    path: '/register/user-selector/user-data-2',
-    name: 'userData2',
-    component: UserDataView2
+    path: '/register/user-selector/user-data',
+    name: 'userData',
+    component: UserDataView
   },
   {
     path: '/search-service',

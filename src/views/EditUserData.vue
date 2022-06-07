@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import EditData from '../components/EditData.vue'
+import EditData from '../components/user-profile/EditData.vue'
 
 export default {
     name: 'EditDataUser',

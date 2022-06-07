@@ -1,5 +1,5 @@
 <template>
-  <div class="SearchS" style="height: -webkit-fill-available;">
+  <div class="SearchS">
     <!-- User logged-->
     <div v-if="userLogged">
       <TopNavbar2/>
@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import BottomNavbar from '../components/BottomNavbar.vue'
-import SearchService from '../components/SearchService.vue'
-import TopNavbar2 from '../components/TopNavbar2.vue'
-import TopNavbar1 from '../components/TopNavbar1.vue'
+import BottomNavbar from '../components/shared/BottomNavbar.vue'
+import SearchService from '../components/services/SearchService.vue'
+import TopNavbar2 from '../components/shared/TopNavbar2.vue'
+import TopNavbar1 from '../components/shared/TopNavbar1.vue'
 import auth from "@/logic/auth";
 
 export default {

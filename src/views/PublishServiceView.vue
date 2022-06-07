@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import TopNavbar2 from '../components/TopNavbar2.vue'
-import PublishService from '../components/PublishService.vue'
-import BottomNavbar from '../components/BottomNavbar.vue'
+import TopNavbar2 from '../components/shared/TopNavbar2.vue'
+import PublishService from '../components/services/PublishService.vue'
+import BottomNavbar from '../components/shared/BottomNavbar.vue'
 
 export default {
   name: 'publishService',
