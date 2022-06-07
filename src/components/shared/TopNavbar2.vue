@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import auth from "../logic/auth";
+import auth from "../../logic/auth";
 
 export default {
   name: 'TopNavbar2',

@@ -4,7 +4,7 @@
         <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
       </div>
       <div class="container" style="margin: 25px 0; margin-top: 0px;">
-          <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
+          <img src="../../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
           <div class="fuente1">¿Ya tienes una cuenta?</div>
           <div class="fuente2">Empecemos a compartir</div>
           <b-button  href="/register/login"  class="btnIngreso">Ingresar</b-button>
@@ -15,7 +15,7 @@
           <b-button href="/register/user-selector" class="btnRegistro">Registrarse</b-button>
       </div>
       <div class="row" style="margin-left:15px;">
-        <img src="../assets/logo_citiaps.png" style="width: 146px; height: 55px; ">
+        <img src="../../assets/logo_citiaps.png" style="width: 146px; height: 55px; ">
       </div>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
-    <div class="UserService">    
+    <div class="user-service-frame">    
       <div class="row" style="margin: 10px 35px;">
-        <div class="fuente1" v-if="titulosServices.length==0">
+        <div class="timebank-header" v-if="titulosServices.length==0">
           <div class="row mb-3"></div>
           Aún no has ofrecido un servicio a la comunidad. </div>
         <div v-else > 
@@ -20,10 +20,11 @@
       </div>
 
       <div class="row mb-5"></div>
-        
+
       <div class="btn-flotante" style="margin: 10px 0px;">
-          <b-button type="button" class="botonPublicar col-12" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
+          <b-button type="button" class="publish-button col-12" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
       </div>
+
     </div>
 </template>
 
@@ -66,7 +67,7 @@ export default {
           r.data.forEach(element => {
             this.titulosServices.push(element.title);
             this.categoriasServices.push(element.id_category);
-            //this.getCategories(element.id_category);
+            this.getCategories(element.id_category);
             this.imagenesServices.push(element.image);
           });
         })
@@ -104,7 +105,7 @@ export default {
 </script>
 
 <style scoped>
-.UserService{
+.user-service-frame{
   padding-bottom: 10px;
   box-sizing: border-box;
   max-width: 425px;
@@ -112,45 +113,27 @@ export default {
   background-color:white
 }
 .btn-flotante {
-		font-size: 14px;
-		padding: 50px 20px;
-		bottom: 0px;
-		
-    position: fixed;
-	}
+		/* padding: 46px; */
+		bottom: 50px;
+    position: absolute;
+}
 
-.fuente1{
+.timebank-header{
   font-weight: bold;
   font-size: 28px;
   margin-top: 10px;
 }
-.fuente2{
-  font-weight: 300;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-.fuente3{
-  font-size: 26px;
-  color:white
-}
-.fuente4{
-  font-size: 20px;
-  color: white;
-}
-.fuente5{
-  font-size: 18px;
-  text-align: left;
-}
 .card-body{
   padding: 0px;
 }
-.botonPublicar{
+.publish-button{
   padding: 5px 10px;
-  width: -webkit-fill-available;
+  width: 340px;
+  height: 50px;
   margin: 10px 0px;
   background-color: #A70187!important;
-  font-size: 26px;
+  font-size: 24px;
   border-radius: 10px;
-
 }
+
 </style>

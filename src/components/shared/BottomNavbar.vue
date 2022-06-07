@@ -12,7 +12,7 @@
               <button class="buttom-icon btn btn-primary" type="button" onclick="location.href='/profile';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bi:person-circle" width="20" height="20"/><br>Perfil</button>
             </div>
             <div class="col-3" style="padding:0px;">
-              <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
+              <button class="btn btn-primary" type="button" onclick="location.href='/help';" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
             </div>
         </div>
           <!-- User no logged in -->
@@ -24,7 +24,7 @@
               <button type="button" onclick="location.href='/search-service';" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
             </div>
             <div class="col-4" style="padding:0px;">
-              <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
+              <button type="button" onclick="location.href='/help';" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="width: -webkit-fill-available; background-color:#74015E; box-shadow: none!important;"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
             </div>         
         </div>
       </nav>

@@ -21,7 +21,7 @@
           </b-input-group>
           <b-button value="Login" type="submit" class="botonIngresar">Ingresar</b-button>
         </b-row>
-        <img src="../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
+        <img src="../../assets/logo_banco.png" style="margin: 20px auto; width: 146px; height: 86px;">
         <div class="container" style="margin: 25px 0;">
               <div class="fuente2">¿Olvidaste tu contraseña?</div>
               <a class="fuente3" type="link" href="#">Restablecer aquí</a>
