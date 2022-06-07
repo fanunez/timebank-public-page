@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar-buttons fixed-top" style="padding: 10px 0px; background-color: #74015E; position:sticky;">
+    <div class="navbar-buttons fixed-top" style="padding: 10px 0px; background-color: #74015E; position:fixed;">
         <div class="row" style="margin: 10px 0px; background-color:#74015E">
             <div class="col-2" style="padding-right: 0px;">
                 <b-dropdown no-caret toggle-class="CustomHamb" variant="none">

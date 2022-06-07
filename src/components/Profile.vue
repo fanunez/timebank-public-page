@@ -1,5 +1,5 @@
 <template>
-  <div class="PrincipalFrame" style="max-width: 425px;">
+  <div class="principal-frame" style="max-width: 425px;">
     <b-button v-for="tab in tabs"
       v-bind:key="tab"
       v-bind:class="['tab-button', { active: currentTab === tab }]"
@@ -37,13 +37,13 @@ import UserInformation from './UserInformation.vue'
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.PrincipalFrame{
+.principal-frame{
   box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
-  padding: 20px 0px;
+  padding: 100px 0px;
   background-color:white;
-  height: -webkit-fill-available;
+  height: 100vh;
 }
 .tab-button{
   border-style: solid!important;

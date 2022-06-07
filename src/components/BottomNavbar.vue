@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar fixed-bottom navbar-light bg-light" style="max-width:425px; margin:0 auto; background-color:#74015E!important; position: sticky">
+    <nav class="navbar fixed-bottom navbar-light bg-light" style="max-width:425px; margin:0 auto; background-color:#74015E!important; position: fixed">
         <!-- User logged -->
         <div v-if="userLogged" class="row" style="width:-webkit-fill-available">
             <div class="col-3" style="padding:0px;">
