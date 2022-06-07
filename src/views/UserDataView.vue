@@ -1,5 +1,5 @@
 <template>
-  <div class="UData2" style="height: -webkit-fill-available">
+  <div class="UData" style="height: -webkit-fill-available">
     <UserData/>
   </div>
 </template>
@@ -8,7 +8,7 @@
 import UserData from '../components/auth/userData.vue'
 
 export default {
-  name: 'UData2',
+  name: 'UData',
   components: {
     UserData
   }

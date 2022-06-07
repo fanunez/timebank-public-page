@@ -135,6 +135,7 @@
 import axios from 'axios'
 import auth from "@/logic/auth";
 
+
 export default {
   name: 'userData',
   data() {
@@ -149,7 +150,7 @@ export default {
         rut: '',
         correo: '',
         contraseña: '',
-        tipoUsuario: 'Blue',
+        tipoUsuario: auth.getUserRol(),
         state: 'true',
 
         stateError: false,
@@ -298,6 +299,7 @@ export default {
       console.log( payload );
 
       auth.register( payload );
+      auth.deleteUserRol();
       this.$router.push("/register/login");
 
     }
