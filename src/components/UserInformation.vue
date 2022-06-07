@@ -39,7 +39,7 @@
             <!-- Image/Photo and Edit button -->
             <div class="col-auto">
                 <!-- User doesnt have image, set default -->
-                <div v-if="img == ''" class="row justify-content-center">
+                <div v-if="!img" class="row justify-content-center">
                     <img class="image-container" src="../../public/img/default_images/user.png">
                 </div>
                 <!-- User have image -->
@@ -121,7 +121,7 @@ export default {
             address: '',
             phone: '',
             description: '',
-            img: ''
+            img: null
         }
     },
     async mounted () {
@@ -135,6 +135,7 @@ export default {
             },
             })
             .then( response => {
+                // console.log( response )
                 this.userName = response.data.name;
                 this.surname = response.data.surname;
                 this.address = response.data.address;
