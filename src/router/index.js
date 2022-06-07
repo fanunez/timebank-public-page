@@ -33,8 +33,8 @@ const routes = [
     component: HelpView
   },
   {
-    path: '/userService',
-    name: 'userService',
+    path: '/user-service',
+    name: 'user-service',
     component: UserServiceView
   },
   {
