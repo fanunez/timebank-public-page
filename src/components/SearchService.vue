@@ -16,8 +16,8 @@
       <div v-for="i in ( ~~(categories.length/2) + 1 )" :key="i">
         <div v-if="(categories.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
           <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
-            <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
-            <div class="centradoIzq">{{categories[(i*2)-2].name}}</div>
+            <img src="../assets/Gato_Indio.jpg" class="img-left">
+            <div class="center-left">{{categories[(i*2)-2].name}}</div>
           </div>
           <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
             <img src="../assets/gato_guaton.jpg" class="img-right">
@@ -25,11 +25,11 @@
           </div>
         </div>
         <div v-else class="row" style="max-height: 190px; margin: 15px auto;">
-          <div v-if="i <= (categories.length/2) + 1" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
+          <div v-if="i <= (categories.length/2) + 1" class="contenedor col-6" style="padding-right: 5px; padding-left: 40px;">
             <img src="../assets/Gato_Indio.jpg" class="img-left">
             <div class="center-left">{{categories[(i*2)-2].name}}</div>
           </div>
-          <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
+          <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-left: 5px; padding-right: 40px;">
             <img src="../assets/gato_guaton.jpg" class="img-right">
             <div class="center-right">{{categories[(i*2)-1].name}}</div>
           </div>
@@ -79,7 +79,7 @@ export default {
   margin: 0 auto;
   padding: 100px 0px;
   background-color:white;
-  height: 100vh;
+  height: fit-content;
   min-height: 900px;
 }
 .bg-light{
@@ -120,14 +120,14 @@ export default {
 }
 .img-left{
   width: 100%;
-  max-width: 180px;
+  max-width: 167.5px;
   height: auto;
   opacity: 50%;
   margin-right: 5px;
 }
 .img-right{
   width: 100%;
-  max-width: 180px;
+  max-width: 167.5px;
   height: auto;
   opacity: 50%;
   margin-left: 5px;

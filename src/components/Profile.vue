@@ -1,5 +1,5 @@
 <template>
-  <div class="principal-frame" style="max-width: 425px;">
+  <div class="principal-frame">
     <b-button v-for="tab in tabs"
       v-bind:key="tab"
       v-bind:class="['tab-button', { active: currentTab === tab }]"
@@ -10,7 +10,7 @@
       <UserInformation />          
     </div>
     <div v-if="currentTab === tabs[1]">
-        <UserService/>
+      <UserService /> 
     </div>
     <div v-if="currentTab === tabs[2]">
         
@@ -32,7 +32,7 @@ import UserService from './UserService.vue'
     }),
     components: {
       UserInformation,
-      UserService,
+      UserService
     },
   }
  </script>
