@@ -10,7 +10,7 @@
       <UserInformation />          
     </div>
     <div v-if="currentTab === tabs[1]">
-        
+        <UserService/>
     </div>
     <div v-if="currentTab === tabs[2]">
         
@@ -23,6 +23,7 @@
 
  <script>
 import UserInformation from './UserInformation.vue'
+import UserService from './UserService.vue'
 
   export default {
     data: () => ({
@@ -31,6 +32,7 @@ import UserInformation from './UserInformation.vue'
     }),
     components: {
       UserInformation,
+      UserService,
     },
   }
  </script>
