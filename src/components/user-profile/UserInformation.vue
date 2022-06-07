@@ -15,17 +15,17 @@
                 <!-- 1 Row inside Col -->
                 <div class="row">
                     <!-- Name -->
-                    <div v-if="userName !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-if="userName !== ''" class="col-12 timebank-subtitle">
                         {{ this.userName }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-else class="col-12 timebank-subtitle">
                         Nombre
                     </div>
                     <!-- Surname -->
-                    <div v-if="surname !== ''" class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-if="surname !== ''" class="col-12 timebank-subtitle">
                         {{ this.surname }}
                     </div>
-                    <div v-else class="col-12 timebank-subtitle" style="padding: 0px;">
+                    <div v-else class="col-12 timebank-subtitle">
                         Apellido
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="col-auto">
                 <!-- User doesnt have image, set default -->
                 <div v-if="!img" class="row justify-content-center">
-                    <img class="image-container" src="../../public/img/default_images/user.png">
+                    <img class="image-container" src="../../../public/img/default_images/user.png">
                 </div>
                 <!-- User have image -->
                 <div v-else class="row justify-content-center">
@@ -186,6 +186,8 @@ export default {
     display: flex;
     align-items: center;
     color: #000000;
+
+    padding-left: 0px;
 }
 
 .timebank-phrase {

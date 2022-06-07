@@ -114,7 +114,7 @@
 <script>
 import axios from 'axios'
 import auth from "@/logic/auth";
-import AvatarInput from "./AvatarInput";
+import AvatarInput from "./helpers/AvatarInput";
 
 export default {
   name: 'editData',
@@ -186,9 +186,8 @@ export default {
       }
       // send new user data
       await axios
-        .put( process.env.VUE_APP_BACKEND_URL_LOCAL + /users/ + this.formData.uid, payload )
+        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
         .then( response => {
-          return window.location.href="/profile"
         })
         .catch( e => console.log( e ))
       
@@ -197,7 +196,7 @@ export default {
         let fileData = new FormData();
         fileData.append("file", this.formData.avatar )
         await axios
-          .put( `${process.env.VUE_APP_BACKEND_URL_LOCAL}/uploads/users/${this.formData.uid}`, fileData, {
+          .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
@@ -206,6 +205,9 @@ export default {
             return window.location.href="/profile"
           })
           .catch( e => console.log( e ))
+      }
+      else {
+        return window.location.href="/profile"
       }
     },
   }

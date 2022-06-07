@@ -16,21 +16,21 @@
       <div v-for="i in ( ~~(categories.length/2) + 1 )" :key="i">
         <div v-if="(categories.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
           <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
-            <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
+            <img src="../../assets/Gato_Indio.jpg" class="ImgIzquierda">
             <div class="centradoIzq">{{categories[(i*2)-2].name}}</div>
           </div>
           <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
-            <img src="../assets/gato_guaton.jpg" class="img-right">
+            <img src="../../assets/gato_guaton.jpg" class="img-right">
             <div class="center-right">{{categories[(i*2)-1].name}}</div>
           </div>
         </div>
         <div v-else class="row" style="max-height: 190px; margin: 15px auto;">
           <div v-if="i <= (categories.length/2) + 1" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
-            <img src="../assets/Gato_Indio.jpg" class="img-left">
+            <img src="../../assets/Gato_Indio.jpg" class="img-left">
             <div class="center-left">{{categories[(i*2)-2].name}}</div>
           </div>
           <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
-            <img src="../assets/gato_guaton.jpg" class="img-right">
+            <img src="../../assets/gato_guaton.jpg" class="img-right">
             <div class="center-right">{{categories[(i*2)-1].name}}</div>
           </div>
         </div>
