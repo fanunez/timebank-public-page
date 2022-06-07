@@ -48,29 +48,27 @@ const routes = [
   {
     path: '/register/',
     name: 'register',
-    component: RegisterView,
-    children: [
-      {
-        path: 'login',
-        name: 'login',
-        component: LogInView
-      },
-      {
-        path: 'user-selector',
-        name: 'userSelector',
-        component: UserSelectorView
-      },
-      {
-        path: 'user-selector/user-data-1',
-        name: 'userData1',
-        component: UserDataView1
-      },
-      {
-        path: 'user-selector/user-data-2',
-        name: 'userData2',
-        component: UserDataView2
-      },
-    ]
+    component: RegisterView
+  },
+  {
+    path: '/register/login',
+    name: 'login',
+    component: LogInView
+  },
+  {
+    path: '/register/user-selector',
+    name: 'userSelector',
+    component: UserSelectorView
+  },
+  {
+    path: '/register/user-selector/user-data-1',
+    name: 'userData1',
+    component: UserDataView1
+  },
+  {
+    path: '/register/user-selector/user-data-2',
+    name: 'userData2',
+    component: UserDataView2
   },
   {
     path: '/search-service',
