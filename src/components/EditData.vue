@@ -76,7 +76,7 @@
 
         <!-- Change image -->
         <div class="timebank-subtitle mt-2 mb-2">Tu foto de perfil</div>
-        <div v-if="formData.img !== ''" class="col-12">
+        <div v-if="formData.img != ''" class="col-12">
           <avatar-input class="w-32 h-32 rounded-full" 
                         v-model="formData.avatar"
                         :default-src="formData.img"
@@ -94,7 +94,7 @@
         </b-input-group>
         
         <!-- Register button -->
-        <b-button type="submit" class="send-button">Realizar cambios</b-button>
+        <b-button type="submit" class="send-button" >Realizar cambios</b-button>
 
       </b-row>
       </form>
@@ -160,7 +160,7 @@ export default {
             .catch( e => console.log( e ))
   },
   methods: {
-    updateUser() {
+    async updateUser() {
       // generate payload body with the information of the data that is send
       const payload = {
         name: this.formData.newName,
@@ -172,25 +172,22 @@ export default {
         email: this.formData.newEmail,
       }
       // send new user data
-      axios
+      await axios
         .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
         .then( response => {
-          console.log( response )
-          console.log('datos actualizados!')
         })
         .catch( e => console.log( e ))
       // send new image
       let fileData = new FormData();
       fileData.append("file", this.formData.avatar )
-      axios
+      await axios
         .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
         .then( response => {
-          console.log( response )
-          console.log('imagen actualizada!')
+          return window.location.href="/profile"
         })
         .catch( e => console.log( e ))
     },
