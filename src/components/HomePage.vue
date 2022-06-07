@@ -58,6 +58,7 @@ export default {
   padding: 100px 0px;
   background-color:white;
   height: 100vh;
+  min-height: 900px;
 
 }
 .bg-light{

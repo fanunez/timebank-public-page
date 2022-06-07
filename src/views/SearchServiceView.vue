@@ -1,5 +1,5 @@
 <template>
-  <div class="SearchS" style="height: -webkit-fill-available;">
+  <div class="SearchS">
     <!-- User logged-->
     <div v-if="userLogged">
       <TopNavbar2/>

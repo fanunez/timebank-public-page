@@ -1,6 +1,6 @@
 <template>
   <div class="search-service-frame">
-    <div class="principal-frame" style="padding-top: 5px;">
+    <div class="PrincipalFrame">
         <b-input-group>
           <form @submit.prevent="searchByTitle" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
             <b-form-input id="buscador" v-model="formData.title" placeholder="¿Que servicio necesita?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
@@ -13,11 +13,11 @@
         </b-input-group>
         
         <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
-        <div v-for="i in (categories.length/2)" :key="i">
-          <div v-if="(categories.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
-            <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
-              <img src="../assets/Gato_Indio.jpg" class="img-left">
-              <div class="center-left">{{categories[(i*2)-2].name}}</div>
+        <div v-for="i in ( ~~(categorias.length/2) + 1 )" :key="i">
+          <div v-if="(categorias.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
+            <div v-if="i <= (categorias.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
+              <img src="../assets/Gato_Indio.jpg" class="ImgIzquierda">
+              <div class="centradoIzq">{{categorias[(i*2)-2].name}}</div>
             </div>
             <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
               <img src="../assets/gato_guaton.jpg" class="img-right">
@@ -85,6 +85,7 @@ export default {
   padding: 100px 0px;
   background-color:white;
   height: 100vh;
+  min-height: 900px;
 }
 .bg-light{
   background-color:#74015E!important;
