@@ -18,13 +18,7 @@
           </div>
         </div>
       </div>
-
-      <div class="row mb-5"></div>
-
-      <div class="btn-flotante" style="margin: 10px 0px;">
-          <b-button type="button" class="publish-button col-12" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
-      </div>
-
+      <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
     </div>
 </template>
 
@@ -112,12 +106,6 @@ export default {
   margin: 0 auto;
   background-color:white
 }
-.btn-flotante {
-		/* padding: 46px; */
-		bottom: 50px;
-    position: absolute;
-}
-
 .timebank-header{
   font-weight: bold;
   font-size: 28px;
@@ -128,12 +116,16 @@ export default {
 }
 .publish-button{
   padding: 5px 10px;
-  width: 340px;
+  max-width: 354px;
   height: 50px;
-  margin: 10px 0px;
+  margin: 10px auto;
   background-color: #A70187!important;
   font-size: 24px;
   border-radius: 10px;
+  bottom: 75px;
+  left: 0px;
+  right: 0px;
+  position:fixed;
 }
 
 </style>
