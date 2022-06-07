@@ -34,5 +34,17 @@ export default {
 
   deleteUserLogged() {
     Cookies.remove('userLogged');
+  },
+
+  setUserRol(role) {
+    Cookies.set("RoleUser", role);
+  },
+
+  getUserRol() {
+    return Cookies.get("RoleUser");
+  },
+
+  deleteUserRol() {
+    Cookies.remove('RoleUser');
   }
 };
