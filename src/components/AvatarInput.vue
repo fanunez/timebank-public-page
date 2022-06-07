@@ -4,13 +4,17 @@
         <div class="block-relative">
             <img :src="src" alt="Avatar" class="image-container">
             <div class="button-relative">
-                <button @click="browse()">Browse</button>
+                <button class="button-action transition duration-200" @click="browse()">
+                    <Icon name="camera" class="icon-container"></Icon>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Icon from "./Icon";
+
     export default {
         props: {
             value: File,
@@ -21,6 +25,9 @@
                 src: this.defaultSrc,
                 file: null
             }
+        },
+        components: {
+            Icon,
         },
         methods: {
             browse() {
@@ -63,6 +70,17 @@
     display: flex;
     align-items: center;
     border-radius: 100px;
+}
+
+.icon-container {
+    width: 50px;
+    height: 50px;   
+}
+
+.button-action {
+    border-radius: 100px;
+    background-color: white;
+    opacity: 100%;
 }
 
 </style>

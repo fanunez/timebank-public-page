@@ -44,7 +44,7 @@
                 </div>
                 <!-- User have image -->
                 <div v-else class="row justify-content-center">
-                    <img class="image-container" src="../assets/gato_guaton.jpg">
+                    <img class="image-container" :src="this.img">
                 </div>
                 <div class="row justify-content-center">
                     <b-button href="/edit-user-data" class="edit-button" >EDITAR</b-button>
@@ -113,16 +113,17 @@ import auth from "@/logic/auth";
 
 export default {
     name: 'UserInformation',
-    data: () => ({
-        // put something xd
-        userName: '',
-        surname: '',
-        dateOfBirth: '',
-        address: '',
-        phone: '',
-        description: '',
-        img: ''
-    }),
+    data () {
+        return {
+            userName: '',
+            surname: '',
+            dateOfBirth: '',
+            address: '',
+            phone: '',
+            description: '',
+            img: ''
+        }
+    },
     async mounted () {
         // get user uid
         const token = auth.getUserLogged();
@@ -138,6 +139,7 @@ export default {
                 this.surname = response.data.surname;
                 this.address = response.data.address;
                 this.phone = response.data.phone;
+                this.img = response.data.img;
             })
             .catch( e => console.log( e ))
     },

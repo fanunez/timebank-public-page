@@ -114,6 +114,7 @@ export default {
   data() {
     return{
       formData: {
+        uid: '',
         newName: '',
         newSurname: '',
         newRelation: null,
@@ -145,7 +146,8 @@ export default {
             },
             })
             .then( response => {
-                // console.log( response.data );
+                console.log( response.data );
+                this.formData.uid = response.data.uid;
                 this.formData.newName = response.data.name;
                 this.formData.newSurname = response.data.surname;
                 this.formData.newRelation = response.data.relation;
@@ -164,12 +166,33 @@ export default {
         name: this.formData.newName,
         surname: this.formData.newSurname,
         relation: this.formData.newRelation,
-        age: this.formData.newAge,
         address: this.formData.newAddress,
+        region: this.formData.newRegion,
         phone: this.formData.newPhone,
         email: this.formData.newEmail,
       }
-
+      // send new user data
+      axios
+        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
+        .then( response => {
+          console.log( response )
+          console.log('datos actualizados!')
+        })
+        .catch( e => console.log( e ))
+      // send new image
+      let fileData = new FormData();
+      fileData.append("file", this.formData.avatar )
+      axios
+        .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then( response => {
+          console.log( response )
+          console.log('imagen actualizada!')
+        })
+        .catch( e => console.log( e ))
     },
   }
 
