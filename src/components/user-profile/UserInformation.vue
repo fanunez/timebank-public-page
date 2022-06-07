@@ -96,7 +96,7 @@
         <!-- Sixth row: Description -->
         <div class="row container text-left pl-5">
             <!-- If infortmation doesn't exists -->
-            <div v-if="this.description !== ''">
+            <div v-if="this.description">
                 {{ this.description }}
             </div>
             <!-- Else, show user information -->
@@ -120,7 +120,7 @@ export default {
             dateOfBirth: '',
             address: '',
             phone: '',
-            description: '',
+            description: null,
             img: null
         }
     },

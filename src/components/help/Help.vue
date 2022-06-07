@@ -2,7 +2,7 @@
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
         <div class="col-2" style="padding: 5px ; margin: 10px 0px; margin-top: 10px; padding-left: 35px;">
-          <a href="/" style="color:black"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></a>
+          <a href="/" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></a>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
           <div class="timebank-header">¿En qué podemos ayudar?</div>

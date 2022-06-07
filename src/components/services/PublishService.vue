@@ -5,40 +5,40 @@
           <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
-          <div class="fuente1">Publicar servicio</div>
+          <div class="timebank-header">Publicar servicio</div>
         </div>
       </div>
       <form @submit.prevent="createService">
-        <div class="fuente2">Nombre del servicio</div>
-        <b-form-input id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés" class="formulario"></b-form-input>
+        <div class="timebank-phrase">Nombre del servicio</div>
+        <b-form-input id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorNombre === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorNombreT }}</div>
         </div>
-        <div class="fuente2">Categoría del servicio</div>
-        <b-form-select v-model="formService.categoria" :options="options" class="formulario" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
+        <div class="timebank-phrase">Categoría del servicio</div>
+        <b-form-select v-model="formService.categoria" :options="options" class="form-container" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorCategoria === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorCategoriaT }}</div>
         </div>
-        <div class="fuente2">Valor del servicio</div>
-        <b-form-input id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1" class="formulario"></b-form-input>
+        <div class="timebank-phrase">Valor del servicio</div>
+        <b-form-input id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorValor === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorValorT }}</div>
         </div>
-        <div class="fuente2">URL de la imagen del servicio</div>
-        <b-form-input id="imagen" type = "text" v-model="formService.imagen" placeholder="Ej: shorturl.at/tEMS4" class="formulario"></b-form-input>
+        <div class="timebank-phrase">URL de la imagen del servicio</div>
+        <b-form-input id="imagen" type = "text" v-model="formService.imagen" placeholder="Ej: shorturl.at/tEMS4" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorImagen === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorImagenT }}</div>
         </div>
-        <div class="fuente2">Descripción del servicio</div>
+        <div class="timebank-phrase">Descripción del servicio</div>
         <b-container fluid>
           <b-row>
-            <b-form-textarea type="text" rows="3" v-model="formService.texto" class="cuadroDescripcion" placeholder="Ingrese la descripción de su servicio"></b-form-textarea>
+            <b-form-textarea type="text" rows="3" v-model="formService.texto" class="description-frame" placeholder="Ingrese la descripción de su servicio"></b-form-textarea>
           </b-row>
         </b-container>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorTexto === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorTextoT }}</div>
         </div>
-        <b-button type="submit" class="botonEnviar">Subir servicio</b-button>
+        <b-button type="submit" class="send-button">Subir servicio</b-button>
       </form>
     </div>
 </template>
@@ -163,8 +163,7 @@ export default {
       console.log( payload );
 
       axios
-        .post('http://164.92.96.206:8081/api/service/', payload )
-        //.post('http://localhost:8080/api/users/', payload )
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/', payload )
         .then(( response ) => {
           console.log(response.data)
           window.location.href="/profile"
@@ -176,7 +175,7 @@ export default {
 }
 </script>
 <style>
-.escogerescogerCategoria{
+.choose-category{
   width: -webkit-fill-available;
   margin-top: 10px!important;
   margin-right: 0px!important;
@@ -197,24 +196,24 @@ export default {
   background-color:white;
   height: 100vh;
 }
-.formulario{
+.form-container{
   margin: 5px 35px;
   border-color: #A70187;
   border-width: medium;
   width: -webkit-fill-available;
   height: fit-content;
 }
-.fuente1{
+.timebank-header{
   font-weight: bold;
   font-size: 28px;
 }
-.fuente2{
+.timebank-phrase{
   font-weight: 300px;
   font-size: 22px;
   text-align: left;
   margin-left: 35px;
 }
-.cuadroDescripcion{
+.description-frame{
   font-size: 20px;
   margin: 5px 35px;
   width:-webkit-fill-available;
@@ -222,7 +221,7 @@ export default {
   padding-bottom: 20px;
   height: 180px;
 }
-.botonEnviar{
+.send-button{
   padding: 5px 0px;
   width: -webkit-fill-available;
   margin: 10px 35px;

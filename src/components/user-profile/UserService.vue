@@ -1,15 +1,15 @@
 <template>
     <div class="user-service-frame">    
       <div class="row" style="margin: 10px 35px;">
-        <div class="timebank-header" v-if="titulosServices.length==0">
+        <div v-if="titulosServices.length==0" class="timebank-header">
           <div class="row mb-3"></div>
           Aún no has ofrecido un servicio a la comunidad. </div>
-        <div v-else > 
-          <div class="row mb-3"></div>
+        <div v-else class="mt-3"> 
+          <div class="row"></div>
           <div v-for="(service, index) in titulosServices" :key="index">
-            <b-card-group>
+            <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
             <b-card-img  :src= imagenesServices[index]  img-alt="Card image" img-top>
-              </b-card-img><b-card-body class="mb-5">
+              </b-card-img><b-card-body>
               <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaService[index]}}</b-card-sub-title>
               <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
               <b-list-group-item class="text-left text-muted" style="font-size: 20px; padding-left:1.5rem;">{{userName}} {{surname}}</b-list-group-item>
@@ -18,13 +18,7 @@
           </div>
         </div>
       </div>
-
-      <div class="row mb-5"></div>
-
-      <div class="btn-flotante" style="margin: 10px 0px;">
-          <b-button type="button" class="publish-button col-12" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
-      </div>
-
+      <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
     </div>
 </template>
 
@@ -112,12 +106,6 @@ export default {
   margin: 0 auto;
   background-color:white
 }
-.btn-flotante {
-		/* padding: 46px; */
-		bottom: 50px;
-    position: absolute;
-}
-
 .timebank-header{
   font-weight: bold;
   font-size: 28px;
@@ -128,12 +116,16 @@ export default {
 }
 .publish-button{
   padding: 5px 10px;
-  width: 340px;
+  max-width: 354px;
   height: 50px;
-  margin: 10px 0px;
+  margin: 10px auto;
   background-color: #A70187!important;
   font-size: 24px;
   border-radius: 10px;
+  bottom: 75px;
+  left: 0px;
+  right: 0px;
+  position:fixed;
 }
 
 </style>
