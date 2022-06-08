@@ -1,6 +1,17 @@
 <template>
     <div class="user-service-frame">    
       <div class="row" style="margin: 10px 35px;">
+      <b-input-group>
+        <form @submit.prevent="searchByName" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
+          <b-form-input id="buscador" v-model="formData.title" placeholder="¿Que servicio busca?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
+          <b-button type = "submit" variant="none" style="padding: 7px; margin: 10px 0px; background-color: #A70187;">
+            <template>
+              <Icon icon="charm:search" style="width:22px; height:22px; color: white;"/>
+            </template>
+          </b-button>
+        </form>
+      </b-input-group>
+
         <div v-if="titulosServices.length==0" class="timebank-header">
           <div class="row mb-3"></div>
           Aún no has ofrecido un servicio a la comunidad. </div>
@@ -32,6 +43,9 @@ export default {
   name: 'UserService',
   data() {
     return{
+       formData:{
+        title: '',
+      },
       servicios: [],
       titulosServices: [],
       categoriasServices: [],
@@ -45,6 +59,14 @@ export default {
     }
   },
    methods: {
+    
+    searchByName() {
+      axios
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.title )
+          .then(( response ) => console.log(response.data))
+          .catch(( error ) => console.log( error ))
+      
+    },
 
     getCategories(id_c) {
       axios
