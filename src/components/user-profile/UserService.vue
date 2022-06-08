@@ -18,7 +18,8 @@
           </div>
         </div>
       </div>
-      <b-button type="button" class="publish-button" onclick="location.href='/publish-service';" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
+      <div class="row mb-5" style= "margin: 70px"></div>
+      <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
     </div>
 </template>
 
