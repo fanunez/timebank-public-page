@@ -2,9 +2,9 @@
   
   <div class="principal-frame">
       <b-input-group>
-        <form @submit.prevent="searchByTitle" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
-          <b-form-input id="buscador" v-model="formData.title" placeholder="¿Que servicio necesita?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
-          <b-button type = "submit" variant="none" style="padding: 7px; margin: 10px 0px; background-color: #A70187;">
+        <form @submit.prevent="searchByTitle" class="row" style="width: -webkit-fill-available; justify-content: center; max-height: 60px;">
+          <b-form-input class="search-bar" id="buscador" v-model="formData.title" placeholder="¿Que servicio necesita?" />
+          <b-button type = "submit" class="search-button" variant="none">
             <template>
               <Icon icon="charm:search" style="width:22px; height:22px; color: white;"/>
             </template>
@@ -15,11 +15,11 @@
       <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
       <div v-for="i in ( ~~(categories.length/2) + 1 )" :key="i">
         <div v-if="(categories.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
-          <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-right: 5px; padding-left: 40px;">
+          <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-right: 5px; padding-left: 40px;">
             <img src="../../assets/Gato_Indio.jpg" class="img-left">
             <div class="center-left">{{categories[(i*2)-2].name}}</div>
           </div>
-          <div v-if="i <= (categories.length/2)" class="contenedor col" style="padding-left: 5px; padding-right: 40px;">
+          <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-left: 5px; padding-right: 40px;">
             <img src="../../assets/gato_guaton.jpg" class="img-right">
             <div class="center-right">{{categories[(i*2)-1].name}}</div>
           </div>
@@ -131,5 +131,23 @@ export default {
   height: auto;
   opacity: 50%;
   margin-left: 5px;
+}
+.search-bar{
+  width:69%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-color: #A70187;
+  border-width: medium;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height:50px;
+}
+.search-button{
+  width:50px;
+  padding: 7px;
+  margin: 10px 0px;
+  background-color: #A70187;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 </style>

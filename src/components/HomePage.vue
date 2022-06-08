@@ -5,7 +5,7 @@
     <div class="container" style="margin: 10px auto;">
       <mdb-carousel :interval="8000" showControls showIndicators>
           <mdb-carousel-item>
-            <a href="Service">
+            <a href="service">
               <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).webp" alt="First slide"/>
             </a>
           </mdb-carousel-item>
