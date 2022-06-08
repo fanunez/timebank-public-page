@@ -60,7 +60,11 @@ export default {
   box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
-  background-color:white
+  background-color:white;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  height: fit-content;
+  min-height: 900px;
 }
 .fuente1{
   font-weight: bold;
