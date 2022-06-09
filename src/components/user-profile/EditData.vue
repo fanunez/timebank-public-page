@@ -211,6 +211,7 @@ export default {
                 this.formData.newPhone = response.data.phone;
                 this.formData.newEmail = response.data.email;
                 this.formData.newDescription = response.data.description;
+                this.formData.img = response.data.img;
             })
             .catch( e => console.log( e ))
   },

@@ -47,40 +47,35 @@ import Icon from "../../user-profile/helpers/Icon";
 </script>
 
 <style scoped>
-
-.block-relative {
-    display: inline-block;
-    position: relative;
-}
-
-.image-container {
-    width: 350px; 
-    height: 200px;
-    border-radius: 10px;
-}
-
-.button-relative {
-    width: 350px;  
-    height: 200px;
-    background-color: black;
-    opacity: 25%;
-    top: 0px;
-    justify-content: center;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.icon-container {
-    width: 50px;
-    height: 50px;   
-}
-
-.button-action {
-    border-radius: 100px;
-    background-color: white;
-    opacity: 100%;
-}
+    .block-relative {
+        display: inline-block;
+        position: relative;
+    }
+    .image-container {
+        width: 350px; 
+        height: 200px;
+        border-radius: 10px;
+    }
+    .button-relative {
+        width: 350px;  
+        height: 200px;
+        background-color: black;
+        opacity: 25%;
+        top: 0px;
+        justify-content: center;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+    }
+    .icon-container {
+        width: 50px;
+        height: 50px;   
+    }
+    .button-action {
+        border-radius: 100px;
+        background-color: white;
+        opacity: 100%;
+    }
 
 </style>
