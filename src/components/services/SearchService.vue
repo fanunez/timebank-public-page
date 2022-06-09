@@ -81,8 +81,6 @@ export default {
               this.getNameCategoria(element.id_category);
               this.getUserName(element.id_owner);
             });
-            console.log(this.categoriesNames);
-            console.log(this.userNames);
           }
           )
           .catch(( error ) => console.log( error ))
