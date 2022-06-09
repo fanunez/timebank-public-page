@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import HelpView from '../views/HelpView.vue'
+import AwaitingRequestView from '../views/AwaitingRequestView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LogInView from '../views/LogInView.vue'
 import UserSelectorView from '../views/UserSelectorView.vue'
@@ -30,6 +31,11 @@ const routes = [
     path: '/help',
     name: 'help',
     component: HelpView
+  },
+  {
+    path: '/awaiting-request',
+    name: 'awaiting-request',
+    component: AwaitingRequestView
   },
   {
     path: '/user-service',
