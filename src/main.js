@@ -27,6 +27,8 @@ Vue.component('mdb-carousel-caption', mdbCarouselCaption)
 Vue.component('Icon', Icon)
 // PDF
 Vue.component("vue-pdf-app", VuePdfApp);
+// import this to use default icons for buttons
+import "vue-pdf-app/dist/icons/main.css";
 
 Vue.config.productionTip = false
 
