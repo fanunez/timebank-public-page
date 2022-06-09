@@ -1,6 +1,6 @@
 <template>
-    <div class="user-service-frame">    
-      <div class="row" style="margin: 10px 35px;">
+  <div class="user-service-frame">    
+    <div class="row" style="margin: 10px 35px;">
       <b-input-group>
         <form @submit.prevent="searchByName" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
           <b-form-input id="buscador" v-model="formData.title" placeholder="¿Que servicio busca?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
@@ -11,7 +11,28 @@
           </b-button>
         </form>
       </b-input-group>
+    
+      <div v-if="formData.title!= ''">
+        <div v-if="found==true">
+          <div v-for="(service,index) in titulosServices" :key="index">
+            <div v-if="formData.title== service">
+              <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
+              <b-card-img  :src= imagenesServices[index]  img-alt="Card image" img-top>
+                </b-card-img><b-card-body>
+                <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaService[index]}}</b-card-sub-title>
+                <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
+                <b-list-group-item class="text-left text-muted" style="font-size: 20px; padding-left:1.5rem;">{{userName}} {{surname}}</b-list-group-item>
+              </b-card-body>
+              </b-card-group>
+            </div>
+          </div>
+        </div>
+        <div v-else class="timebank-header">
+          No has publicado servicios con ese nombre
+        </div>
+      </div>
 
+      <div v-else>
         <div v-if="titulosServices.length==0" class="timebank-header">
           <div class="row mb-3"></div>
           Aún no has ofrecido un servicio a la comunidad. </div>
@@ -29,9 +50,10 @@
           </div>
         </div>
       </div>
-      <div class="row mb-5" style= "margin: 70px"></div>
-      <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
     </div>
+    <div class="row mb-5" style= "margin: 70px"></div>
+    <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
+  </div>
 </template>
 
 <script>
@@ -51,20 +73,25 @@ export default {
       categoriasServices: [],
       nameCategoriaService: [],
       imagenesServices: [],
-
+      found: false,
       userName: '',
       surname:'',
       uid: '',
-      imagen: 'https://placekitten.com/1000/300',
     }
   },
    methods: {
     
-    searchByName() {
-      axios
-        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.title )
-          .then(( response ) => console.log(response.data))
-          .catch(( error ) => console.log( error ))
+    searchByName: function (event) {
+      const name = this.formData.title;
+          if (name) {
+            this.titulosServices.forEach(element=> {
+              //const result = element.find({name:{$regex:'.*'+name+'.*',$options:"i"},state: true});  
+              if (name==element){
+                this.found = true;
+                return true;
+              }
+            });
+      }
       
     },
 
@@ -109,7 +136,6 @@ export default {
         })
         .catch( e => console.log( e ))
 
-    // 
     this.getServices();
     this.categoriasServices.forEach(element => {
       this.getCategories(element);

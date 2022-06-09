@@ -54,7 +54,7 @@ export default {
   methods: {
     searchByTitle() {
       axios
-        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.title )
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.title )
           .then(( response ) => console.log(response.data))
           .catch(( error ) => console.log( error ))
       
