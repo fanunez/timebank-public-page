@@ -291,7 +291,7 @@ export default {
 
       // send new user data
       await axios
-        .put( process.env.VUE_APP_BACKEND_URL_LOCAL + /users/ + this.formData.uid, payload )
+        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
         .then( response => {
         })
         .catch( e => console.log( e ))
