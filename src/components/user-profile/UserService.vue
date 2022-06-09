@@ -156,25 +156,19 @@ export default {
         })
         .catch( e => console.log( e ))
 
-    this.getServices();
-   
-
-  
+    this.getServices();  
   },
- 
 }
 </script>
 
 <style scoped>
   .user-service-frame{
-    padding-bottom: 20px;
     box-sizing: border-box;
     max-width: 425px;
     margin: 0 auto;
     background-color:white;
     height: fit-content;
-    min-height: 900px;
-    
+    /* padding-bottom: 20px; */
   }
   .timebank-header{
     font-weight: bold;

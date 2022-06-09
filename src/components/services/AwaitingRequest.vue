@@ -1,7 +1,6 @@
 <template>
     <div class="awaiting-request-frame">    
         <div class="row" style="margin: 10px 35px;">
-            
             <div v-if="titlesSReq.length==0" class="timebank-header">
                 <div class="row mb-5" style= "margin: 70px"></div>
                 La comunidad aún no te ha solicitado servicios. </div>
@@ -17,10 +16,8 @@
                     </b-card-group>
                 </div>
             </div>
-
         </div>
     </div>
-
 </template>
 
 <script>
@@ -90,11 +87,14 @@ export default {
 
 <style scoped>
 .awaiting-request-frame{
-  padding-bottom: 10px;
-  box-sizing: border-box;
-  max-width: 425px;
-  margin: 0 auto;
-  background-color:white
+    box-sizing: border-box;
+    max-width: 425px;
+    margin: 0 auto;
+    background-color:white;
+    height: fit-content;
+    height: 100vh;
+    min-height: 900px;
+    padding-bottom: 10px;
 }
 .timebank-header{
   font-weight: bold;
