@@ -1,8 +1,8 @@
 <template>
-    <div class="user-service-frame">    
-      <div class="row" style="margin: 10px 35px;">
+  <div class="user-service-frame">    
+    <div class="row" style="margin: 10px 35px;">
       <b-input-group>
-        <form @submit.prevent="searchByName" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
+        <form @submit.prevent="getServiceFound" class="row" style="width: -webkit-fill-available; padding-left: 25px; padding-right: 25px; max-height: 60px;">
           <b-form-input id="buscador" v-model="formData.title" placeholder="¿Que servicio busca?" style="width:81%; margin-top: 10px; margin-bottom: 10px; margin-left: 20px; border-color: #A70187; border-width: medium;"/>
           <b-button type = "submit" variant="none" style="padding: 7px; margin: 10px 0px; background-color: #A70187;">
             <template>
@@ -11,14 +11,34 @@
           </b-button>
         </form>
       </b-input-group>
+    
+      <div v-if="formData.title!= ''">
+        <div v-if="titulosServicesF.length>0">
+          <div v-for="(service,index) in titulosServicesF" :key="index">
+            <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
+              <b-card-img  :src= imagenesServicesF[index]  img-alt="Card image" img-top>
+                </b-card-img><b-card-body>
+                <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaServiceF[index]}}</b-card-sub-title>
+                <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
+                <b-list-group-item class="text-left text-muted" style="font-size: 20px; padding-left:1.5rem;">{{userName}} {{surname}}</b-list-group-item>
+              </b-card-body>
+            </b-card-group>
+          </div>
+        </div>
+        <div v-else class="timebank-header">
+          No has publicado servicios con ese nombre.
+        </div>
+      </div>
 
+      <div v-else>
         <div v-if="titulosServices.length==0" class="timebank-header">
           <div class="row mb-3"></div>
           Aún no has ofrecido un servicio a la comunidad. </div>
         <div v-else class="mt-3"> 
           <div class="row"></div>
           <div v-for="(service, index) in titulosServices" :key="index">
-            <b-card-group @click="servicesEdit(index)" class="mb-3" style="cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
+            
+            <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
             <b-card-img  :src= imagenesServices[index]  img-alt="Card image" img-top>
               </b-card-img><b-card-body>
               <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaService[index]}}</b-card-sub-title>
@@ -29,9 +49,10 @@
           </div>
         </div>
       </div>
-      <div class="row mb-5" style= "margin: 70px"></div>
-      <b-button type="button" class="publish-button" onclick="location.href='/publish-service';" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
     </div>
+    <div class="row mb-5" style= "margin: 70px"></div>
+    <b-button type="button" class="publish-button" style="padding:0px 10px;">Publicar nuevo servicio</b-button>
+  </div>
 </template>
 
 <script>
@@ -46,29 +67,22 @@ export default {
        formData:{
         title: '',
       },
-      servicios: [],
       titulosServices: [],
       categoriasServices: [],
       nameCategoriaService: [],
       imagenesServices: [],
-      ServicesUids:[],
-
+      found: false,
       userName: '',
       surname:'',
       uid: '',
-      imagen: 'https://placekitten.com/1000/300',
+      titulosServicesF: [],
+      categoriasServicesF: [],
+      nameCategoriaServiceF: [],
+      imagenesServicesF: [],
     }
   },
    methods: {
     
-    searchByName() {
-      axios
-        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/buscador/' + this.formData.title )
-          .then(( response ) => console.log(response.data))
-          .catch(( error ) => console.log( error ))
-      
-    },
-
     getCategories(id_c) {
       axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/'+ id_c )
@@ -85,9 +99,38 @@ export default {
           r.data.forEach(element => {
             this.titulosServices.push(element.title);
             this.categoriasServices.push(element.id_category);
-            this.getCategories(element.id_category);
+            this.getCategoriesFound(element.id_category);
             this.imagenesServices.push(element.image);
             this.ServicesUids.push(element.uid)
+          });
+        })
+        .catch(e => console.log( e ))
+    },
+    getCategoriesFound(id_c) {
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/'+ id_c )
+        .then( r => {
+          this.nameCategoriaServiceF.push(r.data.name);
+        })
+        .catch(e => console.log( e ))
+    },
+    
+    getServiceFound(){
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/buscarUsuario/'+ this.uid +'/'+ this.formData.title)
+        .then( r => {
+          console.log(r.data);
+          this.titulosServicesF=[];
+          this.categoriasServicesF= [],
+          this.nameCategoriaServiceF= [],
+          this.imagenesServicesF= [],
+          console.log(this.titulosServicesF.length);
+           r.data.forEach(element => {
+            this.titulosServicesF.push(element.title);
+            this.categoriasServicesF.push(element.id_category);
+            this.getCategories(element.id_category);
+            this.imagenesServicesF.push(element.image);
+            console.log(this.imagenesServicesF);
           });
         })
         .catch(e => console.log( e ))
@@ -116,7 +159,6 @@ export default {
         })
         .catch( e => console.log( e ))
 
-    // 
     this.getServices();
     this.categoriasServices.forEach(element => {
       this.getCategories(element);

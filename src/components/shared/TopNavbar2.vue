@@ -20,7 +20,7 @@
                     </b-button>
             </div>
             <div class="col-4" style="padding: 0px;">
-                <b-button class="notifications" type="button">
+                <b-button href="/awaiting-request" class="notifications" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
                     <span id="super-script-num" class="badge rounded-circle">1</span>
                 </b-button>
