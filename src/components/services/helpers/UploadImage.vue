@@ -55,13 +55,13 @@ import Icon from "../../user-profile/helpers/Icon";
 
 .image-container {
     width: 350px; 
-    height: 250px;
-    /* border-radius: 100px; */
+    height: 200px;
+    border-radius: 10px;
 }
 
 .button-relative {
     width: 350px;  
-    height: 250px;
+    height: 200px;
     background-color: black;
     opacity: 25%;
     top: 0px;

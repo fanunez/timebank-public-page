@@ -10,12 +10,12 @@
       </div>
 
       <!-- Change image -->
-      <div v-if="formData.img != ''" class="col-12">
-        <avatar-input class="w-32 h-32 rounded-full" 
+      <div v-if="formData.image != ''" class="col-12">
+        <AvatarInput class="w-32 h-32 rounded-full" 
                       v-model="formData.avatar"
                       :default-src="formData.image"
                       >
-        </avatar-input>
+        </AvatarInput>
       <div class="timebank-subtitle mt-2 mb-2" style="color: #A70187">CAMBIAR IMAGEN</div>
       </div>
       <!-- Data form -->
@@ -61,7 +61,7 @@
 <script>
 import axios from 'axios'
 import auth from "@/logic/auth";
-import AvatarInput from "./helpers/AvatarInput";
+import AvatarInput from "../services/helpers/UploadImage.vue";
 
 export default {
   name: 'editData',
@@ -86,22 +86,22 @@ export default {
     }
   },
   created () {
-        // get service uid
-        this.uid = this.$route.params.id;
-        // petition
-        axios
-            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + this.uid)
-            .then( response => {
-                this.formData.newTitle = response.data.title;
-                this.getCategories(response.data.id_category);
-                this.formData.newCategory = response.data.id_category;
-                this.formData.newDescription = response.data.description;
-                this.formData.newValue = response.data.value;
-                this.formData.image = response.data.image;
-                this.formData.id_owner = response.data.id_owner;
-                this.formData.achievements = response.data.achievements;     
-            })
-            .catch( e => console.log( e ))
+    // get service uid
+    this.uid = this.$route.params.id;
+    // petition
+    axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + this.uid)
+        .then( response => {
+            this.formData.newTitle = response.data.title;
+            this.getCategories(response.data.id_category);
+            this.formData.newCategory = response.data.id_category;
+            this.formData.newDescription = response.data.description;
+            this.formData.newValue = response.data.value;
+            this.formData.image = response.data.img;
+            this.formData.id_owner = response.data.id_owner;
+            this.formData.achievements = response.data.achievements;     
+        })
+        .catch( e => console.log( e ))
   },
   methods: {
     async updateService() {
@@ -111,25 +111,23 @@ export default {
         id_category: this.formData.newCategory,
         description: this.formData.newDescription,
         value: this.formData.newValue,
-        image: this.formData.image,
         id_owner: this.formData.id_owner,
         achievements: this.formData.achievements,
-        state: true,
-        uid: this.uid,
       }
       // send new service data
       await axios
-        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /service/ + this.uid, payload )
+        .put( process.env.VUE_APP_BACKEND_URL_LOCAL + /service/ + this.uid, payload )
         .then( response => {
         })
         .catch( e => console.log( e ))
-      
-      /*if( this.formData.avatar ) {
+
+      // send new file
+      if( this.formData.avatar ) {
         // send new image
         let fileData = new FormData();
         fileData.append("file", this.formData.avatar )
         await axios
-          .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/users/${this.formData.uid}`, fileData, {
+          .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/service/${this.uid}`, fileData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
@@ -141,7 +139,7 @@ export default {
       }
       else {
         return window.location.href="/profile"
-      }*/
+      }
     },
 
     getCategories(id_c) {

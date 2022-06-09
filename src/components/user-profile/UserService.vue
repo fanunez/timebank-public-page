@@ -16,7 +16,7 @@
       <div v-if="formData.title!= ''">
         <div v-if="titulosServicesF.length>0">
           <div v-for="(service,index) in titulosServicesF" :key="index">
-            <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
+            <b-card-group @click="servicesEdit(index)" class="mb-3" style="cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
               <b-card-img class="img-s" :src= imagenesServicesF[index]  img-alt="Card image" img-top>
                 </b-card-img><b-card-body>
                 <b-card-sub-title class="mb-2 text-left" style="margin:10px 10px;"><Icon icon="icon-park-outline:label" style="margin:10px;"/>{{nameCategoriaServiceF[index]}}</b-card-sub-title>
@@ -38,8 +38,7 @@
         <div v-else class="mt-3"> 
           <div class="row"></div>
           <div v-for="(service, index) in titulosServices" :key="index">
-            
-            <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
+            <b-card-group @click="servicesEdit(index)" class="mb-3" style="cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
             <b-card-img class="img-s" :src= imagenesServices[index]  img-alt="Card image" img-top>
               </b-card-img><b-card-body>
               <b-card-sub-title class="mb-2 text-left" style="margin:10px 10px;"><Icon icon="icon-park-outline:label" style="margin:10px;"/>{{nameCategoriaService[index]}}</b-card-sub-title>
@@ -72,7 +71,9 @@ export default {
       categoriasServices: [],
       nameCategoriaService: [],
       imagenesServices: [],
+      ServicesUids:[],
       found: false,
+
       userName: '',
       surname:'',
       uid: '',
@@ -102,10 +103,17 @@ export default {
             this.categoriasServices.push(element.id_category);
             this.getCategories(element.id_category);
             this.imagenesServices.push(element.img);
+            this.ServicesUids.push(element.uid)
           });
         })
         .catch(e => console.log( e ))
     },
+
+    servicesEdit(index){
+      const service_uid = this.ServicesUids[index];
+      this.$router.push('/service-edit/' + service_uid);
+    },
+
     getCategoriesFound(id_c) {
       axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/'+ id_c )
