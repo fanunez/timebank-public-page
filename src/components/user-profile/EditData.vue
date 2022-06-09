@@ -21,6 +21,8 @@
       <!-- Data form -->
       <form style="margin-bottom: 30px">
       <b-row style="margin: 10px 40px;">
+
+
         <!-- Name -->
         <div class="timebank-subtitle mt-2">Nombres</div>
         <b-input-group>
@@ -29,6 +31,11 @@
           </b-input-group-prepend>
           <b-form-input class="input-border" id="nombre" type = "text" v-model="formData.newName" placeholder="Ej: Vanessa Carolina" ></b-form-input>
         </b-input-group>
+
+        <div class = "container input-error-location" v-if="formData.nameError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.nameErrorT }}</div>
+        </div>
+        <br>
 
         <!-- Surname -->
         <div class="timebank-subtitle mt-2">Apellidos</div>
@@ -39,6 +46,11 @@
           <b-form-input class="input-border" id="apellido" type = "text" v-model="formData.newSurname" placeholder="Ej: Sáez Bonacic" ></b-form-input>
         </b-input-group>
 
+        <div class = "container input-error-location" v-if="formData.surnameError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.surnameErrorT }}</div>
+        </div>
+        <br>
+
         <!-- Relation -->
         <div class="timebank-subtitle mt-2">Escoger relación</div>
         <b-input-group>
@@ -47,6 +59,11 @@
           </b-input-group-prepend>
           <b-form-select class="input-border" v-model="formData.newRelation" :options="options" id="relacion" right variant="none" toggle-class="choose-relation"></b-form-select>
         </b-input-group>
+
+        <div class = "container input-error-location" v-if="formData.relationError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.relationErrorT }}</div>
+        </div>
+        <br>
 
         <!-- Address -->
         <div class="timebank-subtitle mt-2">Dirección</div>
@@ -57,14 +74,10 @@
           <b-form-input class="input-border" id="direccion" type = "text" v-model="formData.newAddress" placeholder="Ej: Vicuña Mackenna 1234" ></b-form-input>
         </b-input-group>
 
-        <!-- Region or state -->
-        <div class="timebank-subtitle mt-2">Región o Estado</div>
-        <b-input-group>
-          <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="bx:world" style="width:24px; height:24px; color: #A70187;"/></span>
-          </b-input-group-prepend>
-          <b-form-input class="input-border" id="region" type = "text" v-model="formData.newRegion" placeholder="República, Región Metropolitana" ></b-form-input>
-        </b-input-group>
+        <div class = "container input-error-location" v-if="formData.addressError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.addressErrorT }}</div>
+        </div>
+        <br>
 
         <!-- Phone -->
         <div class="timebank-subtitle mt-2">Teléfono de contacto (fijo o celular)</div>
@@ -75,6 +88,11 @@
           <b-form-input class="input-border" id="telefono" type = "text" v-model="formData.newPhone" placeholder="Ej: 987654321" ></b-form-input>
         </b-input-group>
 
+        <div class = "container input-error-location" v-if="formData.phoneError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.phoneErrorT }}</div>
+        </div>
+        <br>
+
         <!-- Email -->
         <div class="timebank-subtitle mt-2">Correo electrónico</div>
         <b-input-group>
@@ -84,6 +102,11 @@
           <b-form-input class="input-border" id="correo" type = "email" v-model="formData.newEmail" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
         </b-input-group>
 
+        <div class = "container input-error-location" v-if="formData.emailError === true">
+          <div style = "padding-bottom: 5px;"> {{ formData.emailErrorT }}</div>
+        </div>
+        <br>
+
         <!-- Description -->
         <div class="timebank-subtitle mt-2">Sobre tí</div>
         <b-form-textarea class="input-border"
@@ -92,7 +115,7 @@
                          rows="3"
                          max-rows="6"
         ></b-form-textarea>
-
+        
         <!-- Verify request -->
         <!-- <div class="timebank-subtitle mt-3">Contraseña</div>
         <b-input-group class="pb-5">
@@ -128,14 +151,36 @@ export default {
         newName: '',
         newSurname: '',
         newRelation: null,
+        newAge: '',
         newAddress: '',
-        newRegion: '',
         newPhone: '',
+        newRut: '',
         newEmail: '',
         newDescription: '',
+        newType: '',
+        newBalance: '',
         img: '',
         avatar: null,
-        verifyPassword: ''
+        verifyPassword: '',
+
+        errorState: false,
+
+        nameError: false,
+        surnameError: false,
+        relationError: false,
+        addressError: false,
+        phoneError: false,
+        emailError: false,
+        descriptionError: false,
+
+        nameErrorT: '',
+        surnameErrorT: '',
+        relationErrorT: '',
+        addressErrorT: '',
+        phoneErrorT: '',
+        emailErrorT: '',
+        descriptionErrorT: ''
+
       },
       // Form relation data
       options: [
@@ -157,36 +202,96 @@ export default {
             },
             })
             .then( response => {
-                console.log( response.data );
+                // console.log( response.data );
                 this.formData.uid = response.data.uid;
                 this.formData.newName = response.data.name;
                 this.formData.newSurname = response.data.surname;
                 this.formData.newRelation = response.data.relation;
                 this.formData.newAddress = response.data.address;
-                this.formData.newRegion = response.data.region;
                 this.formData.newPhone = response.data.phone;
                 this.formData.newEmail = response.data.email;
                 this.formData.newDescription = response.data.description;
-                this.formData.img = response.data.img;
             })
             .catch( e => console.log( e ))
   },
   methods: {
     async updateUser() {
       // generate payload body with the information of the data that is send
+      this.formData.estateError = false;
+
+      this.formData.nameError = false;
+      this.formData.surnameError = false;
+      this.formData.relationError = false;
+      this.formData.descriptionError = false;
+      this.formData.addressError = false;
+      this.formData.phoneError = false;
+      this.formData.emailError = false;
+
+      this.formData.nameErrorT = '';
+      this.formData.surnameErrorT = '';
+      this.formData.relationErrorT = '';
+      this.formData.descriptionErrorT = '';
+      this.formData.addressErrorT = '';
+      this.formData.phoneErrorT = '';
+      this.formData.emailErrorT = '';
+
+      if (!this.formData.newName){
+        this.formData.estateError = true;
+        this.formData.nameError = true;
+        this.formData.nameErrorT = 'Ingrese nombre.';
+      }
+
+      if (!this.formData.newSurname){
+        this.formData.estateError = true;
+        this.formData.surnameError = true;
+        this.formData.surnameErrorT = 'Ingrese apellido.';
+      }
+
+      if (!this.formData.newRelation){
+        this.formData.estateError = true;
+        this.formData.relationError = true;
+        this.formData.relationErrorT = 'Ingrese relación.';
+      }
+
+      if (!this.formData.newAddress){
+        this.formData.estateError = true;
+        this.formData.addressError = true;
+        this.formData.addressErrorT = 'Ingrese dirección.';
+      }
+
+      if (!this.formData.newPhone){
+        this.formData.estateError = true;
+        this.formData.phoneError = true;
+        this.formData.phoneErrorT = 'Ingrese telefono.';
+      }
+
+      if (!this.formData.newEmail){
+        this.formData.estateError = true;
+        this.formData.emailError = true;
+        this.formData.emailErrorT = 'Ingrese correo.';
+      }
+
+      if (this.formData.estateError == true){    
+        return true;
+      }
+
       const payload = {
         name: this.formData.newName,
         surname: this.formData.newSurname,
         relation: this.formData.newRelation,
+        age: this.formData.newAge,
         address: this.formData.newAddress,
-        region: this.formData.newRegion,
         phone: this.formData.newPhone,
+        rut: this.formData.newRut,
         email: this.formData.newEmail,
         description: this.formData.newDescription,
-      }
+        type_user: this.formData.newType,
+        balance: this.formData.newBalance,
+      } 
+
       // send new user data
       await axios
-        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
+        .put( process.env.VUE_APP_BACKEND_URL_LOCAL + /users/ + this.formData.uid, payload )
         .then( response => {
         })
         .catch( e => console.log( e ))
@@ -202,12 +307,12 @@ export default {
             }
           })
           .then( response => {
-            return window.location.href="/profile"
+            //return window.location.href="/profile"
           })
           .catch( e => console.log( e ))
       }
       else {
-        return window.location.href="/profile"
+        //return window.location.href="/profile"
       }
     },
   }
