@@ -202,19 +202,15 @@ export default {
             },
             })
             .then( response => {
-                console.log( response.data );
+                // console.log( response.data );
                 this.formData.uid = response.data.uid;
                 this.formData.newName = response.data.name;
                 this.formData.newSurname = response.data.surname;
                 this.formData.newRelation = response.data.relation;
-                this.formData.newAge = response.data.age;
                 this.formData.newAddress = response.data.address;
                 this.formData.newPhone = response.data.phone;
-                this.formData.newRut = response.data.rut;
                 this.formData.newEmail = response.data.email;
                 this.formData.newDescription = response.data.description;
-                this.formData.newType = response.data.type_user;
-                this.formData.newBalance = response.data.balance;
             })
             .catch( e => console.log( e ))
   },
@@ -289,13 +285,9 @@ export default {
         rut: this.formData.newRut,
         email: this.formData.newEmail,
         description: this.formData.newDescription,
-        password: this.formData.newPassword,
         type_user: this.formData.newType,
         balance: this.formData.newBalance,
       } 
-
-      console.log("Aqui:")
-      console.log(payload);
 
       // send new user data
       await axios
