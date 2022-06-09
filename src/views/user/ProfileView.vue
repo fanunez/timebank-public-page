@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import BottomNavbar from '../components/shared/BottomNavbar.vue'
-import Profile from '../components/user-profile/Profile.vue'
-import TopNavbar2 from '../components/shared/TopNavbar2.vue'
+import BottomNavbar from '../../components/shared/BottomNavbar.vue'
+import Profile from '../../components/user-profile/Profile.vue'
+import TopNavbar2 from '../../components/shared/TopNavbar2.vue'
 
 export default {
   name: 'SearchS',

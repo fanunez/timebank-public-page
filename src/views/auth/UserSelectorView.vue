@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UserSelector from '../components/auth/userSelector.vue'
+import UserSelector from '../../components/auth/userSelector.vue'
 
 export default {
   name: 'USelector',
