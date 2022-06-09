@@ -22,7 +22,7 @@
             <div class="col-4" style="padding: 0px;">
                 <b-button href="/awaiting-request" class="notifications" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
-                    <span id="super-script-num" class="badge rounded-circle">1</span>
+                    <span id="super-script-num" class="badge rounded-circle">0</span>
                 </b-button>
             </div>
             <div class="col-2" style="padding-left: 0px; color: white;">

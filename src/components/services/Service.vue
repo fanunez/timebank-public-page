@@ -5,6 +5,8 @@
       </div>
         <div class="row" style="margin: 0px 30px;">
           <div class="timebank-header">{{nombreServicio}}</div>
+        </div>
+        <div class="row" style="margin: 0px 30px;">
           <div class="timebank-title">Por: {{nombreUsuario}}</div>
         </div>
       <div>
