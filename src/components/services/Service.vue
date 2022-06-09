@@ -4,8 +4,8 @@
         <a href="/" style="color:black"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></a>
       </div>
         <div class="row" style="margin: 0px 30px;">
-          <div class="timebank-header">Nombre del servicio</div>
-          <div class="timebank-title">Por: Usuario genérico</div>
+          <div class="timebank-header">{{nombreServicio}}</div>
+          <div class="timebank-title">Por: {{nombreUsuario}}</div>
         </div>
       <div>
         <!-- First container -->
@@ -18,9 +18,11 @@
           <!-- Images -->
           <div class="row" style="margin: 0px 0px;">
             <mdb-carousel :interval="8000" showControls showIndicators>
-              <mdb-carousel-item img src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).webp" alt="First slide" />
-              <mdb-carousel-item img src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).webp" alt="Second slide" />
-              <mdb-carousel-item img src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).webp" alt="Third slide" />
+              <mdb-carousel-item>
+                <a href="https://placekitten.com/1000/300">
+                  <img class="d-block w-100" src="https://placekitten.com/1000/300" style="height: 150px;" alt="First slide"/>
+                </a>
+              </mdb-carousel-item>
             </mdb-carousel>
           </div>
         </div>
@@ -29,7 +31,7 @@
         <div class="row" style="margin: 0px 30px;">
           <b-button type="button" class="request-button col-9">Solicitar</b-button>
           <b-card class="col-3" style="background-color: #A70187; margin: 10px 0px; padding: 5px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; ">
-            <b-card-text style="font-size: 24px; color:#A70187; background-color: white; border-radius: 10px;">1<br>Bono</b-card-text>
+            <b-card-text style="font-size: 24px; color:#A70187; background-color: white; border-radius: 10px;">{{valor}}<br>Bono</b-card-text>
           </b-card>
         </div>
         
@@ -41,10 +43,10 @@
             <div class="timebank-title pt-2" style="margin-left: 10px;">Descripción</div>
           </div>
           <div class="row" style="margin: 0px;">
-            <div class="timebank-phrase my-3" style="margin-left: 10px;">Este servicio trata sobre una clase de deportes guiada y resumida para un facil entendimiento...</div>
+            <div class="timebank-phrase my-3" style="margin-left: 10px;">{{descripcion}}</div>
           </div>
           <div class="row" style="margin: 0px; background-color: #A70187;">
-            <div class="timebank-title pt-2" style="margin-left: 10px; color: white">Categoria 1, Categoria 2</div>
+            <div class="timebank-title pt-2" style="margin-left: 10px; color: white">Categoria: {{categoria}}</div>
           </div>
         </div>
       </div>
@@ -53,8 +55,56 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'Service'
+  name: 'Service',
+  data() {
+    return{
+      nombreServicio: '',
+      nombreUsuario: '',
+      logros: [],
+      img: '',
+      valor: '',
+      descripcion: '',
+      categoria: '',
+    }
+  },
+  created () {
+    // get service uid
+    this.uid = this.$route.params.id;
+    // petition
+    axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + this.uid)
+        .then( response => {
+            this.nombreServicio = response.data.title;
+            this.getCategories(response.data.id_category);
+            this.getNameUser(response.data.id_owner);
+            this.descripcion = response.data.description;
+            this.valor = response.data.value;
+            this.img = response.data.image;
+            this.id_owner = response.data.id_owner;
+            this.logros = response.data.achievements;   
+        })
+        .catch( e => console.log( e ))
+  },
+  methods: {
+    getCategories(id_c) {
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/'+ id_c )
+        .then( r => {
+          this.categoria = r.data.name;
+        })
+        .catch(e => console.log( e ))
+    },
+    getNameUser(id_own) {
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/'+ id_own )
+        .then( r => {
+          this.nombreUsuario = r.data.user.name;
+        })
+        .catch(e => console.log( e ))
+    }
+  }
 }
 </script>
 

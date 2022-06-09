@@ -6,6 +6,7 @@ import RegisterView from '../views/RegisterView.vue'
 import LogInView from '../views/LogInView.vue'
 import UserSelectorView from '../views/UserSelectorView.vue'
 import UserServiceView from '../views/UserServiceView.vue'
+import ServiceEditView from '../views/ServiceEditView.vue'
 import UserDataView from '../views/UserDataView.vue'
 import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
@@ -43,12 +44,17 @@ const routes = [
     component: UserServiceView
   },
   {
-    path: '/service',
+    path: '/service/:id',
     name: 'service',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ServiceView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ServiceView.vue'),
+  },
+  {
+    path: '/service-edit/:id',
+    name: 'service-edit',
+    component: ServiceEditView
   },
   {
     path: '/register/',

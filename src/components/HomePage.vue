@@ -5,8 +5,8 @@
     <div class="container" style="margin: 10px auto;">
       <mdb-carousel :interval="8000" showControls showIndicators>
           <mdb-carousel-item>
-            <a href="service">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).webp" alt="First slide"/>
+            <a href="service/6294163624100ae4fbf04226">
+              <img class="d-block w-100" src="https://placekitten.com/1000/300" style="height: 174px;" alt="First slide"/>
             </a>
           </mdb-carousel-item>
           <mdb-carousel-item>
