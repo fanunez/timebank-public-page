@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VuePdfApp from "vue-pdf-app";
 import './registerServiceWorker'
 import router from './router'
 // Import Bootstrap
@@ -24,6 +25,10 @@ Vue.component('mdb-carousel', mdbCarousel)
 Vue.component('mdb-carousel-item', mdbCarouselItem)
 Vue.component('mdb-carousel-caption', mdbCarouselCaption)
 Vue.component('Icon', Icon)
+// PDF
+Vue.component("vue-pdf-app", VuePdfApp);
+// import this to use default icons for buttons
+import "vue-pdf-app/dist/icons/main.css";
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="Hp" style="height: -webkit-fill-available">
+  <div class="Hp">
     <Help/>
     <BottomNavbar/>
   </div>

@@ -8,6 +8,14 @@
           <div class="timebank-header">Ingresa tus datos</div>
         </div>
       </div>
+
+      <div v-if="error==true">
+        <b-alert class="alert-credentials" show variant="danger">
+          <Icon icon="eva:alert-triangle-fill" style="width:32px; height:32px; color:#e90606;"/>
+          El email o la contraseña es incorrecto/a. Por favor, inténtelo de nuevo.
+        </b-alert>
+      </div>
+
       <form action class="form" @submit.prevent="loginUser">
         <b-row style="justify-content: center; margin: 10px 40px;">
           <b-input-group>
@@ -33,8 +41,6 @@
                           placeholder="Contraseña" 
             ></b-form-input>
           </b-input-group>
-
-
 
           <b-button value="Login" type="submit" class="login-button">Ingresar</b-button>
         </b-row>
@@ -144,6 +150,13 @@ export default {
   width:24px; 
   height:24px; 
   color: #A70187;
+}
+
+.alert-credentials{
+  max-width: 375px;
+  margin: 15px auto;
+  border-color: #e90606;
+  background-color: #fff3f4;
 }
 
 </style>

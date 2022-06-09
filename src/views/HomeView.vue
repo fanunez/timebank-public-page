@@ -2,14 +2,12 @@
   <div class="home">
     <div v-if="userLogged">
       <TopNavbar2/>
-      <HomePage/>
-      <BottomNavbar/>
     </div>
     <div v-else>
       <TopNavbar1/>
-      <HomePage/>
-      <BottomNavbar/>
-    </div>
+    </div>  
+    <HomePage/>
+    <BottomNavbar/>
   </div>
 </template>
 
