@@ -83,7 +83,7 @@ export default {
     margin: 0 auto
 }
 .balance{
-    box-shadow: none;
+    box-shadow: none!important;
     background-color: #74015E!important;
     padding: 0px;
     width: -webkit-fill-available;
@@ -91,7 +91,7 @@ export default {
     margin: 0px auto;
 }
 .notifications{
-    box-shadow: none;
+    box-shadow: none!important;
     background-color: #74015E!important;
     padding: 0px;
     width: -webkit-fill-available;
