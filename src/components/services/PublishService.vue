@@ -21,7 +21,7 @@
 
         <!-- Category -->
         <div class="timebank-subtitle mt-2">Categoría del servicio</div>
-        <b-form-select class="input-border" v-model="formService.categoria" :options="options" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
+        <b-form-select class="input-border" v-model="formService.categoria" :options="options" id="categoria" right variant="none" toggle-class="choose-category"></b-form-select>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorCategoria === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorCategoriaT }}</div>
         </div>

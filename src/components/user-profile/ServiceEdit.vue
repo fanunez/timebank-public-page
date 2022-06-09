@@ -34,11 +34,9 @@
           <b-form-input class="input-border" id="balance" type = "number" v-model="formData.newValue" placeholder="Ej: 2" ></b-form-input>
         </b-input-group>
 
-        <!-- category -->
-        <div class="timebank-subtitle mt-2">Categoria del servicio</div>
-        <b-input-group>
-          <b-form-input class="input-border" id="categorie" type = "text" v-model="nameCategory" placeholder="Ej: Conducción" ></b-form-input>
-        </b-input-group>
+        <!-- Category -->
+        <div class="timebank-subtitle mt-2">Categoría del servicio</div>
+        <b-form-select class="input-border" v-model="formData.newCategory" :options="options" id="categoria" right variant="none" toggle-class="choose-category"></b-form-select>
         
         <!-- Description -->
         <div class="timebank-subtitle mt-2">Descripción del servicio</div>
@@ -71,6 +69,10 @@ export default {
   data() {
     return{
       nameCategory: '',
+      categorias: [],
+      options: [
+        { value: null , text: 'Seleccione una categoria' }
+      ],
       formData: {
         newTitle: '',
         newCategory: '',
@@ -85,7 +87,7 @@ export default {
       },
     }
   },
-  created () {
+  async created () {
     // get service uid
     this.uid = this.$route.params.id;
     // petition
@@ -102,6 +104,17 @@ export default {
             this.formData.achievements = response.data.achievements;     
         })
         .catch( e => console.log( e ))
+
+    await axios
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/' )
+      .then( resp => {
+        this.categorias = resp.data.categories;
+        this.categorias.forEach(element => {
+          const aux = { value: element.uid, text: element.name }
+          this.options.push(aux)
+        });
+        })
+      .catch(( e => console.log( e ) ))
   },
   methods: {
     async updateService() {
@@ -114,9 +127,10 @@ export default {
         id_owner: this.formData.id_owner,
         achievements: this.formData.achievements,
       }
+      
       // send new service data
       await axios
-        .put( process.env.VUE_APP_BACKEND_URL_LOCAL + /service/ + this.uid, payload )
+        .put( process.env.VUE_APP_BACKEND_URL_SERVER + /service/ + this.uid, payload )
         .then( response => {
         })
         .catch( e => console.log( e ))
@@ -140,6 +154,7 @@ export default {
       else {
         return window.location.href="/profile"
       }
+
     },
 
     getCategories(id_c) {
@@ -154,7 +169,18 @@ export default {
 
 }
 </script>
-
+<style>
+.choose-category{
+  width: -webkit-fill-available;
+  margin-top: 10px!important;
+  margin-right: 0px!important;
+  margin-bottom: 10px!important;
+  margin-left: 0px!important;
+  border: groove!important;
+  border-color: #A70187!important;
+  box-shadow: none!important;
+}
+</style>
 <style scoped>
   .main{
     min-height: 900px;
