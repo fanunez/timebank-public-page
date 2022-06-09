@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VuePdfApp from "vue-pdf-app";
 import './registerServiceWorker'
 import router from './router'
 // Import Bootstrap
@@ -24,6 +25,8 @@ Vue.component('mdb-carousel', mdbCarousel)
 Vue.component('mdb-carousel-item', mdbCarouselItem)
 Vue.component('mdb-carousel-caption', mdbCarouselCaption)
 Vue.component('Icon', Icon)
+// PDF
+Vue.component("vue-pdf-app", VuePdfApp);
 
 Vue.config.productionTip = false
 
