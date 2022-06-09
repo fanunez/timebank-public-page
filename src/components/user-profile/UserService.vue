@@ -16,9 +16,9 @@
         <div v-if="titulosServicesF.length>0">
           <div v-for="(service,index) in titulosServicesF" :key="index">
             <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
-              <b-card-img  :src= imagenesServicesF[index]  img-alt="Card image" img-top>
+              <b-card-img class="img-s" :src= imagenesServicesF[index]  img-alt="Card image" img-top>
                 </b-card-img><b-card-body>
-                <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaServiceF[index]}}</b-card-sub-title>
+                <b-card-sub-title class="mb-2 text-left" style="margin:10px 10px;"><Icon icon="icon-park-outline:label" style="margin:10px;"/>{{nameCategoriaServiceF[index]}}</b-card-sub-title>
                 <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
                 <b-list-group-item class="text-left text-muted" style="font-size: 20px; padding-left:1.5rem;">{{userName}} {{surname}}</b-list-group-item>
               </b-card-body>
@@ -39,9 +39,9 @@
           <div v-for="(service, index) in titulosServices" :key="index">
             
             <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
-            <b-card-img  :src= imagenesServices[index]  img-alt="Card image" img-top>
+            <b-card-img class="img-s" :src= imagenesServices[index]  img-alt="Card image" img-top>
               </b-card-img><b-card-body>
-              <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{nameCategoriaService[index]}}</b-card-sub-title>
+              <b-card-sub-title class="mb-2 text-left" style="margin:10px 10px;"><Icon icon="icon-park-outline:label" style="margin:10px;"/>{{nameCategoriaService[index]}}</b-card-sub-title>
               <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
               <b-list-group-item class="text-left text-muted" style="font-size: 20px; padding-left:1.5rem;">{{userName}} {{surname}}</b-list-group-item>
             </b-card-body>
@@ -99,9 +99,8 @@ export default {
           r.data.forEach(element => {
             this.titulosServices.push(element.title);
             this.categoriasServices.push(element.id_category);
-            this.getCategoriesFound(element.id_category);
-            this.imagenesServices.push(element.image);
-            this.ServicesUids.push(element.uid)
+            this.getCategories(element.id_category);
+            this.imagenesServices.push(element.img);
           });
         })
         .catch(e => console.log( e ))
@@ -119,18 +118,15 @@ export default {
       axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/buscarUsuario/'+ this.uid +'/'+ this.formData.title)
         .then( r => {
-          console.log(r.data);
           this.titulosServicesF=[];
           this.categoriasServicesF= [],
           this.nameCategoriaServiceF= [],
           this.imagenesServicesF= [],
-          console.log(this.titulosServicesF.length);
            r.data.forEach(element => {
             this.titulosServicesF.push(element.title);
             this.categoriasServicesF.push(element.id_category);
-            this.getCategories(element.id_category);
-            this.imagenesServicesF.push(element.image);
-            console.log(this.imagenesServicesF);
+            this.getCategoriesFound(element.id_category);
+            this.imagenesServicesF.push(element.img);
           });
         })
         .catch(e => console.log( e ))
@@ -160,9 +156,7 @@ export default {
         .catch( e => console.log( e ))
 
     this.getServices();
-    this.categoriasServices.forEach(element => {
-      this.getCategories(element);
-    });
+   
 
   
   },
@@ -201,6 +195,11 @@ export default {
   left: 0px;
   right: 0px;
   position:fixed;
+}
+
+.img-s{
+  width: 350px;
+  height: 150px;
 }
 
 </style>
