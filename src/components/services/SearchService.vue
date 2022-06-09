@@ -41,7 +41,7 @@
       <div v-else>
         <div class="row mb-5"></div>
           <div v-for="(service, index) in servicios" :key="index">
-            <b-card-group class="mb-3" style="margin: 0px auto; max-width:360px; cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
+            <b-card-group @click="redirectService(index)" class="mb-3" style="margin: 0px auto; max-width:360px; cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
             <b-card-img  :src="service.img"  img-alt="Card image" img-top>
               </b-card-img><b-card-body>
               <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{categoriesNames[index]}}</b-card-sub-title>
@@ -102,6 +102,10 @@ export default {
           this.userNames.push(names);
         })
         .catch(e => console.log( e ))
+    },
+    redirectService(index){
+      const service_uid = this.servicios[index].uid;
+      this.$router.push('/service/' + service_uid);
     }
   },
   async mounted (){
