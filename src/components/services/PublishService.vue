@@ -202,7 +202,7 @@ export default {
       let serviceUid;
       // send data
       await axios
-        .post( process.env.VUE_APP_BACKEND_URL_LOCAL + '/service/', payload )
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/', payload )
         .then(( response ) => {
           this.serviceUid = response.data.uid;
         })
