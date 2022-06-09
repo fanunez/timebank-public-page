@@ -4,9 +4,9 @@
             
             <div v-if="titlesSReq.length==0" class="timebank-header">
                 <div class="row mb-5" style= "margin: 70px"></div>
-                Aún no has solicitado un servicio de la comunidad. </div>
+                La comunidad aún no te ha solicitado servicios. </div>
             <div v-else class="mb-5" style= "margin: 120px 0px"> 
-                <div class="timebank-info">Estos son los servicios que has solicitado en la comunidad.</div>
+                <div class="timebank-info">Estos son los servicios que te han solicitado en la comunidad.</div>
                 <div class="row mb-5"></div>
                 <div v-for="(service, index) in titlesSReq" :key="index">
                     <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
@@ -52,9 +52,8 @@ export default {
 
         getAwRequest(){
             axios
-            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/own_request/' + this.uid)
+            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/owner_requests/' + this.uid)
             .then( r =>{
-                console.log(r.data);
                 r.data.forEach(element => {
                     this.awRequestS.push(element.id_service);
                     this.getServicesReq(element.id_service);
