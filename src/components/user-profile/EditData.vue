@@ -307,12 +307,11 @@ export default {
             }
           })
           .then( response => {
-            //return window.location.href="/profile"
+            return window.location.href="/profile"
           })
           .catch( e => console.log( e ))
-      }
-      else {
-        //return window.location.href="/profile"
+      } else {
+        return window.location.href="/profile"
       }
     },
   }

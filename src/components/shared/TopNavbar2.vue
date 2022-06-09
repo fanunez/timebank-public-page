@@ -20,7 +20,7 @@
                     </b-button>
             </div>
             <div class="col-4" style="padding: 0px;">
-                <b-button class="notifications" type="button">
+                <b-button href="/awaiting-request" class="notifications" type="button">
                     <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
                     <span id="super-script-num" class="badge rounded-circle">1</span>
                 </b-button>
@@ -83,7 +83,7 @@ export default {
     margin: 0 auto
 }
 .balance{
-    box-shadow: none;
+    box-shadow: none!important;
     background-color: #74015E!important;
     padding: 0px;
     width: -webkit-fill-available;
@@ -91,7 +91,7 @@ export default {
     margin: 0px auto;
 }
 .notifications{
-    box-shadow: none;
+    box-shadow: none!important;
     background-color: #74015E!important;
     padding: 0px;
     width: -webkit-fill-available;

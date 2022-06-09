@@ -10,48 +10,58 @@
       </div>
 
       <!-- Data form -->
-      <form style="margin-bottom: 30px">
+      <form style="margin-bottom: 10px">
       <b-row style="margin: 10px 40px;">
         <!-- Name -->
         <div class="timebank-subtitle mt-2">Nombre del servicio</div>
-        <b-form-input id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés" class="form-container"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorNombre === true">
+        <b-form-input class="input-border" id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés"></b-form-input>
+        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorNombre === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorNombreT }}</div>
         </div>
 
         <!-- Category -->
         <div class="timebank-subtitle mt-2">Categoría del servicio</div>
-        <b-form-select v-model="formService.categoria" :options="options" class="form-container" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
+        <b-form-select class="input-border" v-model="formService.categoria" :options="options" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorCategoria === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorCategoriaT }}</div>
         </div>
 
         <!-- Value -->
         <div class="timebank-subtitle mt-2">Valor del servicio</div>
-        <b-form-input id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1" class="form-container"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorValor === true">
+        <b-form-input class="input-border" id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1"></b-form-input>
+        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorValor === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorValorT }}</div>
-        </div>
-
-        <!-- Image -->
-        <div class="timebank-subtitle mt-2">URL de la imagen del servicio</div>
-        <b-form-input id="imagen" type = "text" v-model="formService.imagen" placeholder="Ej: shorturl.at/tEMS4" class="form-container"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorImagen === true">
-          <div style = "padding-bottom: 5px;">{{ formService.errorImagenT }}</div>
         </div>
 
         <!-- Description -->
         <div class="timebank-subtitle mt-2">Descripción del servicio</div>
         <b-container fluid>
           <b-row>
-            <b-form-textarea type="text" rows="3" v-model="formService.texto" class="description-frame" placeholder="Ingrese la descripción de su servicio"></b-form-textarea>
+            <b-form-textarea type="text" 
+                             rows="3" 
+                             max-rows="10"
+                             v-model="formService.texto" 
+                             class="input-border"
+                             placeholder="Ingrese la descripción de su servicio"
+            ></b-form-textarea>
           </b-row>
         </b-container>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorTexto === true">
+        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorTexto === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorTextoT }}</div>
         </div>
       </b-row>
       </form>
+
+      <!-- Image -->
+      <div class="timebank-subtitle row mt-2" style="margin: 10px 40px;">Imágenes del servicio</div>
+      <div v-if="formService.img != ''" class="col-12">
+        <UploadImage class="mb-4 w-32 h-32 rounded-full"
+                      v-model="formService.serviceImg"
+                      :default-src="formService.img"
+                      >
+        </UploadImage>
+      </div>
+
       <!-- Submit button -->
       <b-button type="submit" class="send-button" v-on:click="createService">Publicar servicio</b-button>
     </div>
@@ -60,8 +70,12 @@
 <script>
 import axios from 'axios';
 import auth from "@/logic/auth";
+import UploadImage from './helpers/UploadImage.vue'
 
 export default {
+  components: {
+    UploadImage
+  },
   data() {
     return{
       selected: null,
@@ -70,12 +84,13 @@ export default {
         { value: null , text: 'Seleccione una categoria' }
       ],
       formService:{
+        uid: '',
         nombre: '',
         categoria: '',
         valor: '',
         texto: '',
-        imagen: '',
-        state: 'true',
+        serviceImg: null,
+        img: 'https://res.cloudinary.com/clouduwu/image/upload/v1654751873/no_service_image_j3ajxr.webp',
 
         estateError: false,
 
@@ -90,19 +105,31 @@ export default {
         errorValorT: '',
         errorTextoT: '',
         errorImagenT: '',
+
     
       }
     }
   },
-  mounted (){
-    this.aid = auth.getUserLogged()
-    axios
-      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/categoryBuscador', {
-        params:{
-          name: ""        
-        }})
+  async mounted (){
+    // get user uid
+    const token = auth.getUserLogged();
+    // petition
+    await axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
+        headers:{
+            'Authorization': token,
+        },
+        })
+        .then( response => {
+            // console.log( response.data.uid )
+            this.uid = response.data.uid
+        })
+        .catch( e => console.log( e ))
+
+    await axios
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/' )
       .then( resp => {
-        this.categorias = resp.data;
+        this.categorias = resp.data.categories;
         this.categorias.forEach(element => {
           const aux = { value: element.uid, text: element.name }
           this.options.push(aux)
@@ -111,7 +138,7 @@ export default {
       .catch(( e => console.log( e ) ))
   },
   methods: {
-    createService(){
+    async createService(){
       this.formService.estateError = false;
 
       this.formService.errorNombre = false;
@@ -152,7 +179,7 @@ export default {
         this.formService.errorTextoT = 'Ingrese texto.';
       }
 
-      if (!this.formService.imagen){
+      if (!this.formService.img){
         this.formService.estateError = true;
         this.formService.errorImagen = true;
         this.formService.errorImagenT = 'Ingrese imagen.';
@@ -162,28 +189,43 @@ export default {
       if (this.formService.estateError == true){    
         return true;
       }
-      
+
       const payload = {
         title: this.formService.nombre,
         id_category: this.formService.categoria,
-        description: this.formService.texto,
         value: this.formService.valor,
-        image: this.formService.imagen,
-        id_owner: this.aid,
+        description: this.formService.texto,
+        id_owner: this.uid,
         achievements: [],
-        state: true
       }
 
-      console.log( payload );
-
-      axios
+      let serviceUid;
+      // send data
+      await axios
         .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/', payload )
         .then(( response ) => {
-          console.log(response.data)
-          window.location.href="/profile"
+          this.serviceUid = response.data.uid;
         })
         .catch(( error ) => console.log( error ))
 
+      // send image
+      if( this.formService.serviceImg ) {
+        // send new image
+        let fileData = new FormData();
+        fileData.append("file", this.formService.serviceImg )
+        await axios
+          .put( `${process.env.VUE_APP_BACKEND_URL_SERVER}/uploads/service/${this.serviceUid}`, fileData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then( response => {
+            return window.location.href="/profile"
+          })
+          .catch( e => console.log( e ))
+      } else {
+        return window.location.href="/profile"
+      }
     }
   }
 }
@@ -208,12 +250,20 @@ export default {
       margin: 0 auto;
       background-color:white
     }
-  .form-container{
-    margin: 5px 35px;
-    border-color: #A70187;
+  .input-border {
+    margin: 5px auto; 
+    border-color: #A70187; 
     border-width: medium;
-    width: -webkit-fill-available;
-    height: fit-content;
+    height: 50px;
+    /* border-left: none; */
+  }
+  .input-group-text{
+    height:50px;
+    margin:5px 0px;
+    border-right: none;
+    background-color: white;
+    border-color: #A70187; 
+    border-width: medium;
   }
   .timebank-header{
     font-weight: bold;
