@@ -11,6 +11,7 @@ import SearchServiceView from '../views/SearchServiceView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import PublishServiceView from '../views/PublishServiceView.vue'
 import EditUserData from '../views/EditUserData.vue'
+import DocumentHelpView from '../views/DocumentHelpView.vue'
 
 
 Vue.use(VueRouter)
@@ -30,6 +31,11 @@ const routes = [
     path: '/help',
     name: 'help',
     component: HelpView
+  },
+  {
+    path: '/documents',
+    name: 'documents',
+    component: DocumentHelpView
   },
   {
     path: '/user-service',

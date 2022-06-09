@@ -1,35 +1,47 @@
 <template>
     <div class="main">
       <div class="row" style="margin: 0px; padding-top: 20px;">
-        <div class="col-2" style="padding: 5px ; margin: 10px 0px; margin-top: 10px; padding-left: 35px;">
-          <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></button>
+        <div class="col-1" style="padding: 5px 0px; margin: 10px 10px; margin-left: 37px;">
+          <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
         </div>
         <div class="col-8" style="padding: 5px 0px; margin-top: 10px;">
-          <div class="timebank-header">Publicar servicio</div>
+          <div class="timebank-header" style="margin-right: 10px">Publicar servicio</div>
         </div>
       </div>
-      <form @submit.prevent="createService">
-        <div class="timebank-phrase">Nombre del servicio</div>
+
+      <!-- Data form -->
+      <form style="margin-bottom: 30px">
+      <b-row style="margin: 10px 40px;">
+        <!-- Name -->
+        <div class="timebank-subtitle mt-2">Nombre del servicio</div>
         <b-form-input id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorNombre === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorNombreT }}</div>
         </div>
-        <div class="timebank-phrase">Categoría del servicio</div>
+
+        <!-- Category -->
+        <div class="timebank-subtitle mt-2">Categoría del servicio</div>
         <b-form-select v-model="formService.categoria" :options="options" class="form-container" id="categoria" right variant="none" toggle-class="escogerCategoria"></b-form-select>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorCategoria === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorCategoriaT }}</div>
         </div>
-        <div class="timebank-phrase">Valor del servicio</div>
+
+        <!-- Value -->
+        <div class="timebank-subtitle mt-2">Valor del servicio</div>
         <b-form-input id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorValor === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorValorT }}</div>
         </div>
-        <div class="timebank-phrase">URL de la imagen del servicio</div>
+
+        <!-- Image -->
+        <div class="timebank-subtitle mt-2">URL de la imagen del servicio</div>
         <b-form-input id="imagen" type = "text" v-model="formService.imagen" placeholder="Ej: shorturl.at/tEMS4" class="form-container"></b-form-input>
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorImagen === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorImagenT }}</div>
         </div>
-        <div class="timebank-phrase">Descripción del servicio</div>
+
+        <!-- Description -->
+        <div class="timebank-subtitle mt-2">Descripción del servicio</div>
         <b-container fluid>
           <b-row>
             <b-form-textarea type="text" rows="3" v-model="formService.texto" class="description-frame" placeholder="Ingrese la descripción de su servicio"></b-form-textarea>
@@ -38,8 +50,10 @@
         <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px; margin: 5px 30px" v-if="formService.errorTexto === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorTextoT }}</div>
         </div>
-        <b-button type="submit" class="send-button">Subir servicio</b-button>
+      </b-row>
       </form>
+      <!-- Submit button -->
+      <b-button type="submit" class="send-button" v-on:click="createService">Publicar servicio</b-button>
     </div>
 </template>
 
@@ -187,47 +201,56 @@ export default {
 }
 </style>
 <style scoped>
-.main{
-  min-height: -webkit-fill-available;
-  box-sizing: border-box;
-  max-width: 425px;
-  margin: 0px auto;
-  padding: 70px 0px;
-  background-color:white;
-  height: 100vh;
-}
-.form-container{
-  margin: 5px 35px;
-  border-color: #A70187;
-  border-width: medium;
-  width: -webkit-fill-available;
-  height: fit-content;
-}
-.timebank-header{
-  font-weight: bold;
-  font-size: 28px;
-}
-.timebank-phrase{
-  font-weight: 300px;
-  font-size: 22px;
-  text-align: left;
-  margin-left: 35px;
-}
-.description-frame{
-  font-size: 20px;
-  margin: 5px 35px;
-  width:-webkit-fill-available;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  height: 180px;
-}
-.send-button{
-  padding: 5px 0px;
-  width: -webkit-fill-available;
-  margin: 10px 35px;
-  margin-bottom: 100px;
-  background-color: #A70187!important;
-  font-size: larger;
-}
+  .main{
+      min-height: -webkit-fill-available;
+      box-sizing: border-box;
+      max-width: 425px;
+      margin: 0 auto;
+      background-color:white
+    }
+  .form-container{
+    margin: 5px 35px;
+    border-color: #A70187;
+    border-width: medium;
+    width: -webkit-fill-available;
+    height: fit-content;
+  }
+  .timebank-header{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .timebank-subtitle{
+      font-weight: bold;
+      font-size: 18px;
+    }
+  .description-frame{
+    font-size: 20px;
+    margin: 5px 35px;
+    width:-webkit-fill-available;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    height: 180px;
+  }
+  .send-button{
+    padding: 5px 0px;
+    width: -webkit-fill-available;
+    margin: 10px 35px;
+    margin-bottom: 100px;
+    background-color: #A70187!important;
+    font-size: larger;
+  }
+
+  .send-button{
+    /* padding: 5px 0px; */
+    width: 346px;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    background-color: #A70187!important;;
+    color: white!important;
+    font-size: x-large;
+    border-radius: 10px;
+  }
 
 </style>

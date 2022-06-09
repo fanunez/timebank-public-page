@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="timebank-title">Selecciona una de las opciones</div>
-      <b-button href="/help" class="user-blue" variant="none">
+      <b-button href="/documents" class="user-blue" variant="none">
         <Icon  icon="emojione-v1:document" style="width: 90px; height: 90px;"/><br>
         Solicitar documentos de ayuda
       </b-button>
