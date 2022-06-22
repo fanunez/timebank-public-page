@@ -13,10 +13,10 @@
       <UserService /> 
     </div>
     <div v-if="currentTab === tabs[2]">
-        
+      <!-- In development -->
     </div>
     <div v-if="currentTab === tabs[3]">
-        
+      <ServiceRecord /> 
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
  <script>
 import UserInformation from './UserInformation.vue'
 import UserService from './UserService.vue'
+import ServiceRecord from './ServiceRecord.vue'
 
   export default {
     data: () => ({
@@ -32,7 +33,8 @@ import UserService from './UserService.vue'
     }),
     components: {
       UserInformation,
-      UserService
+      UserService,
+      ServiceRecord
     },
   }
  </script>
