@@ -203,7 +203,6 @@ export default {
     width: 350px;
     height: 150px;
   }
-
   .search-bar{
     width:69%;
     margin-top: 10px;
@@ -214,7 +213,6 @@ export default {
     border-bottom-right-radius: 0px;
     height:50px;
   }
-
   .search-button{
     width:50px;
     padding: 7px;

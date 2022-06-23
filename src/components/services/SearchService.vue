@@ -41,7 +41,7 @@
       <div v-else>
         <div class="row mb-5"></div>
           <div v-for="(service, index) in servicios" :key="index">
-            <b-card-group @click="redirectService(index)" class="mb-3" style="margin: 0px auto; max-width:360px; cursor:pointer; border: 1px solid rgba(0,0,0,.125);">
+            <b-card-group @click="redirectService(index)" class="card-container mb-3">
             <b-card-img  :src="service.img"  img-alt="Card image" img-top>
               </b-card-img><b-card-body>
               <b-card-sub-title class="mb-2 text-left" style="margin:10px 40px;">{{categoriesNames[index]}}</b-card-sub-title>
@@ -121,81 +121,87 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.principal-frame{
-  box-sizing: border-box;
-  max-width: 425px;
-  margin: 0 auto;
-  padding: 100px 0px;
-  background-color:white;
-  height: fit-content;
-  min-height: 900px;
-}
-.bg-light{
-  background-color:#74015E!important;
-}
-.btn{
-  padding: 0rem;
-}
-.btn-primary{
-  background-color: #74015E!important;
-}
-.btn-outline-primary{
-  width: -webkit-fill-available;
-  background-color: white!important;;
-  color: black!important;
-  border-color: black!important;
-}
-.contenedor{
-    position: relative;
-    display: inline-block;
-    text-align: center;
-}
-.center-left{
-    position: absolute;
-    top: 50%;
-    left: 57%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 24px;
-}
-.center-right{
-    position: absolute;
-    top: 50%;
-    left: 43%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 24px;
-}
-.img-left{
-  width: 100%;
-  max-width: 167.5px;
-  height: auto;
-  opacity: 50%;
-  margin-right: 5px;
-}
-.img-right{
-  width: 100%;
-  max-width: 167.5px;
-  height: auto;
-  opacity: 50%;
-  margin-left: 5px;
-}
-.search-bar{
-  width:69%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-color: #A70187;
-  border-width: medium;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height:50px;
-}
-.search-button{
-  width:50px;
-  padding: 7px;
-  margin: 10px 0px;
-  background-color: #A70187;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
+  .principal-frame{
+    box-sizing: border-box;
+    max-width: 425px;
+    margin: 0 auto;
+    padding: 100px 0px;
+    background-color:white;
+    height: fit-content;
+    min-height: 900px;
+  }
+  .bg-light{
+    background-color:#74015E!important;
+  }
+  .btn{
+    padding: 0rem;
+  }
+  .btn-primary{
+    background-color: #74015E!important;
+  }
+  .btn-outline-primary{
+    width: -webkit-fill-available;
+    background-color: white!important;;
+    color: black!important;
+    border-color: black!important;
+  }
+  .card-container {
+    margin: 0px auto;
+    max-width:360px;
+    cursor:pointer;
+    border: 1px solid rgba(0,0,0,.125);
+  }
+  .contenedor{
+      position: relative;
+      display: inline-block;
+      text-align: center;
+  }
+  .center-left{
+      position: absolute;
+      top: 50%;
+      left: 57%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 24px;
+  }
+  .center-right{
+      position: absolute;
+      top: 50%;
+      left: 43%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 24px;
+  }
+  .img-left{
+    width: 100%;
+    max-width: 167.5px;
+    height: auto;
+    opacity: 50%;
+    margin-right: 5px;
+  }
+  .img-right{
+    width: 100%;
+    max-width: 167.5px;
+    height: auto;
+    opacity: 50%;
+    margin-left: 5px;
+  }
+  .search-bar{
+    width:69%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: #A70187;
+    border-width: medium;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height:50px;
+  }
+  .search-button{
+    width:50px;
+    padding: 7px;
+    margin: 10px 0px;
+    background-color: #A70187;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
 </style>

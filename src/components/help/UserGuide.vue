@@ -47,19 +47,19 @@ export default {
 </script>
 
 <style>
-    .main{
-        min-height: -webkit-fill-available;
-        box-sizing: border-box;
-        max-width: 425px;
-        margin: 0 auto;
-        background-color:white;
-        padding-top: 30px;
-    }
-    .pdf-container {
-        height: 450px;
-        width: 360px;
-    }
-    .pdf-app .dropdownToolbarButton {
-        width: 100px;
-    }
+  .main{
+    min-height: -webkit-fill-available;
+    box-sizing: border-box;
+    max-width: 425px;
+    margin: 0 auto;
+    background-color:white;
+    padding-top: 30px;
+  }
+  .pdf-container {
+    height: 450px;
+    width: 360px;
+  }
+  .pdf-app .dropdownToolbarButton {
+    width: 100px;
+  }
 </style>
