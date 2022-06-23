@@ -68,7 +68,7 @@ export default {
     methods: {
         async getServicesByAplicant( uid ) {
             await axios
-                .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/own_request/' + uid )
+                .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/own_request/' + uid )
                 .then( response => {
                     console.log( response );
                     this.table.services = response.data;
