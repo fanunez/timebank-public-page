@@ -149,103 +149,82 @@ export default {
 </script>
 
 <style scoped>
-
-.container-pwa {
-    box-sizing: border-box;
-    max-width: 425px;
-    margin: 0 auto;
-    padding: 25px 0px;
-    background-color:white;
-}
-
-.timebank-title {
-    margin-left: 50px;
-
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 30px;
-    /* or 125% */
-
-    display: flex;
-    align-items: center;
-
-    color: #000000;
-
-}
-
-.timebank-subtitle {
-    font-size: 20px;
-    margin-left: 35px;
-    font-weight: bold;
-    
-    font-style: normal;
-    font-weight: 900;
-    line-height: 30px;
-    /* or 125% */
-    display: flex;
-    align-items: center;
-    color: #000000;
-
-    padding-left: 0px;
-}
-
-.timebank-phrase {
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    letter-spacing: -0.333333px;
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.linear-divider {
-    border: solid; 
-    margin: 0px 45px; 
-    opacity: 30%;
-    width: 350px;
-}
-
-.edit-button{
-    justify-content: center;
-    width: 95px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-    background-color: #A70187!important;
-    font-size: larger;
-    height: 25px;
-
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-
-    color: #FFFFFF;
-
-    border-radius: 6px;
-}
-
-.date-of-birth {
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 30px;
-    /* or 150% */
-    display: flex;
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.image-container {
-    width: 90px; 
-    height: 90px;
-    border-radius: 50px;
-}
-
-
+    .container-pwa {
+        box-sizing: border-box;
+        max-width: 425px;
+        margin: 0 auto;
+        padding: 25px 0px;
+        background-color:white;
+    }
+    .timebank-title {
+        margin-left: 50px;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    .timebank-subtitle {
+        font-size: 20px;
+        margin-left: 35px;
+        font-weight: bold;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+        padding-left: 0px;
+    }
+    .timebank-phrase {
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+        letter-spacing: -0.333333px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+    .linear-divider {
+        border: solid; 
+        margin: 0px 45px; 
+        opacity: 30%;
+        width: 350px;
+    }
+    .edit-button{
+        justify-content: center;
+        width: 95px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        background-color: #A70187!important;
+        font-size: larger;
+        height: 25px;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        border-radius: 6px;
+    }
+    .date-of-birth {
+        font-style: normal;
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 30px;
+        /* or 150% */
+        display: flex;
+        color: rgba(0, 0, 0, 0.6);
+    }
+    .image-container {
+        width: 90px; 
+        height: 90px;
+        border-radius: 50px;
+    }
 </style>

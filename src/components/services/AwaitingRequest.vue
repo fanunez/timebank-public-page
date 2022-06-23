@@ -86,29 +86,29 @@ export default {
 </script>
 
 <style scoped>
-.awaiting-request-frame{
-    box-sizing: border-box;
-    max-width: 425px;
-    margin: 0 auto;
-    background-color:white;
-    height: fit-content;
-    height: 100vh;
-    min-height: 900px;
-    padding-bottom: 10px;
-}
-.timebank-header{
-  font-weight: bold;
-  font-size: 28px;
-  margin-top: 10px;
-}
-.card-body{
-  padding: 0px;
-}
-.timebank-info{
-  font-weight: bold;
-  font-size: 24px;
-  margin-top: 0px;
-  
-}
+    .awaiting-request-frame{
+        box-sizing: border-box;
+        max-width: 425px;
+        margin: 0 auto;
+        background-color:white;
+        height: fit-content;
+        height: 100vh;
+        min-height: 900px;
+        padding-bottom: 10px;
+    }
+    .timebank-header{
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 10px;
+    }
+    .card-body{
+    padding: 0px;
+    }
+    .timebank-info{
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 0px;
+    
+    }
 
 </style>

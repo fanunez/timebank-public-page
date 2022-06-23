@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ServiceEdit from '../components/user-profile/ServiceEdit.vue'
+import ServiceEdit from '../../components/user-profile/ServiceEdit.vue'
 import auth from "@/logic/auth";
 
 export default {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PublishService from '../components/services/PublishService.vue'
+import PublishService from '../../components/services/PublishService.vue'
 
 export default {
   name: 'publishService',

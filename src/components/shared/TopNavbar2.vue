@@ -15,18 +15,18 @@
             </div>
             <div class="col-4" style="padding: 0px;">
                     <b-button class="balance" type="button">
-                        <Icon icon="akar-icons:clock" style="width:32px; height:32px"/>
+                        <Icon class="icon-size" icon="akar-icons:clock"/>
                             <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
                     </b-button>
             </div>
             <div class="col-4" style="padding: 0px;">
                 <b-button href="/awaiting-request" class="notifications" type="button">
-                    <Icon icon="akar-icons:bell" style="width:32px; height:32px"/>
+                    <Icon class="icon-size" icon="akar-icons:bell"/>
                     <span id="super-script-num" class="badge rounded-circle">0</span>
                 </b-button>
             </div>
             <div class="col-2" style="padding-left: 0px; color: white;">
-                <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="tuerca" variant="none">
+                <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="nut" variant="none">
                 <template #button-content>
                     <Icon icon="ph:gear-duotone" width="32" height="32"/>
                 </template>
@@ -67,57 +67,61 @@ export default {
 </script>
 
 <style>
-.custom-hamb{
-  box-shadow: none!important;
-  padding: 0px!important;
-  margin: 0px!important;
-}
-.tuerca{
-    min-width: 4rem!important;
-}
+    .custom-hamb{
+        box-shadow: none!important;
+        padding: 0px!important;
+        margin: 0px!important;
+    }
+    .nut{
+        min-width: 4rem!important;
+    }
 </style>
 
 <style scoped>
-.navbar-buttons{
-    max-width: 425px;
-    margin: 0 auto
-}
-.balance{
-    box-shadow: none!important;
-    background-color: #74015E!important;
-    padding: 0px;
-    width: -webkit-fill-available;
-    font-size: 20px;
-    margin: 0px auto;
-}
-.notifications{
-    box-shadow: none!important;
-    background-color: #74015E!important;
-    padding: 0px;
-    width: -webkit-fill-available;
-    font-size: 20px;
-    margin: 0px auto;
-}
-.btn-outline-primary{
-  width: -webkit-fill-available;
-  margin: auto 20px;
-  background-color: white!important;;
-  color: #74015E!important;
-  border-color: #74015E!important;
-}
-#super-script-num {
-  position: absolute;
-  top: 0;
-  left: 55%;
-  background: red;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  padding: 2px;
-  font-size: 15px;
-}
+    #super-script-num {
+        position: absolute;
+        top: 0;
+        left: 55%;
+        background: red;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 2px;
+        font-size: 15px;
+    }
+    .navbar-buttons{
+        max-width: 425px;
+        margin: 0 auto
+    }
+    .balance{
+        box-shadow: none!important;
+        background-color: #74015E!important;
+        padding: 0px;
+        width: -webkit-fill-available;
+        font-size: 20px;
+        margin: 0px auto;
+    }
+    .notifications{
+        box-shadow: none!important;
+        background-color: #74015E!important;
+        padding: 0px;
+        width: -webkit-fill-available;
+        font-size: 20px;
+        margin: 0px auto;
+    }
+    .btn-outline-primary{
+        width: -webkit-fill-available;
+        margin: auto 20px;
+        background-color: white!important;;
+        color: #74015E!important;
+        border-color: #74015E!important;
+    }
+    .icon-size {
+        width:32px; 
+        height:32px;
+    }
 </style>

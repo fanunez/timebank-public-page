@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import BottomNavbar from '../components/shared/BottomNavbar.vue'
-import HomePage from '../components/HomePage.vue'
-import TopNavbar1 from '../components/shared/TopNavbar1.vue'
-import TopNavbar2 from '../components/shared/TopNavbar2.vue'
+import BottomNavbar from '../../components/shared/BottomNavbar.vue'
+import HomePage from '../../components/HomePage.vue'
+import TopNavbar1 from '../../components/shared/TopNavbar1.vue'
+import TopNavbar2 from '../../components/shared/TopNavbar2.vue'
 import auth from "@/logic/auth";
 
 export default{

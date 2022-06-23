@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import HelpView from '../views/HelpView.vue'
-import AwaitingRequestView from '../views/AwaitingRequestView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import LogInView from '../views/LogInView.vue'
-import UserSelectorView from '../views/UserSelectorView.vue'
-import UserServiceView from '../views/UserServiceView.vue'
-import ServiceEditView from '../views/ServiceEditView.vue'
-import UserDataView from '../views/UserDataView.vue'
-import SearchServiceView from '../views/SearchServiceView.vue'
-import ProfileView from '../views/ProfileView.vue'
-import PublishServiceView from '../views/PublishServiceView.vue'
-import EditUserData from '../views/EditUserData.vue'
-import DocumentHelpView from '../views/DocumentHelpView.vue'
+import HomeView from '../views/home/HomeView.vue'
+import HelpView from '../views/help/HelpView.vue'
+import AwaitingRequestView from '../views/home/AwaitingRequestView.vue'
+import RegisterView from '../views/auth/RegisterView.vue'
+import LogInView from '../views/auth/LogInView.vue'
+import UserSelectorView from '../views/auth/UserSelectorView.vue'
+import UserServiceView from '../views/user/UserServiceView.vue'
+import ServiceEditView from '../views/user/ServiceEditView.vue'
+import UserDataView from '../views/auth/UserDataView.vue'
+import SearchServiceView from '../views/service/SearchServiceView.vue'
+import ProfileView from '../views/user/ProfileView.vue'
+import PublishServiceView from '../views/service/PublishServiceView.vue'
+import EditUserData from '../views/user/EditUserData.vue'
+import DocumentHelpView from '../views/help/DocumentHelpView.vue'
 
 
 Vue.use(VueRouter)
@@ -55,7 +55,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ServiceView.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/service/ServiceView.vue'),
   },
   {
     path: '/service-edit/:id',

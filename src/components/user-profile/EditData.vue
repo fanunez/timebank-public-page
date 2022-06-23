@@ -1,5 +1,6 @@
 <template>
     <div class="main">
+      <!-- Header -->
       <div class="row" style="margin: 0px; padding-top: 20px;">
         <div class="col-1" style="padding: 5px 0px; margin: 10px 10px; margin-left: 37px;">
           <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="bi:x-lg" style="width:40px; height:40px;"/></button>
@@ -8,7 +9,7 @@
           <div class="timebank-header" style="margin-right: 10px">Edita tus datos</div>
         </div>
       </div>
-
+      
       <!-- Change image -->
       <div v-if="formData.img != ''" class="col-12">
         <avatar-input class="w-32 h-32 rounded-full" 
@@ -27,7 +28,7 @@
         <div class="timebank-subtitle mt-2">Nombres</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="bi:person-fill" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="bi:person-fill"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="nombre" type = "text" v-model="formData.newName" placeholder="Ej: Vanessa Carolina" ></b-form-input>
         </b-input-group>
@@ -41,7 +42,7 @@
         <div class="timebank-subtitle mt-2">Apellidos</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="bi:person-fill" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="bi:person-fill"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="apellido" type = "text" v-model="formData.newSurname" placeholder="Ej: Sáez Bonacic" ></b-form-input>
         </b-input-group>
@@ -55,7 +56,7 @@
         <div class="timebank-subtitle mt-2">Escoger relación</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="ic:sharp-maps-home-work" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="ic:sharp-maps-home-work"/></span>
           </b-input-group-prepend>
           <b-form-select class="input-border" v-model="formData.newRelation" :options="options" id="relacion" right variant="none" toggle-class="choose-relation"></b-form-select>
         </b-input-group>
@@ -69,7 +70,7 @@
         <div class="timebank-subtitle mt-2">Dirección</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="bx:world" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="bx:world"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="direccion" type = "text" v-model="formData.newAddress" placeholder="Ej: Vicuña Mackenna 1234" ></b-form-input>
         </b-input-group>
@@ -83,7 +84,7 @@
         <div class="timebank-subtitle mt-2">Teléfono de contacto (fijo o celular)</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="bxs:phone" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="bxs:phone"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="telefono" type = "text" v-model="formData.newPhone" placeholder="Ej: 987654321" ></b-form-input>
         </b-input-group>
@@ -97,9 +98,9 @@
         <div class="timebank-subtitle mt-2">Correo electrónico</div>
         <b-input-group>
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="ant-design:mail-outlined" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="ant-design:mail-outlined"/></span>
           </b-input-group-prepend>
-          <b-form-input class="input-border" id="correo" type = "email" v-model="formData.newEmail" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
+          <b-form-input class="input-border" id="correo" type="email" v-model="formData.newEmail" placeholder="Ej: banco.tiempo@gmail.com" ></b-form-input>
         </b-input-group>
 
         <div class = "container input-error-location" v-if="formData.emailError === true">
@@ -120,7 +121,7 @@
         <!-- <div class="timebank-subtitle mt-3">Contraseña</div>
         <b-input-group class="pb-5">
           <b-input-group-prepend>
-            <span class="input-group-text"><Icon icon="dashicons:lock" style="width:24px; height:24px; color: #A70187;"/></span>
+            <span class="input-group-text"><Icon class="icon-container" icon="dashicons:lock"/></span>
           </b-input-group-prepend>
           <b-form-input class="input-border" id="contraseña" type = "password" v-model="formData.verifyPassword" placeholder="" ></b-form-input>
         </b-input-group> -->
@@ -211,6 +212,7 @@ export default {
                 this.formData.newPhone = response.data.phone;
                 this.formData.newEmail = response.data.email;
                 this.formData.newDescription = response.data.description;
+                this.formData.img = response.data.img;
             })
             .catch( e => console.log( e ))
   },
@@ -390,5 +392,9 @@ export default {
     border-color: #A70187!important;
     box-shadow: none!important;
   }
-
+  .icon-container {
+    width:24px;
+    height:24px;
+    color: #A70187;
+  }
 </style>

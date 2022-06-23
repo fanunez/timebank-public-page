@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UserData from '../components/auth/userData.vue'
+import UserData from '../../components/auth/userData.vue'
 
 export default {
   name: 'UData',

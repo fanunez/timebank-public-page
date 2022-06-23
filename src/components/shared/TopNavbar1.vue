@@ -16,7 +16,7 @@
             <b-button href="/register" class="login-button" style="height: 35px; padding: 5px;">Ingresar</b-button>
         </div>
         <div class="col-2" style="padding-left: 0px; padding-top: 2px; color: white;">
-            <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="tuerca" variant="none">
+            <b-dropdown right no-caret toggle-class="custom-hamb" menu-class="nut" variant="none">
             <template #button-content>
                 <Icon icon="ph:gear-duotone" width="32" height="32" />
             </template>
@@ -37,28 +37,28 @@ export default {
 </script>
 
 <style>
-.custom-hamb{
-  box-shadow: none!important;
-  padding: 0px!important;
-  margin: 0px!important;
-}
-.tuerca{
-    min-width: 4rem!important;
+    .custom-hamb{
+    box-shadow: none!important;
+    padding: 0px!important;
+    margin: 0px!important;
+    }   
+    .nut{
+        min-width: 4rem!important;
 }
 </style>
 
 <style scoped>
-.navbar-buttons{
-    max-width: 425px;
-    margin: 0 auto
-}
-.login-button{
-  width: -webkit-fill-available;
-  margin: auto 20px;
-  background-color: white!important;;
-  color: #74015E!important;
-  border-color: #74015E!important;
-  font-size: 18px;
-  border-radius: 10px;
-}
+    .navbar-buttons{
+        max-width: 425px;
+        margin: 0 auto
+    }
+    .login-button{
+        width: -webkit-fill-available;
+        margin: auto 20px;
+        background-color: white!important;;
+        color: #74015E!important;
+        border-color: #74015E!important;
+        font-size: 18px;
+        border-radius: 10px;
+    }
 </style>

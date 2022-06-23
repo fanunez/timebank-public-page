@@ -15,21 +15,21 @@
         <!-- Name -->
         <div class="timebank-subtitle mt-2">Nombre del servicio</div>
         <b-form-input class="input-border" id="nombre" type = "text" v-model="formService.nombre" placeholder="Ej: Clases de inglés"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorNombre === true">
+        <div class = "text-error container" v-if="formService.errorNombre === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorNombreT }}</div>
         </div>
 
         <!-- Category -->
         <div class="timebank-subtitle mt-2">Categoría del servicio</div>
         <b-form-select class="input-border" v-model="formService.categoria" :options="options" id="categoria" right variant="none" toggle-class="choose-category"></b-form-select>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorCategoria === true">
+        <div class = "text-error container" v-if="formService.errorCategoria === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorCategoriaT }}</div>
         </div>
 
         <!-- Value -->
         <div class="timebank-subtitle mt-2">Valor del servicio</div>
         <b-form-input class="input-border" id="valor" type = "number" v-model="formService.valor" placeholder="Ej: 1"></b-form-input>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorValor === true">
+        <div class = "text-error container" v-if="formService.errorValor === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorValorT }}</div>
         </div>
 
@@ -46,7 +46,7 @@
             ></b-form-textarea>
           </b-row>
         </b-container>
-        <div class = "container" style = "color: red; font-size: 12px; text-align: left; padding-left: 0px;" v-if="formService.errorTexto === true">
+        <div class = "text-error container" v-if="formService.errorTexto === true">
           <div style = "padding-bottom: 5px;">{{ formService.errorTextoT }}</div>
         </div>
       </b-row>
@@ -56,9 +56,9 @@
       <div class="timebank-subtitle row mt-2" style="margin: 10px 40px;">Imágenes del servicio</div>
       <div v-if="formService.img != ''" class="col-12">
         <UploadImage class="mb-4 w-32 h-32 rounded-full"
-                      v-model="formService.serviceImg"
-                      :default-src="formService.img"
-                      >
+                     v-model="formService.serviceImg"
+                     :default-src="formService.img"
+        >
         </UploadImage>
       </div>
 
@@ -301,6 +301,13 @@ export default {
     color: white!important;
     font-size: x-large;
     border-radius: 10px;
+  }
+
+  .text-error {
+    color: red; 
+    font-size: 12px; 
+    text-align: left; 
+    padding-left: 0px;
   }
 
 </style>

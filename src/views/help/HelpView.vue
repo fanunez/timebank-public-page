@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Help from '../components/help/Help.vue'
-import BottomNavbar from '../components/shared/BottomNavbar.vue'
+import Help from '../../components/help/Help.vue'
+import BottomNavbar from '../../components/shared/BottomNavbar.vue'
 
 export default {
   name: 'Hp',
