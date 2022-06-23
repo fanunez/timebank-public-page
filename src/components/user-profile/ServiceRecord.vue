@@ -14,10 +14,10 @@
         <!-- Service table -->
         <div class="row justify-content-center mt-1">
             <b-table striped hover 
-                     :items="services" 
-                     :fields="fields"
+                     :items="table.services" 
+                     :fields="table.fields"
                      class="timebank-table"
-                     fixed
+                     responsive
                      bordered
             ></b-table>
         </div>
@@ -33,28 +33,21 @@ export default {
     name: 'serviceRecord',
     data() {
         return {
-            fields: [
-                {
-                    key: 'Servicio',
-                    sortable: false
-                },
-                {
-                    key: 'Fecha',
-                    sortable: true
-                }
-            ],
-            services: [
-                { Servicio: "Servicio 1", Fecha: Date.now() },
-                { Servicio: "Servicio 3", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-                { Servicio: "Servicio 1", Fecha: Date.now() },
-                { Servicio: "Servicio 3", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-                { Servicio: "Servicio 2", Fecha: Date.now() },
-            ]
+            table: {
+                fields: [
+                    {
+                        key: 'title',
+                        label: 'Servicio',
+                        sortable: false
+                    },
+                    {
+                        key: 'date',
+                        label: 'Fecha',
+                        sortable: true
+                    }
+                ],
+                services: []
+            },
         }
     },
     created() {
@@ -68,10 +61,21 @@ export default {
             },
             })
             .then( response => {
-                console.log( response.data );
+                this.getServicesByAplicant( response.data.uid );
             })
             .catch( e => console.log( e ))
     },
+    methods: {
+        async getServicesByAplicant( uid ) {
+            await axios
+                .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/own_request/' + uid )
+                .then( response => {
+                    console.log( response );
+                    this.table.services = response.data;
+                })
+                .catch( e => console.log( e ))
+        }
+    }
 }
 
 </script>
@@ -91,7 +95,7 @@ export default {
     }
 
     .timebank-table {
-        width: 370px;
+        width: 370px !important;
         /* border: 1px solid; */
         /* box-shadow: 0px 0px 2px #888888; */
     }
