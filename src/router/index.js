@@ -13,6 +13,7 @@ import SearchServiceView from '../views/service/SearchServiceView.vue'
 import ProfileView from '../views/user/ProfileView.vue'
 import PublishServiceView from '../views/service/PublishServiceView.vue'
 import EditUserData from '../views/user/EditUserData.vue'
+import NotificationView from '../views/user/NotificationView.vue'
 import DocumentHelpView from '../views/help/DocumentHelpView.vue'
 
 
@@ -43,6 +44,11 @@ const routes = [
     path: '/awaiting-request',
     name: 'awaiting-request',
     component: AwaitingRequestView
+  },
+  {
+    path: '/notification',
+    name: 'notification',
+    component: NotificationView
   },
   {
     path: '/user-service',
