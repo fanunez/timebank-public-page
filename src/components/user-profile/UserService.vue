@@ -96,7 +96,7 @@ export default {
 
     getServices() {
       axios
-        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/buscarUsuario/' + this.uid )
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/service-user-finder/' + this.uid )
         .then( r => {
           r.data.forEach(element => {
             this.titulosServices.push(element.title);
