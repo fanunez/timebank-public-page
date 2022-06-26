@@ -57,13 +57,9 @@ export default {
             axios
             .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/notification/user-notifactions/' + this.uid)
             .then( r=>{
-                console.log(this.uid);
-                console.log(r.data);
                 r.data.forEach(element => {
                     this.dateNot.push(element.date);
-                    console.log(element.date);
                     this.descNot.push(element.description);
-                    console.log(element.description);
                     this.stateNot.push(element.check);
                 });
             })
