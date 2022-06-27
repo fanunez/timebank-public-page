@@ -11,7 +11,7 @@ import TopNavbar2 from '../../components/shared/TopNavbar2.vue'
 import AwaitingRequest from '../../components/services/AwaitingRequest.vue'
 import BottomNavbar from '../../components/shared/BottomNavbar.vue'
 export default {
-    name: 'userService',
+    name: 'awaitingRequest',
     components: {
         TopNavbar2,
         AwaitingRequest,

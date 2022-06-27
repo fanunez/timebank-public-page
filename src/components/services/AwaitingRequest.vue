@@ -69,7 +69,7 @@ export default {
         answerRequest(index){
             const service_uid = this.awRequestS[index];
             //Esta debe ser la ruta a la vista de responder solicitud
-            this.$router.push('/service-edit/' + service_uid);
+            this.$router.push('/answer-request/' + service_uid);
         },
         
     },
