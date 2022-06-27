@@ -4,21 +4,51 @@
     <p class="timebank-title">Servicios populares</p>
     <div class="container" style="margin: 10px auto;">
       <mdb-carousel :interval="8000" showControls showIndicators>
-          <mdb-carousel-item>
-            <a href="service/6294163624100ae4fbf04226">
-              <img class="d-block w-100" src="https://placekitten.com/1000/300" style="height: 174px;" alt="First slide"/>
-            </a>
-          </mdb-carousel-item>
-          <mdb-carousel-item>
-            <a href="https://youtube.com">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).webp" alt="Second slide"/>
-            </a>
-          </mdb-carousel-item>
-          <mdb-carousel-item>
-            <a href="https://twitch.tv">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).webp" alt="Third slide"/>
-            </a>
-          </mdb-carousel-item>
+        <mdb-carousel-item>
+          <a v-bind:href="'/service/'+ services_ids[0]">
+            <img class="d-block w-100" :src=services_imgs[0] style="height: 174px;" alt="First slide"/>
+            <div class="carousel-caption caption-bottom">
+              <h3 class="h3-responsive"></h3>
+              <p class="caption">{{services_titles[0]}}</p>
+            </div>
+          </a>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <a v-bind:href="'/service/'+ services_ids[1]">
+            <img class="d-block w-100" :src=services_imgs[1] style="height: 174px;" alt="Second slide"/>
+            <div class="carousel-caption caption-bottom">
+              <h3 class="h3-responsive"></h3>
+              <p class="caption">{{services_titles[1]}}</p>
+            </div>
+          </a>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <a v-bind:href="'/service/'+ services_ids[2]">
+            <img class="d-block w-100" :src=services_imgs[2] style="height: 174px;" alt="Third slide"/>
+            <div class="carousel-caption caption-bottom">
+              <h3 class="h3-responsive"></h3>
+              <p class="caption">{{services_titles[2]}}</p>
+            </div>
+          </a>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <a v-bind:href="'/service/'+ services_ids[3]">
+            <img class="d-block w-100" :src=services_imgs[3] style="height: 174px;" alt="Fourth slide"/>
+            <div class="carousel-caption caption-bottom">
+              <h3 class="h3-responsive"></h3>
+              <p class="caption">{{services_titles[3]}}</p>
+            </div>
+          </a>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <a v-bind:href="'/service/'+ services_ids[4]">
+            <img class="d-block w-100" :src=services_imgs[4] style="height: 174px;" alt="Fifth slide"/>
+            <div class="carousel-caption caption-bottom">
+              <h3 class="h3-responsive"></h3>
+              <p class="caption">{{services_titles[4]}}</p>
+            </div>
+          </a>
+        </mdb-carousel-item>
       </mdb-carousel>
     </div>
     <!-- Recomended Categories -->
@@ -43,14 +73,42 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'Home-page'
+  name: 'Home-page',
+  data () {
+    return {
+      services_ids: [],
+      services_imgs: [],
+      services_titles: []
+    }
+  },
+  async mounted() {
+    await axios
+      .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/popular-services/getAll' )
+      .then( response => {
+        const ids = response.data
+        ids.forEach(element => {
+          this.services_ids.push(element.uid)
+          this.services_titles.push(element.title)
+        });
+      })
+      .catch( e => console.log( e ))
+
+    this.services_ids.forEach(element => {
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + element )
+        .then( response => {
+          this.services_imgs.push(response.data.img)
+        })
+        .catch( e => console.log( e ))
+    });
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .principal-frame{
   /* box-sizing: border-box; */
   max-width: 425px;
@@ -78,5 +136,13 @@ export default {
 }
 .timebank-title{
   font-size: 24px;
+}
+.caption{
+  background-color: rgba(0, 0, 0, 0.6);
+  max-width: fit-content;
+  margin: 0px auto;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-radius: 5px;
 }
 </style>

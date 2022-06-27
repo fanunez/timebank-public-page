@@ -21,8 +21,8 @@
           <div class="row" style="margin: 0px 0px;">
             <mdb-carousel :interval="8000" showControls showIndicators>
               <mdb-carousel-item>
-                <a href="https://placekitten.com/1000/300">
-                  <img class="d-block w-100" src="https://placekitten.com/1000/300" style="height: 150px;" alt="First slide"/>
+                <a v-bind:href=img>
+                  <img class="d-block w-100" :src=img alt="First slide"/>
                 </a>
               </mdb-carousel-item>
             </mdb-carousel>
@@ -83,7 +83,7 @@ export default {
             this.getNameUser(response.data.id_owner);
             this.descripcion = response.data.description;
             this.valor = response.data.value;
-            this.img = response.data.image;
+            this.img = response.data.img;
             this.id_owner = response.data.id_owner;
             this.logros = response.data.achievements;   
         })
