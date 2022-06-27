@@ -2,17 +2,24 @@
     <div class="awaiting-request-frame">    
         <div class="row" style="margin: 10px 35px;">
             <div v-if="titlesSReq.length==0" class="timebank-header">
-                <div class="row mb-5" style= "margin: 70px"></div>
+                <div class="row mb-5" style= "margin: 70px; max-width: 425px;"></div>
                 La comunidad aún no te ha solicitado servicios. </div>
             <div v-else class="mb-5" style= "margin: 120px 0px"> 
-                <div class="timebank-info">Estos son los servicios que te han solicitado en la comunidad.</div>
+                <div class="timebank-info">Servicios solicitados.</div>
                 <div class="row mb-5"></div>
                 <div v-for="(service, index) in titlesSReq" :key="index">
                     <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
-                    <b-card-body>
-                    <b-card-title class="font-weight-bold text-left" style="margin:10px 20px;">{{service}}</b-card-title>
+                        <b-card-body > 
+                            <b-card-title class="font-weight-bold justify-content-center" style="margin:10px 20px;"> 
+                                <div class="row">
+                                    <div class="col-8" style="margin:10px 0px;">{{service}}</div>
+                                    <div class="col-2">
+                                        <button style="width:80px; height: 50px; background-color:white; border-width:0px; padding: 0px 50px;" @click="answerRequest(index)"><Icon  icon="bi:eye-fill" style="display-flex;"/></button>
+                                    </div>
+                                </div>
+                            </b-card-title>
               
-                    </b-card-body>
+                        </b-card-body>
                     </b-card-group>
                 </div>
             </div>
@@ -40,7 +47,7 @@ export default {
 
         getServicesReq(id_s){
             axios
-            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + id_s )
+            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/service/' + id_s )
             .then( r => {
                 this.titlesSReq.push(r.data.title);
             })
@@ -49,7 +56,7 @@ export default {
 
         getAwRequest(){
             axios
-            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/owner_requests/' + this.uid)
+            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/owner_requests/' + this.uid)
             .then( r =>{
                 r.data.forEach(element => {
                     this.awRequestS.push(element.id_service);
@@ -59,6 +66,11 @@ export default {
             .catch(e => console.log( e ))
         },
 
+        answerRequest(index){
+            const service_uid = this.awRequestS[index];
+            //Esta debe ser la ruta a la vista de responder solicitud
+            this.$router.push('/service-edit/' + service_uid);
+        },
         
     },
     async mounted() {
@@ -66,7 +78,7 @@ export default {
         const token = auth.getUserLogged();
         // petition
         await axios
-            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
+            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/auth/user-logged/', {
             headers:{
                 'Authorization': token,
             },
@@ -75,6 +87,7 @@ export default {
                 this.userName = r.data.name;
                 this.surname = r.data.surname;
                 this.uid = r.data.uid;
+                console.log(this.uid);
             })
             .catch( e => console.log( e ))
 
