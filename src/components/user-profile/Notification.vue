@@ -15,22 +15,27 @@
                 <div class="col-8" style="padding: 0px 40px; margin-top: 5px;">
                     <div class="timebank-header" style="margin-right: 10px">Notificaciones</div>
                 </div> <div class="col-2"></div></div>
-                <!--div class="timebank-header mb-3" >Notificaciones</div-->
-            
-            <!--div class="timebank-header" >Notificaciones</div-->
-        <!--/div-->
         
                 <div v-for="(notification,index) in stateNot" :key="index">
-            <!--b-list-group style= "margin: 70px"-->
-                <!--b-list-group-item href="#" variant="dark" style="color: white; font-weight: bold;">Dark list group item</b-list-group-item-->
                     <div v-if="stateNot[index]==0">
-                        <b-list-group-item href="#" button style="font-weight: bold; text-align:left;"><div class="row"><div class="col-4" style="margin: 0px -20px"><img class="img-s" left :src= img rounded="circle" width="60" height="60" style="margin-left: 12px; border-radius:50px;"></div><div class="col-9"><h4 text-left style= "font-weight: bold;">{{descNot[index]}}</h4><h5>{{dateNot[index]}}</h5></div></div></b-list-group-item>
+                        <b-list-group-item button @click="checkNotification(index)" style="font-weight: bold; text-align:left;">
+                            <div class="row">
+                                <div class="col-4" style="margin: 0px -20px">
+                                    <img class="img-s" left :src= img rounded="circle" width="60" height="60" style="margin-left: 12px; border-radius:50px;"></div>
+                                <div class="col-9"><h4 text-left style= "font-weight: bold;">{{descNot[index]}}</h4><h5>{{dateNot[index]}}</h5></div>
+                            </div>
+                        </b-list-group-item>
                     </div>
                     <div v-else>
-                        <b-list-group-item href="#" button style="background-color: #A70187; color: white; font-weight: bold; text-align:left;"><div class="row"><div class="col-4" style="margin: 0px -20px"><img class="img-s" left :src= img rounded="circle" width="60" height="60" style="margin-left: 12px; border-radius:50px;"></div><div class="col-9"><h4 text-left style= "font-weight: bold;">{{descNot[index]}}</h4><h5>{{dateNot[index]}}</h5></div></div></b-list-group-item>
+                        <b-list-group-item button style="background-color: #A70187; color: white; font-weight: bold; text-align:left;">
+                            <div class="row">
+                                <div class="col-4" style="margin: 0px -20px">
+                                    <img class="img-s" left :src= img rounded="circle" width="60" height="60" style="margin-left: 12px; border-radius:50px;"></div>
+                                <div class="col-9"><h4 text-left style= "font-weight: bold;">{{descNot[index]}}</h4><h5>{{dateNot[index]}}</h5></div>
+                            </div>
+                        </b-list-group-item>
                     </div>
                 </div>
-        <!--/b-list-group-->
             </div>
         </div>
        
@@ -47,6 +52,8 @@ export default {
         return{
             uid: '',
             img: '',
+            idNot: [],
+            serviceNot: [],
             dateNot: [],
             descNot: [],
             stateNot: [],
@@ -58,6 +65,8 @@ export default {
             .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/notification/user-notifactions/' + this.uid)
             .then( r=>{
                 r.data.forEach(element => {
+                    this.idNot.push(element.uid);
+                    this.serviceNot.push(element.id_service);
                     this.dateNot.push(element.date);
                     this.descNot.push(element.description);
                     this.stateNot.push(element.check);
@@ -65,6 +74,20 @@ export default {
             })
             .catch(e => console.log(e))
         },
+
+        async checkNotification(id_transaction){
+            const id = this.idNot[id_transaction];
+            const payload = {
+                check: 1,
+            }
+
+        await axios
+            .put(process.env.VUE_APP_BACKEND_URL_SERVER + /notification/ + id, payload)
+            .then( response => {
+            })
+            .catch(e=> console.log(e))
+        },
+
     },
 
     async mounted() {
@@ -85,6 +108,8 @@ export default {
 
             this.getNotificationsUser();
     },
+
+    
 }
 </script>
 
