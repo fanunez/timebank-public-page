@@ -1,20 +1,20 @@
 <template>
-    <div class= "awaitingRequest" style="height: -webkit-fill-available;">
+    <div class= "notification" style="height: -webkit-fill-available;">
         <TopNavbar2/>
-        <AwaitingRequest/>
+        <Notification/>
         <BottomNavbar/>
     </div>
 </template>
 
 <script>
 import TopNavbar2 from '../../components/shared/TopNavbar2.vue'
-import AwaitingRequest from '../../components/services/AwaitingRequest.vue'
+import Notification from '../../components/user-profile/Notification.vue'
 import BottomNavbar from '../../components/shared/BottomNavbar.vue'
 export default {
-    name: 'awaitingRequest',
+    name: 'notification',
     components: {
         TopNavbar2,
-        AwaitingRequest,
+        Notification,
         BottomNavbar
     }
 }

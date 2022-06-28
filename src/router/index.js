@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import HelpView from '../views/help/HelpView.vue'
 import AwaitingRequestView from '../views/home/AwaitingRequestView.vue'
+import AnswerRequestView from '../views/user/AnswerRequestView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
 import LogInView from '../views/auth/LogInView.vue'
 import UserSelectorView from '../views/auth/UserSelectorView.vue'
@@ -13,6 +14,7 @@ import SearchServiceView from '../views/service/SearchServiceView.vue'
 import ProfileView from '../views/user/ProfileView.vue'
 import PublishServiceView from '../views/service/PublishServiceView.vue'
 import EditUserData from '../views/user/EditUserData.vue'
+import NotificationView from '../views/user/NotificationView.vue'
 import DocumentHelpView from '../views/help/DocumentHelpView.vue'
 
 
@@ -43,6 +45,16 @@ const routes = [
     path: '/awaiting-request',
     name: 'awaiting-request',
     component: AwaitingRequestView
+  },
+  {
+    path: '/answer-request/:id',
+    name: 'answer-request',
+    component: AnswerRequestView
+  },
+  {
+    path: '/notification',
+    name: 'notification',
+    component: NotificationView
   },
   {
     path: '/user-service',
