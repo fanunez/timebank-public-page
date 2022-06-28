@@ -12,13 +12,15 @@
                         <b-card-body > 
                             <b-card-title class="font-weight-bold justify-content-center" style="margin:10px 20px;"> 
                                 <div class="row">
-                                    <div class="col-8" style="margin:10px 0px;">{{service}}</div>
+                                    <div class="col-8" style="margin:10px 0px; font-size: 20px;">{{service}}</div>
                                     <div class="col-2">
-                                        <button style="width:80px; height: 50px; background-color:white; border-width:0px; padding: 0px 50px;" @click="answerRequest(index)"><Icon  icon="bi:eye-fill" style="display-flex;"/></button>
+                                        <button style="width:80px; height: 50px; background-color:white; border-width:0px; padding: 0px 40px;" @click="answerRequest(index)"><Icon  icon="bi:eye-fill" style="display-flex;"/></button>
                                     </div>
                                 </div>
                             </b-card-title>
-              
+                            <b-card-sub-title class="font-weight-bold justify-content-center" style="font-size: 20px; margin:20px 20px; text-align:left"> 
+                                <div class="col-10">usuario solicitante:</div> <div class="col-10">{{nameUsers[index]}} {{surnameUsers[index]}}</div>
+                            </b-card-sub-title>
                         </b-card-body>
                     </b-card-group>
                 </div>
@@ -41,6 +43,9 @@ export default {
             uid: '',
             awRequestS: [],
             titlesSReq: [],
+            usersReq: [],
+            nameUsers: [],
+            surnameUsers: [],
         }     
     },
     methods: {
@@ -49,7 +54,20 @@ export default {
             axios
             .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/service/' + id_s )
             .then( r => {
+                console.log(r.data);
                 this.titlesSReq.push(r.data.title);
+            })
+            .catch(e => console.log( e ))
+        },
+
+        getUsersNameReq(id_u){
+            axios
+            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/users/' + id_u )
+            .then( r => {
+                console.log(r.data.user.name);
+                console.log(r.data.user.surname);
+                this.nameUsers.push(r.data.user.name);
+                this.surnameUsers.push(r.data.user.surname);
             })
             .catch(e => console.log( e ))
         },
@@ -59,8 +77,14 @@ export default {
             .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/owner_requests/' + this.uid)
             .then( r =>{
                 r.data.forEach(element => {
+                    console.log('idServ:');
+                    console.log(element.id_service);
                     this.awRequestS.push(element.id_service);
                     this.getServicesReq(element.id_service);
+                    console.log('id:');
+                    console.log(element.uid_aplicant);
+                    this.usersReq.push(element.uid_aplicant);
+                    this.getUsersNameReq(element.uid_aplicant);
                 });
             })
             .catch(e => console.log( e ))
