@@ -84,6 +84,7 @@ export default {
         await axios
             .put(process.env.VUE_APP_BACKEND_URL_SERVER + /notification/ + id, payload)
             .then( response => {
+                this.$router.push("/profile");
             })
             .catch(e=> console.log(e))
         },

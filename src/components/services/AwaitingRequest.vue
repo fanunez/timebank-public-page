@@ -2,10 +2,10 @@
     <div class="awaiting-request-frame">    
         <div class="row" style="margin: 10px 35px;">
             <div v-if="transactions.length==0" class="timebank-header">
-                <div class="row mb-5" style= "margin: 70px; max-width: 425px;"></div>
+                <div class="row mb-5" style= "margin: 20px; max-width: 425px;"></div>
                 La comunidad aún no te ha solicitado servicios ni tu has solicitado servicios. </div>
-            <div v-else class="mb-5" style= "margin: 120px 0px"> 
-                <div class="timebank-info">Servicios solicitados y que solicitaste.</div>
+            <div v-else class="mb-5" style= "margin: 20px 0px"> 
+                <div class="timebank-info">Servicios que te han solicitado y que solicitaste.</div>
                 <div class="row mb-5"></div>
                 
                 <div v-for="(transaction, index) in transactions" :key="index">
@@ -101,28 +101,85 @@ export default {
             answer: '',
             serviceToAsk: '',
             userToAsk: '',
-            
+            transactionToAsk:'',
+            boxTwo: '',
+            boxOne: '',
         }     
     },
     methods: {
 
-        async acceptRequest(id_transaction){
-            const id = this.idNot[id_transaction];
+        async acceptRequest(transaction){
+            const id = transaction;
+            console.log(id);
             const payload = {
-                check: 1,
+                id_transaction: id,
             }
 
         await axios
-            .put(process.env.VUE_APP_BACKEND_URL_SERVER + /notification/ + id, payload)
+            .post(process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/accept_transaction/', payload)
             .then( response => {
             })
             .catch(e=> console.log(e))
         },
 
+        async rejectRequest(transaction){
+            const id = transaction;
+            const payload = {
+                id_transaction: id,
+            }
+
+        await axios
+            .post(process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/reject_transaction/', payload)
+            .then( response => {
+            })
+            .catch(e=> console.log(e))
+        },
+
+        showModalReject(service) {
+        this.boxOne = ''
+        this.$bvModal.msgBoxOk('La solicitud al servicio '+ service + ' ha sido rechazada exitosamente.', {
+          title: 'Solicitud rechazada',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'success',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+          .then(value => {
+            this.boxOne = value
+            location.reload();
+          })
+          .catch(err => {
+            // Error
+          })
+      },
+
+        showModalAccept(service) {
+        this.boxTwo = ''
+        this.$bvModal.msgBoxOk('La solicitud al servicio '+ service + ' ha sido aceptada exitosamente.', {
+          title: 'Solicitud aceptada',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'success',
+          headerClass: 'p-2 border-bottom-0',
+          footerClass: 'p-2 border-top-0',
+          centered: true
+        })
+          .then(value => {
+            this.boxTwo = value
+            location.reload();
+          })
+          .catch(err => {
+            // Error
+          })
+      },
+
         showModalConfirmRequest(id) {
             this.answer = ''
             this.serviceToAsk=this.titlesSReq[id]
             this.userToAsk=this.aplicants[id]
+            this.transactionToAsk=this.transactions[id]
             this.$bvModal.msgBoxConfirm('¿Desea aceptar la solicitud de servicio del usuario '+ this.userToAsk +'?', {
             title: '' + this.serviceToAsk,
             size: 'sm',
@@ -139,17 +196,23 @@ export default {
           .then(value => {
             this.answer = value
             if (this.answer==true){
+                console.log(this.transactionToAsk);
+                this.acceptRequest(this.transactionToAsk);
+                this.showModalAccept(this.serviceToAsk);
                console.log('es aceptado');
             }
             else if (this.answer==false){
+                
+                this.rejectRequest(this.transactionToAsk);
                console.log('es rechazado');
+               this.showModalReject(this.serviceToAsk);
             }
             else{
                console.log('esta en limbo');
             }
           })
           .catch(err => {
-            // An error occurred
+            // Error
           })
         }, 
 
