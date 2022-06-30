@@ -133,21 +133,14 @@ export default {
       .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/popular-services/getAll' )
       .then( response => {
         const ids = response.data
+        console.log(ids);
         ids.forEach(element => {
           this.most_popular_services_ids.push(element.uid)
           this.most_popular_services.push(element.title)
+          this.most_popular_services_imgs.push(element.img)
         });
       })
       .catch( e => console.log( e ))
-
-    this.most_popular_services_ids.forEach(element => {
-      axios
-        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + element )
-        .then( response => {
-          this.most_popular_services_imgs.push(response.data.img)
-        })
-        .catch( e => console.log( e ))
-    });
 
     await axios
       .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/last-services/getAll' )
@@ -156,18 +149,10 @@ export default {
         ids.forEach(element => {
           this.last_services_ids.push(element.uid)
           this.last_services.push(element.title)
+          this.last_services_imgs.push(element.img)
         });
       })
       .catch( e => console.log( e ))
-
-    this.last_services_ids.forEach(element => {
-      axios
-        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + element )
-        .then( response => {
-          this.last_services_imgs.push(response.data.img)
-        })
-        .catch( e => console.log( e ))
-    });
 
   }
 }

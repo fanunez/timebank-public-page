@@ -32,6 +32,16 @@ export default {
     return balance;
   },
 
+  async getUserNotifications( token ) {
+    const resp = await axios.get( ENDPOINT_PATH_AUTH + 'user-logged/', {
+      headers:{
+        'Authorization': token,
+      },
+    })
+    const r = await axios.get( process.env.VUE_APP_BACKEND_URL_SERVER + '/notification/user-notifications/' + resp.data.uid)
+    return r.data;
+  },
+
   deleteUserLogged() {
     Cookies.remove('userLogged');
   },

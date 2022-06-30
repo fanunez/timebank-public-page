@@ -22,7 +22,7 @@
             <div class="col-4" style="padding: 0px;">
                 <b-button href="/awaiting-request" class="notifications" type="button">
                     <Icon class="icon-size" icon="akar-icons:bell"/>
-                    <span id="super-script-num" class="badge rounded-circle">0</span>
+                    <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedNotifications}}</span>
                 </b-button>
             </div>
             <div class="col-2" style="padding-left: 0px; color: white;">
@@ -42,11 +42,14 @@
 
 <script>
 import auth from "../../logic/auth";
+import axios from 'axios';
 
 export default {
   name: 'TopNavbar2',
   data: () => ({
-      userLoggedBono: null 
+      userLoggedBono: null,
+      id_user: '',
+      userLoggedNotifications: ''
   }),
   created() {
     // get user token
@@ -56,6 +59,13 @@ export default {
             this.userLoggedBono = resp;
         })
         .catch( e => console.log( e ) )
+
+    auth.getUserNotifications( token )
+        .then( response => {
+            // console.log( response )
+            this.userLoggedNotifications = response.length;               
+        })
+        .catch( e => console.log( e ))
   },
   methods: {
       cerrarSesion() {
