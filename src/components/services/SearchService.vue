@@ -12,26 +12,26 @@
         </form>
       </b-input-group>
       
-      <div v-if="formData.title==''">
-        <h3 style="text-align: left; margin-left: 30px; padding-top: 10px;">Nuestras categorías</h3>
+      <div v-if="selectedCategory=='' && formData.title==''">
+        <h3 style="text-align: center; margin: 15px 0px;">Nuestras categorías</h3>
         <div v-for="i in ( ~~(categories.length/2) + 1 )" :key="i">
           <div v-if="(categories.length % 2) == 0" class="row" style="max-height: 190px; margin: 15px auto;">
             <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-right: 5px; padding-left: 40px;">
-              <img :src="categories[(i*2)-2].img" class="img-left">
+              <img :src="categories[(i*2)-2].img" class="img-left" @click="getServiceByCategory(categories[(i*2)-2].uid)">
               <div class="center-left">{{categories[(i*2)-2].name}}</div>
             </div>
             <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-left: 5px; padding-right: 40px;">
-              <img :src="categories[(i*2)-1].img" class="img-right">
+              <img :src="categories[(i*2)-1].img" class="img-right" @click="getServiceByCategory(categories[(i*2)-1].uid)">
               <div class="center-right">{{categories[(i*2)-1].name}}</div>
             </div>
           </div>
           <div v-else class="row" style="max-height: 190px; margin: 15px auto;">
             <div v-if="i <= (categories.length/2) + 1" class="contenedor col-6" style="padding-right: 5px; padding-left: 40px;">
-              <img :src="categories[(i*2)-2].img" class="img-left">
+              <img :src="categories[(i*2)-2].img" class="img-left" @click="getServiceByCategory(categories[(i*2)-2].uid)">
               <div class="center-left">{{categories[(i*2)-2].name}}</div>
             </div>
             <div v-if="i <= (categories.length/2)" class="contenedor col-6" style="padding-left: 5px; padding-right: 40px;">
-              <img :src="categories[(i*2)-1].img" class="img-right">
+              <img :src="categories[(i*2)-1].img" class="img-right" @click="getServiceByCategory(categories[(i*2)-1].uid)">
               <div class="center-right">{{categories[(i*2)-1].name}}</div>
             </div>
           </div>
@@ -39,7 +39,15 @@
       </div>
 
       <div v-else>
-        <div class="row mb-5"></div>
+        <div v-if="selectedCategory!='' || formData.title==''">
+          <b-button type = "button" class="delete-filters" variant="none" @click="deleteFilters()">
+            Eliminar filtro
+            <template>
+              <Icon icon="bi:x-lg" style="width:24px; height:24px; color: white; padding-bottom: 4px;"/>
+            </template>
+          </b-button>
+        </div>
+        <div class="container" v-if="servicios.length!=0">
           <div v-for="(service, index) in servicios" :key="index">
             <b-card-group @click="redirectService(index)" class="card-container mb-3">
             <b-card-img  :src="service.img"  img-alt="Card image" img-top>
@@ -50,6 +58,12 @@
             </b-card-body>
             </b-card-group>
           </div>
+        </div>
+        <div class="container" v-else>
+          
+          <h4 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">No hay servicios</h4>
+          
+        </div>
       </div>
 
   </div>
@@ -68,13 +82,18 @@ export default {
       categories: [],
       servicios: [],
       userNames: [],
-      categoriesNames: []
+      categoriesNames: [],
+      selectedCategory: ''
     }
   },
   methods: {
+    deleteFilters(){
+      this.formData.title = '',
+      this.selectedCategory = ''
+    },
     searchByTitle() {
       axios
-        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/buscarTitulo/' + this.formData.title )
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/get-service/' + this.formData.title )
           .then(( response ) => {
             this.servicios = response.data;
             this.servicios.forEach(element => {
@@ -85,6 +104,19 @@ export default {
           )
           .catch(( error ) => console.log( error ))
       
+    },
+    getServiceByCategory(id_c){
+    this.selectedCategory = id_c
+      axios
+        .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/category-finder/' + id_c )
+        .then( response => {
+          this.servicios = response.data;
+          this.servicios.forEach(element => {
+            this.getNameCategoria(element.id_category);
+            this.getUserName(element.id_owner);
+          });    
+        })
+        .catch(e => console.log( e ))
     },
     getNameCategoria(id_c) {
       axios
@@ -178,6 +210,7 @@ export default {
     height: auto;
     opacity: 50%;
     margin-right: 5px;
+    cursor: pointer;
   }
   .img-right{
     width: 100%;
@@ -185,6 +218,7 @@ export default {
     height: auto;
     opacity: 50%;
     margin-left: 5px;
+    cursor: pointer;
   }
   .search-bar{
     width:69%;
@@ -203,5 +237,14 @@ export default {
     background-color: #A70187;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+  }
+  .delete-filters{
+    width: 85%;
+    padding: 10px;
+    background-color: #A70187;
+    margin: 15px auto;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
   }
 </style>
