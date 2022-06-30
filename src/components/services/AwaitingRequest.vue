@@ -93,8 +93,6 @@ export default {
             awRequestS: [],
             titlesSReq: [],
             usersReq: [],
-            //nameUsers: [],
-            //surnameUsers: [],
             aplicants:[],
             owners: [],
             transactions: [],
@@ -154,81 +152,15 @@ export default {
           })
         }, 
 
-        getServicesReq(id_s){
-            axios
-            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/service/' + id_s )
-            .then( r => {
-                this.titlesSReq.push(r.data.title);
-            })
-            .catch(e => console.log( e ))
-        },
-
-        getUsersNameOwner(id_u){
-            axios
-            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/users/' + id_u )
-            .then( r => {
-                //this.nameUsers.push(r.data.user.name);
-                //this.surnameUsers.push(r.data.user.surname);
-                this.owners.push(r.data.user.name+ ' ' + r.data.user.surname);
-            })
-            .catch(e => console.log( e ))
-        },
-
-        getUsersNameAplicant(id_u){
-            axios
-            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/users/' + id_u )
-            .then( r => {
-                //this.nameUsers.push(r.data.user.name);
-                //this.surnameUsers.push(r.data.user.surname);
-                this.aplicants.push(r.data.user.name+ ' ' + r.data.user.surname);
-            })
-            .catch(e => console.log( e ))
-        },
-
-/*            getAwRequest(){
-                axios
-                .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/owner_requests/' + this.uid)
-                .then( r =>{
-                    r.data.forEach(element => {
-                        console.log(element);
-                        this.transactions.push(element.id);
-                        console.log(element.id_user_aplicant);
-                        this.awRequestS.push(element.id_service);
-                        this.getServicesReq(element.id_service);
-                        this.usersReq.push(element.id_user_aplicant);
-                        this.getUsersNameAplicant(element.id_user_aplicant);
-                        this.getUsersNameOwner(element.id_user_owner);
-                    });
-                })
-//                .catch(e => console.log( e ))
-            },*/
-
         async getRequest(){
             await axios
-            .get(process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/getByUser/' + this.uid)
-            .then( r =>{
-                console.log(r.data);
-                console.log(this.uid);
-                for (const element of r.data){
-                     console.log(element);
-                    this.transactions.push(element.id);
-                     this.awRequestS.push(element.id_service);
-                     this.getServicesReq(element.id_service);
-                     this.usersReq.push(element.id_user_aplicant);
-                     this.getUsersNameAplicant(element.id_user_aplicant);
-                     this.getUsersNameOwner(element.id_user_owner);
-                     this.statesTransaction.push(element.state_request);
-                     this.dates.push(element.date);
-                }
+            .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/get-by-user/' + this.uid)
+            .then( response => {
+                console.log( response.data );
+                console.log( this.uid );
                 
             })
             .catch(e => console.log( e ))
-        },
-
-        answerRequest(index){
-            const service_uid = this.awRequestS[index];
-            //Esta debe ser la ruta a la vista de responder solicitud
-            this.$router.push('/answer-request/' + service_uid);
         },
         
     },
@@ -237,7 +169,7 @@ export default {
         const token = auth.getUserLogged();
         // petition
         await axios
-            .get( process.env.VUE_APP_BACKEND_URL_LOCAL + '/auth/user-logged/', {
+            .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
             headers:{
                 'Authorization': token,
             },
@@ -249,7 +181,6 @@ export default {
             })
             .catch( e => console.log( e ))
 
-            //this.getAwRequest();
             this.getRequest();
             
     },
