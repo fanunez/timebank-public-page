@@ -67,6 +67,11 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    
+                    aplicantes: {{aplicants}}, owner: {{owners}},
+                    servicios: {{titlesSReq}}
+                </div>
                 <div class="row mb-3"></div>
             </div>
         </div>
@@ -198,23 +203,24 @@ export default {
 //                .catch(e => console.log( e ))
             },*/
 
-        getRequest(){
-            axios
+        async getRequest(){
+            await axios
             .get(process.env.VUE_APP_BACKEND_URL_LOCAL + '/transaction/getByUser/' + this.uid)
             .then( r =>{
                 console.log(r.data);
                 console.log(this.uid);
-                r.data.forEach(element => {
-                    console.log(element);
+                for (const element of r.data){
+                     console.log(element);
                     this.transactions.push(element.id);
-                    this.awRequestS.push(element.id_service);
-                    this.getServicesReq(element.id_service);
-                    this.usersReq.push(element.id_user_aplicant);
-                    this.getUsersNameAplicant(element.id_user_aplicant);
-                    this.getUsersNameOwner(element.id_user_owner);
-                    this.statesTransaction.push(element.state_request);
-                    this.dates.push(element.date);
-                });
+                     this.awRequestS.push(element.id_service);
+                     this.getServicesReq(element.id_service);
+                     this.usersReq.push(element.id_user_aplicant);
+                     this.getUsersNameAplicant(element.id_user_aplicant);
+                     this.getUsersNameOwner(element.id_user_owner);
+                     this.statesTransaction.push(element.state_request);
+                     this.dates.push(element.date);
+                }
+                
             })
             .catch(e => console.log( e ))
         },
