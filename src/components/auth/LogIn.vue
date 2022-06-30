@@ -10,7 +10,7 @@
       </div>
 
       <div v-if="error==true">
-        <b-alert class="alert-credentials" show variant="danger">
+        <b-alert class="alert-credentials px-0" show variant="danger">
           <Icon icon="eva:alert-triangle-fill" style="width:32px; height:32px; color:#e90606;"/>
           El email o la contraseña es incorrecto/a. Por favor, inténtelo de nuevo.
         </b-alert>
@@ -153,7 +153,7 @@ export default {
 }
 
 .alert-credentials{
-  max-width: 375px;
+  max-width: 343px;
   margin: 15px auto;
   border-color: #e90606;
   background-color: #fff3f4;

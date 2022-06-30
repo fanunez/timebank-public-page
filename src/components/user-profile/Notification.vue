@@ -46,6 +46,7 @@
 import axios from 'axios'
 import auth from "@/logic/auth";
 
+
 export default {
     name: 'Notification',
     data() {
@@ -67,7 +68,7 @@ export default {
                 r.data.forEach(element => {
                     this.idNot.push(element.uid);
                     this.serviceNot.push(element.id_service);
-                    this.dateNot.push(element.date);
+                    this.dateNot.push(element.date.split('T')[0] + ' ' + element.date.split('T')[1].split('.')[0]);
                     this.descNot.push(element.description);
                     this.stateNot.push(element.check);
                 });
@@ -84,6 +85,7 @@ export default {
         await axios
             .put(process.env.VUE_APP_BACKEND_URL_SERVER + /notification/ + id, payload)
             .then( response => {
+                this.$router.push("/profile");
             })
             .catch(e=> console.log(e))
         },
