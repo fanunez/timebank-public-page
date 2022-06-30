@@ -229,7 +229,7 @@ export default {
                     this.owners.push(element.owner.name + ' ' + element.owner.surname);
                     this.titlesSReq.push(element.service);
                     this.statesTransaction.push(element.state_request);
-                    this.dates.push(element.date);
+                    this.dates.push(element.date.split('T')[0] + ' ' + element.date.split('T')[1].split('.')[0]);
                 });
                 console.log( this.uid );
                 
