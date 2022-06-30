@@ -8,8 +8,8 @@
                 <div class="timebank-info">Servicios solicitados y que solicitaste.</div>
                 <div class="row mb-5"></div>
                 
-                <div v-for="(service, index) in transactions" :key="index">
-                    <div v-if="usersReq[index]==uid">
+                <div v-for="(transaction, index) in transactions" :key="index">
+                    <div v-if="aplicantsId[index]==uid">
                         <b-card-group class="mb-3" style="border: 1px solid rgba(0,0,0,.125)">
                             <b-card-body > 
                                 <b-card-title class="font-weight-bold justify-content-center" style="margin:10px 20px;"> 
@@ -42,7 +42,7 @@
                                         </div>
                                     </b-card-title>
                                     <b-card-sub-title class="font-weight-bold justify-content-center" style="font-size: 20px; margin:20px 20px; text-align:left"> 
-                                        <div class="col-10">usuario solicitante:</div> <div class="col-10">{{aplicants[index]}} y {{owners[index]}}</div>
+                                        <div class="col-10">usuario solicitante:</div> <div class="col-10">{{aplicants[index]}}</div>
                                     </b-card-sub-title>
                                 </b-card-body>
                             </b-card-group>
@@ -67,11 +67,6 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    
-                    aplicantes: {{aplicants}}, owner: {{owners}},
-                    servicios: {{titlesSReq}}
-                </div>
                 <div class="row mb-3"></div>
             </div>
         </div>
@@ -91,16 +86,22 @@ export default {
             surname:'',
             uid: '',
             awRequestS: [],
+
+            aplicantsId: [],
+            //Title services          
             titlesSReq: [],
-            usersReq: [],
+
             aplicants:[],
             owners: [],
+            //ID transactions
             transactions: [],
+
             statesTransaction: [],
+            dates:[],
             answer: '',
             serviceToAsk: '',
             userToAsk: '',
-            dates:[],
+            
         }     
     },
     methods: {
@@ -121,14 +122,14 @@ export default {
         showModalConfirmRequest(id) {
             this.answer = ''
             this.serviceToAsk=this.titlesSReq[id]
-            this.userToAsk=this.nameUsers[id] + ' ' + this.surnameUsers[id]
-            this.$bvModal.msgBoxConfirm('Desea aceptar la solicitud de servicio del usuario '+ this.userToAsk, {
+            this.userToAsk=this.aplicants[id]
+            this.$bvModal.msgBoxConfirm('¿Desea aceptar la solicitud de servicio del usuario '+ this.userToAsk +'?', {
             title: '' + this.serviceToAsk,
             size: 'sm',
-            buttonSize: 'm',
+            buttonSize: 'sm',
             okVariant: 'success',
             okTitle: 'SI',
-            okSize: '20px',
+            
             cancelTitle: 'NO',
             footerClass: 'p-2',
             hideHeaderClose: false,
@@ -144,7 +145,7 @@ export default {
                console.log('es rechazado');
             }
             else{
-               console.log('esta ne limbo');
+               console.log('esta en limbo');
             }
           })
           .catch(err => {
@@ -157,6 +158,16 @@ export default {
             .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction/get-by-user/' + this.uid)
             .then( response => {
                 console.log( response.data );
+                response.data.forEach(element => {
+                    console.log(element);
+                    this.transactions.push(element.id_transaction);
+                    this.aplicantsId.push(element.applicant.uid);
+                    this.aplicants.push(element.applicant.name + ' ' + element.applicant.surname);
+                    this.owners.push(element.owner.name + ' ' + element.owner.surname);
+                    this.titlesSReq.push(element.service);
+                    this.statesTransaction.push(element.state_request);
+                    this.dates.push(element.date);
+                });
                 console.log( this.uid );
                 
             })
@@ -199,8 +210,12 @@ export default {
     .modal-footer{
         font-size: 20px;
     }
-    .btn.btn-secondary.btn-m{
+    .btn.btn-secondary.btn-sm{
         background-color: red !important;
+        font-size: 20px;
+    }
+    .btn.btn-success.btn-sm{
+        font-size: 20px;
     }
    
 </style>
