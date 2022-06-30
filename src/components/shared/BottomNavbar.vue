@@ -3,28 +3,28 @@
         <!-- User logged -->
         <div v-if="userLogged" class="row" style="width:-webkit-fill-available">
             <div class="col-3" style="padding:0px;">
-              <button class="bottom-btn btn btn-primary" type="button" onclick="location.href='/';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bxs:home" width="20" height="20"/><br>Inicio</button>
+              <button class="button-btn btn btn-primary" type="button" onclick="location.href='/';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bxs:home" width="20" height="20"/><br>Inicio</button>
             </div>
             <div class="col-3" style="padding:0px;">
-              <button class="bottom-btn buttom-icon btn btn-primary" type="button" onclick="location.href='/search-service';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
+              <button class="button-btn buttom-icon btn btn-primary" type="button" onclick="location.href='/search-service';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
             </div>
             <div class="col-3" style="padding:0px;">
-              <button class="bottom-btn buttom-icon btn btn-primary" type="button" onclick="location.href='/profile';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bi:person-circle" width="20" height="20"/><br>Perfil</button>
+              <button class="button-btn buttom-icon btn btn-primary" type="button" onclick="location.href='/profile';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bi:person-circle" width="20" height="20"/><br>Perfil</button>
             </div>
             <div class="col-3" style="padding:0px;">
-              <button class="bottom-btn btn btn-primary" type="button" onclick="location.href='/help';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
+              <button class="button-btn btn btn-primary" type="button" onclick="location.href='/help';" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
             </div>
         </div>
           <!-- User no logged in -->
         <div v-else class="row" style="width:-webkit-fill-available">
             <div class="col-4" style="padding:0px;">
-              <button type="button" onclick="location.href='/';" class="bottom-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bxs:home" width="20" height="20"/><br>Inicio</button>
+              <button type="button" onclick="location.href='/';" class="button-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bxs:home" width="20" height="20"/><br>Inicio</button>
             </div>
             <div class="col-4" style="padding:0px;">
-              <button type="button" onclick="location.href='/search-service';" class="bottom-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
+              <button type="button" onclick="location.href='/search-service';" class="button-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="charm:search" width="20" height="20"/><br>Buscar</button>
             </div>
             <div class="col-4" style="padding:0px;">
-              <button type="button" onclick="location.href='/help';" class="bottom-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
+              <button type="button" onclick="location.href='/help';" class="button-btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><Icon icon="bx:help-circle" width="20" height="20"/><br>Ayuda</button>
             </div>         
         </div>
       </nav>
