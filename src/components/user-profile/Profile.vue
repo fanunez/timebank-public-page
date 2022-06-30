@@ -16,7 +16,7 @@
       <!-- In development -->
     </div>
     <div v-if="currentTab === tabs[3]">
-      <ServiceRecord /> 
+      <AwaitingRequest /> 
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@
 import UserInformation from './UserInformation.vue'
 import UserService from './UserService.vue'
 import ServiceRecord from './ServiceRecord.vue'
+import AwaitingRequest from '../services/AwaitingRequest.vue'
 
   export default {
     data: () => ({
@@ -34,7 +35,8 @@ import ServiceRecord from './ServiceRecord.vue'
     components: {
       UserInformation,
       UserService,
-      ServiceRecord
+      ServiceRecord,
+      AwaitingRequest
     },
   }
  </script>

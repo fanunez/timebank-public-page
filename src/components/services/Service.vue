@@ -4,10 +4,10 @@
         <a href="/" style="color:black"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></a>
       </div>
         <div class="row" style="margin: 0px 30px;">
-          <div class="timebank-header">{{nombreServicio}}</div>
+          <div class="timebank-header">{{nameService}}</div>
         </div>
         <div class="row" style="margin: 0px 30px;">
-          <div class="timebank-title">Por: {{nombreUsuario}}</div>
+          <div class="timebank-title">Por: {{nameUser}}</div>
         </div>
       <div>
         <!-- First container -->
@@ -31,9 +31,15 @@
         
         <!-- Request button -->
         <div class="row" style="margin: 0px 30px;">
-          <b-button type="button" class="request-button col-9">Solicitar</b-button>
-          <b-card class="col-3" style="background-color: #A70187; margin: 10px 0px; padding: 5px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; ">
-            <b-card-text style="font-size: 24px; color:#A70187; background-color: white; border-radius: 10px;">{{valor}}<br>Bono</b-card-text>
+          <b-button type="sumbit" @click="requestService(id_user, id_owner)" class="request-button col-9">Solicitar</b-button>
+          <b-modal ref="my-modal" hide-footer hide-header>
+            <div class="d-block text-center">
+              <h3>{{message}}</h3>
+            </div>
+            <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Cerrar</b-button>
+          </b-modal>
+          <b-card class="col-3 request-button-balance">
+            <b-card-text style="font-size: 24px; color:#A70187; background-color: white; border-radius: 10px;">{{value}}<br>Bono</b-card-text>
           </b-card>
         </div>
         
@@ -45,10 +51,10 @@
             <div class="timebank-title pt-2" style="margin-left: 10px;">Descripción</div>
           </div>
           <div class="row" style="margin: 0px;">
-            <div class="timebank-phrase my-3" style="margin-left: 10px;">{{descripcion}}</div>
+            <div class="timebank-phrase my-3" style="margin-left: 10px;">{{description}}</div>
           </div>
           <div class="row" style="margin: 0px; background-color: #A70187;">
-            <div class="timebank-title pt-2" style="margin-left: 10px; color: white">Categoria: {{categoria}}</div>
+            <div class="timebank-title pt-2" style="margin-left: 10px; color: white">Categoria: {{category}}</div>
           </div>
         </div>
       </div>
@@ -58,17 +64,22 @@
 
 <script>
 import axios from 'axios'
+import auth from "@/logic/auth"
+
 export default {
   name: 'Service',
   data() {
     return{
-      nombreServicio: '',
-      nombreUsuario: '',
-      logros: [],
+      nameService: '',
+      nameUser: '',
+      achievements: [],
       img: '',
-      valor: '',
-      descripcion: '',
-      categoria: '',
+      value: '',
+      description: '',
+      category: '',
+      id_owner: '',
+      id_user: '',
+      message: ''
     }
   },
   created () {
@@ -78,23 +89,47 @@ export default {
     axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/service/' + this.uid)
         .then( response => {
-            this.nombreServicio = response.data.title;
+            this.nameService = response.data.title;
             this.getCategories(response.data.id_category);
             this.getNameUser(response.data.id_owner);
-            this.descripcion = response.data.description;
-            this.valor = response.data.value;
+            this.description = response.data.description;
+            this.value = response.data.value;
             this.img = response.data.img;
             this.id_owner = response.data.id_owner;
-            this.logros = response.data.achievements;   
+            this.achievements = response.data.achievements;   
         })
         .catch( e => console.log( e ))
+
+    const token = auth.getUserLogged();
+        // petition
+        axios
+          .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
+          headers:{
+              'Authorization': token,
+          },
+          })
+          .then( response => {
+              this.id_user = response.data.uid
+          })
+          .catch( e => console.log( e ))
   },
   methods: {
+    showModal() {
+      this.$refs['my-modal'].show()
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    },
+    toggleModal() {
+      // We pass the ID of the button that we want to return focus to
+      // when the modal has hidden
+      this.$refs['my-modal'].toggle('#toggle-btn')
+    },
     getCategories(id_c) {
       axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/'+ id_c )
         .then( r => {
-          this.categoria = r.data.name;
+          this.category = r.data.name;
         })
         .catch(e => console.log( e ))
     },
@@ -102,14 +137,37 @@ export default {
       axios
         .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/users/'+ id_own )
         .then( r => {
-          this.nombreUsuario = r.data.user.name;
+          this.nameUser = r.data.user.name;
+        })
+        .catch(e => console.log( e ))
+    },
+    requestService(id_u, id_o){
+
+      const payload = {
+        id_user_aplicant : id_u,
+        id_user_owner : id_o,
+        id_service : this.$route.params.id,
+        state_request : 1,
+        state : true
+      }
+
+      axios
+        .post( process.env.VUE_APP_BACKEND_URL_SERVER + '/transaction', payload )
+        .then( r => {
+          this.message = r.data
+          this.showModal()
         })
         .catch(e => console.log( e ))
     }
   }
 }
 </script>
-
+<style>
+.modal-content{
+  max-width: 350px;
+  margin: auto;
+}
+</style>
 <style scoped>
 .Service{
   padding-bottom: 10px;
@@ -165,4 +223,13 @@ export default {
   border-top-right-radius: 6px;
 }
 
+.request-button-balance{
+  background-color: #A70187;
+  margin: 10px 0px;
+  padding: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
 </style>

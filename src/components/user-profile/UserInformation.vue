@@ -47,12 +47,25 @@
                     <img class="image-container" :src="this.img">
                 </div>
                 <div class="row justify-content-center">
-                    <b-button href="/edit-user-data" class="edit-button" >EDITAR</b-button>
+                    <b-button href="/edit-user-data" class="edit-button"> EDITAR </b-button>
                 </div>
             </div>
         </div>
-        <!-- Third row: Contact information TITLE-->
+        <!-- Preferences -->
         <div class="row mb-3">
+            <div class="col-12 pl-0 timebank-title">
+                Mis preferencias <Icon class="pl-1" icon="emojione:star" width="30" height="30" />
+            </div>
+            <!-- Divider -->
+            <hr class="rounded linear-divider">
+        </div>
+        <div class="row" style="margin-left: 15px;">
+            <div v-for="i in preferences.length" :key="i">
+                <img class="icon-container" :src='preferences[i-1].img'>
+            </div>
+        </div>
+        <!-- Third row: Contact information TITLE-->
+        <div class="row my-3">
             <!-- Title -->
             <div class="col-12 pl-0">
                 <div class="row timebank-title">Información de contacto</div>
@@ -121,12 +134,15 @@ export default {
             address: '',
             phone: '',
             description: null,
-            img: null
+            img: null,
+            preferences: []
         }
     },
     async mounted () {
         // get user uid
         const token = auth.getUserLogged();
+        // user preferences
+        let preferencesUid;
         // petition
         await axios
             .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
@@ -135,15 +151,31 @@ export default {
             },
             })
             .then( response => {
-                // console.log( response )
                 this.userName = response.data.name;
                 this.surname = response.data.surname;
                 this.address = response.data.address;
                 this.phone = response.data.phone;
                 this.description = response.data.description;
                 this.img = response.data.img;
+                this.preferencesUid = response.data.preferences;
             })
             .catch( e => console.log( e ))
+        
+        // get categories
+        await axios
+          .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/' )
+            .then( response => {
+              this.categories = response.data.categories; 
+              this.categories.filter( category => {
+                if( this.preferencesUid.indexOf( category.uid ) !== -1 ) {
+                  this.preferences.push( category );
+                }
+              })
+            })
+            .catch( e => console.log( e ));
+        
+
+
     },
 }
 </script>
@@ -227,4 +259,12 @@ export default {
         height: 90px;
         border-radius: 50px;
     }
+
+    .icon-container {
+        margin-left: 15px;
+        width: 40px; 
+        height: 40px;
+        border-radius: 50px;
+    }
+
 </style>

@@ -108,8 +108,43 @@
         </div>
         <br>
 
+        <!-- Preferences -->
+        <div class="timebank-subtitle my-2">Mis preferencias</div>
+        <div class="row col-12">
+          <!-- Actual preferences -->
+          <div class="row px-3" v-if="preferences.length > 0" style="margin-top: 6px;">
+            <div class="px-1" v-for="i in preferences.length" :key="i">
+                <img class="add-preferences-container" 
+                     height="40" 
+                     style="border-radius: 10px; cursor: pointer;" 
+                     :src='preferences[i-1].img'
+                     @click="deletePreference( preferences[i-1] )"
+                >
+            </div>
+          </div>
+          <!-- Modal with more preferences -->
+          <b-button v-b-modal.modalPopover class="add-preferences-container">
+            <img height="30" src="../../../public/img/default_images/plus.png">
+          </b-button>
+          <b-modal ref="modal" id="modalPopover" title="Escoge una de las preferencias" hide-footer centered>
+            <div class="row justify-content-around">
+              <div class="text-center" v-for="i in categories.length" :key="i">
+                <div class="col-12">
+                  <button class="add-preferences-container-modal" @click="addPreference( categories[i-1] )">
+                    <img height="50" style="border-radius: 10px;" :src='categories[i-1].img'>
+                  </button>
+                </div>
+                <div class="timebank-phrase">
+                  {{ categories[i-1].name }}
+                </div>
+              </div>
+            </div>
+            <b-button class="mt-3 modal-button" block @click="hideModal">Cerrar</b-button>
+          </b-modal>
+        </div>
+
         <!-- Description -->
-        <div class="timebank-subtitle mt-2">Sobre tí</div>
+        <div class="timebank-subtitle mt-3">Sobre tí</div>
         <b-form-textarea class="input-border"
                          type="text" 
                          v-model="formData.newDescription"
@@ -190,20 +225,24 @@ export default {
         { value: 'Estudio', text: 'Estudio' },
         { value: 'Vivo', text: 'Vivo' }
       ],
+      // All categories
+      categories: [],
+      preferences: [],
     }
   },
-  created () {
+  async created () {
         // get user uid
         const token = auth.getUserLogged();
+        // user preferences
+        let preferencesUid;
         // petition
-        axios
+        await axios
             .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/auth/user-logged/', {
             headers:{
                 'Authorization': token,
             },
             })
             .then( response => {
-                // console.log( response.data );
                 this.formData.uid = response.data.uid;
                 this.formData.newName = response.data.name;
                 this.formData.newSurname = response.data.surname;
@@ -213,13 +252,28 @@ export default {
                 this.formData.newEmail = response.data.email;
                 this.formData.newDescription = response.data.description;
                 this.formData.img = response.data.img;
+                this.preferencesUid = response.data.preferences;
             })
             .catch( e => console.log( e ))
+        
+        // get categories
+        await axios
+          .get( process.env.VUE_APP_BACKEND_URL_SERVER + '/category/' )
+            .then( response => {
+              this.categories = response.data.categories; 
+              this.categories.filter( category => {
+                if( this.preferencesUid.indexOf( category.uid ) !== -1 ) {
+                  this.preferences.push( category );
+                }
+              })
+            })
+            .catch( e => console.log( e ));
+
   },
   methods: {
     async updateUser() {
       // generate payload body with the information of the data that is send
-      this.formData.estateError = false;
+      this.formData.stateError = false;
 
       this.formData.nameError = false;
       this.formData.surnameError = false;
@@ -238,44 +292,48 @@ export default {
       this.formData.emailErrorT = '';
 
       if (!this.formData.newName){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.nameError = true;
         this.formData.nameErrorT = 'Ingrese nombre.';
       }
 
       if (!this.formData.newSurname){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.surnameError = true;
         this.formData.surnameErrorT = 'Ingrese apellido.';
       }
 
       if (!this.formData.newRelation){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.relationError = true;
         this.formData.relationErrorT = 'Ingrese relación.';
       }
 
       if (!this.formData.newAddress){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.addressError = true;
         this.formData.addressErrorT = 'Ingrese dirección.';
       }
 
       if (!this.formData.newPhone){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.phoneError = true;
         this.formData.phoneErrorT = 'Ingrese telefono.';
       }
 
       if (!this.formData.newEmail){
-        this.formData.estateError = true;
+        this.formData.stateError = true;
         this.formData.emailError = true;
         this.formData.emailErrorT = 'Ingrese correo.';
       }
 
-      if (this.formData.estateError == true){    
+      if (this.formData.stateError == true){    
         return true;
       }
+
+      let payloadPreferences = this.preferences.map( element => {
+        return element.uid;
+      })
 
       const payload = {
         name: this.formData.newName,
@@ -289,13 +347,13 @@ export default {
         description: this.formData.newDescription,
         type_user: this.formData.newType,
         balance: this.formData.newBalance,
+        preferences: payloadPreferences
       } 
 
       // send new user data
       await axios
         .put( process.env.VUE_APP_BACKEND_URL_SERVER + /users/ + this.formData.uid, payload )
-        .then( response => {
-        })
+        .then( response => console.log( response.status ))
         .catch( e => console.log( e ))
       
       if( this.formData.avatar ) {
@@ -316,6 +374,22 @@ export default {
         return window.location.href="/profile"
       }
     },
+    hideModal() {
+      this.$refs['modal'].hide()
+    },
+    addPreference( category ) {
+      let index = this.preferences.indexOf( category );
+      if (index !== -1) {
+        this.preferences.splice(index, 1);
+      }
+      this.preferences.push( category );
+    },
+    deletePreference( category ) {
+      let index = this.preferences.indexOf( category );
+      if (index !== -1) {
+        this.preferences.splice(index, 1);
+      }
+    }
   }
 
 }
@@ -397,4 +471,42 @@ export default {
     height:24px;
     color: #A70187;
   }
+
+  .add-preferences-container {
+    width: 50px; 
+    height: 50px;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid #bababa;
+    background-color: white !important;
+  }
+
+  .add-preferences-container-modal {
+    width: 70px; 
+    height: 70px;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid #bababa;
+    background-color: white !important;
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-button{
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    background-color: #A70187!important;;
+    color: white!important;
+    border-radius: 10px;
+  }
+
+  .modal-content {
+    width: 350px !important;
+  }
+
+
 </style>
