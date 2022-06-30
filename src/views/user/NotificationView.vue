@@ -1,5 +1,5 @@
 <template>
-    <div class= "notification" style="height: -webkit-fill-available;">
+    <div class= "notification">
         <TopNavbar2/>
         <Notification/>
         <BottomNavbar/>

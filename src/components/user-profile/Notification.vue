@@ -1,6 +1,6 @@
 <template>
     <div class="notification-frame">   
-        <div class="row " style="margin: 80px 35px;">
+        <div class="row " style="padding: 80px 35px;">
             <div v-if="descNot.length==0" class= "timebank-header">
                 <div class="col-1" style="padding: 5px 0px; margin: 10px 10px;">
                     <button onclick="history.back()" style="color:black; display: contents;"><Icon icon="akar-icons:arrow-left" style="width:40px; height:40px;"/></button>
@@ -63,7 +63,7 @@ export default {
     methods: {
         getNotificationsUser(){
             axios
-            .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/notification/user-notifactions/' + this.uid)
+            .get(process.env.VUE_APP_BACKEND_URL_SERVER + '/notification/user-notifications/' + this.uid)
             .then( r=>{
                 r.data.forEach(element => {
                     this.idNot.push(element.uid);
@@ -121,18 +121,19 @@ export default {
         max-width: 425px;
         margin: 0 auto;
         background-color:white;
-    
+        /* height: 100vh; */
+        min-height: 940px;
     }
     .timebank-header{
-    font-weight: bold;
-    font-size: 28px;
-    margin-top: 10px;
+        font-weight: bold;
+        font-size: 28px;
+        margin-top: 10px;
     }
 
     .timebank-info{
-    font-weight: bold;
-    font-size: 24px;
-    margin-top: 0px;
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 0px;
     
     }
 

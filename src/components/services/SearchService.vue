@@ -89,7 +89,10 @@ export default {
   methods: {
     deleteFilters(){
       this.formData.title = '',
-      this.selectedCategory = ''
+      this.selectedCategory = '',
+      this.servicios = [],
+      this.userNames = [],
+      this.categoriesNames = []
     },
     searchByTitle() {
       axios

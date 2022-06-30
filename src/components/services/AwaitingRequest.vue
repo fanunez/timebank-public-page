@@ -42,7 +42,7 @@
                                         </div>
                                     </b-card-title>
                                     <b-card-sub-title class="font-weight-bold justify-content-center" style="font-size: 20px; margin:20px 20px; text-align:left"> 
-                                        <div class="col-10">usuario solicitante:</div> <div class="col-10">{{aplicants[index]}}</div>
+                                        <div class="col-10">Usuario solicitante:</div> <div class="col-10">{{aplicants[index]}}</div>
                                     </b-card-sub-title>
                                 </b-card-body>
                             </b-card-group>
@@ -60,7 +60,7 @@
                                         </div>
                                     </b-card-title>
                                     <b-card-sub-title class="font-weight-bold justify-content-center" style="font-size: 20px; margin:20px 20px; text-align:left"> 
-                                        <div class="col-10">usuario solicitante:</div> <div class="col-10">{{aplicants[index]}}</div>
+                                        <div class="col-10">Usuario solicitante:</div> <div class="col-10">{{aplicants[index]}}</div>
                                     </b-card-sub-title>
                                 </b-card-body>
                             </b-card-group>
