@@ -35,7 +35,7 @@ export default {
         toolbar: getToolbar(),
         errorWrapper: false,
       },
-      good_practices: 'pdf/buenas_practicas.pdf',
+      good_practices: 'static/buenas_practicas.pdf',
     };
   },
   methods: {
