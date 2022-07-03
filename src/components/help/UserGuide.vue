@@ -35,7 +35,7 @@ export default {
         toolbar: getToolbar(),
         errorWrapper: false,
       },
-      user_manual: 'pdf/manual_usuario.pdf',
+      user_manual: 'static/manual_usuario.pdf',
     };
   },
   methods: {
