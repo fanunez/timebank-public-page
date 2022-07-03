@@ -39,7 +39,7 @@
       </div>
 
       <div v-else>
-        <div v-if="selectedCategory!='' || formData.title==''">
+        <div v-if="selectedCategory!='' || formData.title!=''">
           <b-button type = "button" class="delete-filters" variant="none" @click="deleteFilters()">
             Eliminar filtro
             <template>
@@ -47,7 +47,7 @@
             </template>
           </b-button>
         </div>
-        <div class="container" v-if="servicios.length!=0">
+        <div class="container" style="margin-top: 20px;" v-if="servicios.length!=0">
           <div v-for="(service, index) in servicios" :key="index">
             <b-card-group @click="redirectService(index)" class="card-container mb-3">
             <b-card-img  :src="service.img"  img-alt="Card image" img-top>
@@ -89,7 +89,10 @@ export default {
   methods: {
     deleteFilters(){
       this.formData.title = '',
-      this.selectedCategory = ''
+      this.selectedCategory = '',
+      this.servicios = [],
+      this.userNames = [],
+      this.categoriesNames = []
     },
     searchByTitle() {
       axios

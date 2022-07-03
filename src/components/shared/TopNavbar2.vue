@@ -14,10 +14,10 @@
                 </b-dropdown>
             </div>
             <div class="col-4" style="padding: 0px;">
-                    <b-button class="balance" type="button">
+                    <div class="balance">
                         <Icon class="icon-size" icon="akar-icons:clock"/>
                             <span id="super-script-num" class="badge rounded-circle">{{this.userLoggedBono}}</span>
-                    </b-button>
+                    </div>
             </div>
             <div class="col-4" style="padding: 0px;">
                 <b-button href="/notification" class="notifications" type="button">
@@ -42,7 +42,6 @@
 
 <script>
 import auth from "../../logic/auth";
-import axios from 'axios';
 
 export default {
   name: 'TopNavbar2',
@@ -62,7 +61,6 @@ export default {
 
     auth.getUserNotifications( token )
         .then( response => {
-            // console.log( response )
             this.userLoggedNotifications = response.length;               
         })
         .catch( e => console.log( e ))
@@ -133,5 +131,6 @@ export default {
     .icon-size {
         width:32px; 
         height:32px;
+        color: white;
     }
 </style>

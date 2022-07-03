@@ -50,7 +50,7 @@ import AwaitingRequest from '../services/AwaitingRequest.vue'
     padding: 100px 0px;
     background-color:white;
     /* height: 100vh; */
-    min-height: 900px;
+    min-height: 940px;
   }
   .tab-button{
     border-style: solid!important;
